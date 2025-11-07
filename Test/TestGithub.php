@@ -1,2 +1,2 @@
 Prueba de github
-Esta es una prueba
+Esta es la prueba
