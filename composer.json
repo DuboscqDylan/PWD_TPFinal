@@ -1,0 +1,12 @@
+{
+    "name": "vulca/pwd_tp-final",
+    "description": "composer require vendor/package",
+    "autoload": {
+        "psr-4": {
+            "Vulca\\PwdTpFinal\\": "src/"
+        }
+    },
+    "require": {
+        "phpmailer/phpmailer": "^7.0"
+    }
+}
