@@ -1,4 +1,7 @@
 <?php
+
+include_once 'BaseDatos.php';
+
 class Menu {
     private $idmenu;
     private $menombre ;
@@ -114,7 +117,7 @@ class Menu {
         
      }
 
-     public function setear($idmenu, $menombre,$medescripcion,$ObjMenu,$medeshabilitado)    {
+     public function cargarDatos($idmenu, $menombre,$medescripcion,$ObjMenu,$medeshabilitado)    {
         $this->setIdmenu($idmenu);
         $this->setMenombre($menombre);
         $this->setMedescripcion($medescripcion);
@@ -139,7 +142,7 @@ class Menu {
                         $objMenuPadre->setIdmenu($row['idpadre']);
                         $objMenuPadre->cargar();
                     }
-                    $this->setear($row['idmenu'], $row['menombre'],$row['medescripcion'],$objMenuPadre,$row['medeshabilitado']); 
+                    $this->cargarDatos($row['idmenu'], $row['menombre'],$row['medescripcion'],$objMenuPadre,$row['medeshabilitado']); 
                     
                 }
             }
@@ -243,7 +246,7 @@ class Menu {
                         $objMenuPadre->setIdmenu($row['idpadre']);
                         $objMenuPadre->cargar();
                     }
-                    $obj->setear($row['idmenu'], $row['menombre'],$row['medescripcion'],$objMenuPadre,$row['medeshabilitado']); 
+                    $obj->cargarDatos($row['idmenu'], $row['menombre'],$row['medescripcion'],$objMenuPadre,$row['medeshabilitado']); 
                     array_push($arreglo, $obj);
                 }
                 

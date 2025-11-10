@@ -1,5 +1,7 @@
 <?php
 include_once 'BaseDatos.php';
+include_once 'Compra.php';
+include_once 'Producto.php';
 // idcompraitem(bigint) idproducto(obj) idcompra(obj) cicantidad(int)
 
 class CompraItem {

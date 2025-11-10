@@ -16,7 +16,7 @@ class Compra {
     }
 
     // getters 
-    public function getIdcompra() {
+    public function getIdCompra() {
         return $this->idcompra;
     }
 
@@ -33,7 +33,7 @@ class Compra {
     }
 
     // setters
-    public function setIdcompra($idcompra) {
+    public function setIdCompra($idcompra) {
         $this->idcompra = $idcompra;
     }
 
@@ -69,7 +69,6 @@ class Compra {
                 if ($row = $bd->Registro()) {
                     $objUsuario = new Usuario();
                     $objUsuario->buscarDatos($row['idusuario']);
-                    
                     $this->cargarDatos($row['idcompra'], $row['cofecha'], $objUsuario);
                     $resultado = true;
                 }
@@ -96,7 +95,6 @@ class Compra {
                 while ($row = $bd->Registro()) {
                     $objUsuario = new Usuario();
                     $objUsuario->buscarDatos($row['idusuario']);
-
                     $obj = new Compra();
                     $obj->cargarDatos($row['idcompra'], $row['cofecha'], $objUsuario);
                     array_push($coleccion, $obj);

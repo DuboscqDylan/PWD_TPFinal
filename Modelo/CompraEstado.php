@@ -1,5 +1,7 @@
 <?php 
 include_once 'BaseDatos.php';
+include_once 'CompraEstadoTipo.php';
+include_once 'Compra.php';
 
 class CompraEstado {
     private $idcompraestado;
