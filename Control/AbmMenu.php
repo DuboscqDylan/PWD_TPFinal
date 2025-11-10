@@ -25,7 +25,7 @@ class AbmMenu{
             }else{
                 $param['medeshabilitado']= date("Y-m-d H:i:s");
             }
-            $obj->setear($param['idmenu'], $param['menombre'],$param['medescripcion'],$objmenu,$param['medeshabilitado']); 
+            $obj->cargarDatos($param['idmenu'], $param['menombre'],$param['medescripcion'],$objmenu,$param['medeshabilitado']); 
         }
         return $obj;
     }

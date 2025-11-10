@@ -2,7 +2,11 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-class ABMCompra {
+include_once 'AbmCompra.php';
+include_once 'AbmCompraEstado.php';
+include_once 'AbmCompraEstadoTipo.php';
+
+class AbmCompra {
     
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden 
@@ -59,11 +63,11 @@ class ABMCompra {
         $resp = false;
         $obj = $this->cargarObjeto($param);
         if ($obj != null && $obj->insertar()) {
-            $compraestadotipos = (new ABMCompraEstadoTipo())->buscar(['idcompraestadotipo'=> 1]); //Busca estadotipo
+            $compraestadotipos = (new AbmCompraEstadoTipo())->buscar(['idcompraestadotipo'=> 1]); //Busca estadotipo
             $resp = !empty($compraestadotipos);
             if ($resp) { 
                 // Compra se crea por default con compraestado en compraestadotipo == 1
-                $resp = (new ABMCompraEstado())->alta(['objCompra' => $obj, 'objCompraEstadoTipo'=>$compraestadotipos[0], 'cefechaini'=> $obj->getCofecha()]);
+                $resp = (new AbmCompraEstado())->alta(['objCompra' => $obj, 'objCompraEstadoTipo'=>$compraestadotipos[0], 'cefechaini'=> $obj->getCofecha()]);
             }
         }
         return $resp;
@@ -108,7 +112,7 @@ class ABMCompra {
      * @param array $param ['idcompraestado'=>$idce, 'idnuevoestadotipo'=>$idcet]
      */
     public function cambiarEstado($param) {
-        $compraEstados = (new ABMCompraEstado())->buscar(['idcompraestado'=> $param['idcompraestado']]);
+        $compraEstados = (new AbmCompraEstado())->buscar(['idcompraestado'=> $param['idcompraestado']]);
         $exito = !empty($compraEstados);
         if ($exito) {
             $compraEstado = $compraEstados[0];
@@ -116,14 +120,14 @@ class ABMCompra {
             $exito = $compraEstado->getObjCompraEstadoTipo()->getIdcompraestadotipo() != $param['idnuevoestadotipo'];            
             if ($exito) { //Si el estado tipo es diferente
 
-                $estadoTipos = (new ABMCompraEstadoTipo())->buscar(['idcompraestadotipo'=>$param['idnuevoestadotipo']]);
+                $estadoTipos = (new AbmCompraEstadoTipo())->buscar(['idcompraestadotipo'=>$param['idnuevoestadotipo']]);
                 $exito = !empty($estadoTipos);
                 if ($exito) {
                     $nuevoObjEstadoTipo = $estadoTipos[0];
                     $timestampActual = (new DateTime('now', (new DateTimeZone('-03:00'))))->format('Y-m-d H:i:s');
 
                     // Nuevo CompraEstado para la compra, con cefechaini = cefechafin (del estado anterior)
-                    $exito = (new ABMCompraEstado())->alta(['objCompra' => $compraEstado->getObjCompra(), 'objCompraEstadoTipo'=> $nuevoObjEstadoTipo, 'cefechaini'=> $timestampActual]);
+                    $exito = (new AbmCompraEstado())->alta(['objCompra' => $compraEstado->getObjCompra(), 'objCompraEstadoTipo'=> $nuevoObjEstadoTipo, 'cefechaini'=> $timestampActual]);
 
                     if ($exito) { // Si pudo crear nuevo compraestado
                         $compraEstado->setCefechafin($timestampActual); // Establezco fechafin de estado actual
@@ -210,11 +214,11 @@ class ABMCompra {
      * Metodo que realiza la compra del carrito (si compra tiene estado 1) y tiene compraItems
      */
     public function comprarCarrito($param) {
-        $compraEstados = (new ABMCompraEstado())->buscar($param);
+        $compraEstados = (new AbmCompraEstado())->buscar($param);
         $exito = !empty($compraEstados);
         if ($exito) {
             $compraEstado = $compraEstados[0];
-            $compraItems = (new ABMCompraItem())->buscar(['compra'=> $compraEstado->getObjCompra()]);
+            $compraItems = (new AbmCompraItem())->buscar(['compra'=> $compraEstado->getObjCompra()]);
             $exito = !empty($compraItems);
             if ($exito) {
                 $rta = $this->cambiarEstado(['idcompraestado'=>$param['idcompraestado'], 'idnuevoestadotipo' => 2]); //Pasa a aceptado
@@ -236,7 +240,7 @@ class ABMCompra {
     private function generarFacturaCompra($param) {
         $compra = $param['compra'];
         $usuario = $param['usuario'];
-        $compraItems = (new ABMCompraItem())->buscar(['compra' => $compra]);
+        $compraItems = (new AbmCompraItem())->buscar(['compra' => $compra]);
 
         $tituloPDF = "Factura_Compra_N°".$usuario->getIdusuario().$compra->getIdcompra();
 
@@ -338,11 +342,11 @@ class ABMCompra {
     public function listarMisCompras($param) {
         $resultado = [];
         // 1. Recibimos $param['idusuario']. Con esto realizamos la busqueda del usuario
-        $objUsuario = (new ABMUsuario())->buscar(['idusuario'=>$param['idusuario']])[0];
+        $objUsuario = (new AbmUsuario())->buscar(['idusuario'=>$param['idusuario']])[0];
         // 2. Buscamos todas las compras relacionadas al usuario
         $compras = $this->buscar(['usuario'=>$objUsuario]);
-        $abmCompraEstado = new ABMCompraEstado();
-        $abmCompraItem = new ABMCompraItem();
+        $abmCompraEstado = new AbmCompraEstado();
+        $abmCompraItem = new AbmCompraItem();
         foreach ($compras as $compra) {
             $compraEstado = $abmCompraEstado->buscar(['objCompra'=>$compra , 'cefechafin'=> 'null'])[0];
             $itemsCompra = $abmCompraItem->buscar(['compra' => $compra]);
