@@ -3,16 +3,16 @@ include_once "../../../configuracion.php";
 include STRUCTURE_PATH . "/HeadSafe.php";
 ?>
 
-<div class="bg-steam-lightgreen bdr-steam-nofocus w-75 mx-auto my-5">
-    <div class="bdr-steam-nofocus px-5">
-        <div class="m-3"> 
+<div class="">
+    <div class="">
+        <div class=""> 
             <h1> Carro </h1>
         </div>
-        <div class="w-100 m-auto flex-column">
-            <div id='carrito' class="bg-steam-lightgray d-flex flex-column bdr-steam-focus" style="min-height: 100px;">
+        <div class="">
+            <div id='carrito' class="" style="min-height: 100px;">
                 <!-- Aqui se cargaran los nuevos divs con productos-->
             </div>
-            <div class="d-flex flex-column align-items-end my-2">
+            <div class="">
                 <button class="btn btn-success rounded-3 my-1" style="font-weight: bold; max-width: 150px" onclick="comprarCarrito();">Comprar</button>
                 <button class="btn btn-danger rounded-3 my-1" style="font-weight: bold; max-width: 150px;" onclick="vaciarCarrito();">Vaciar carro</button>
             </div>
@@ -40,13 +40,13 @@ include STRUCTURE_PATH . "/HeadSafe.php";
                 // Iterar sobre los compraItems y construir el HTML
                 $.each(response, function(index, compraItem) {
                         htmlContent += `
-                            <div class='d-flex flex-column p-2 bg-steam-lightgray' style="width: 100%; min-height: 100px;">
-                                <div class="d-flex align-items-center justify-content-between text-center bg-steam-lightgreen bdr-steam-nofocus" style="height: fit-content;"> 
-                                    <div class="d-flex">
-                                        <img class="bg-steam-darkgreen bdr-steam-focus" style="margin: 5px; height: 100px; width: 100px;" src="${compraItem.icon}"> 
+                            <div class='' style="width: 100%; min-height: 100px;">
+                                <div class="" style="height: fit-content;"> 
+                                    <div class="">
+                                        <img class="" style="margin: 5px; height: 100px; width: 100px;" src="${compraItem.icon}"> 
 
                                         </img>
-                                        <div class="d-flex flex-column my-auto"> 
+                                        <div class=""> 
                                             <a class="text-decoration-none link-light" href="<?php echo BASE_URL ?>/View/Pages/Producto/Producto.php?idproducto=${compraItem.idproducto}" target="_blank">
                                                 <p style='font-size: medium; font-weight: bold; margin: 10px; width: fit-content;'> ${compraItem.pronombre} </p>    
                                             </a>
@@ -54,12 +54,12 @@ include STRUCTURE_PATH . "/HeadSafe.php";
                                         </div>
                                     </div>
 
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-auto"> 
+                                    <div class="">
+                                        <div class=""> 
                                             <p style='font-size: medium; font-weight: bold; margin: 10px; width: fit-content;'> $ ${compraItem.proprecio} </p>
                                         </div>
 
-                                        <div class="d-flex flex-column align-items-center mx-2" style="width: 25px;"> 
+                                        <div class=" style="width: 25px;"> 
                                             <button class="d-flex flex-column align-items-center overflow-hidden p-0" style="height: 25px; width: 25px;" onclick="agregarItemCarrito(${compraItem.idproducto}, 1)"> 
                                                 <p class="m-0 text-black">+</p> 
                                             </button>
@@ -74,7 +74,7 @@ include STRUCTURE_PATH . "/HeadSafe.php";
                             </div>`;
                 });
                 if (htmlContent == "") {
-                    htmlContent = `<div class="bg-steam-lightgreen bdr-steam-nofocus px-3 m-auto"> <p class="my-2"> Carrito vacio </p> </div>`;
+                    htmlContent = `<div class=""> <p class="my-2"> Carrito vacio </p> </div>`;
                 }
                 // Insertar el HTML generado en el contenedor
                 $('#carrito').html(htmlContent);

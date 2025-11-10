@@ -5,10 +5,10 @@ include STRUCTURE_PATH . '/Head.php';
 $esCliente = $sesion->esCliente();
 ?>
 
-<div class="container py-4">
+<div class="">
     <h1 class="text-center mb-4">Productos</h1>
     <!-- Product Grid -->
-    <div class="d-flex flex-wrap bg-steam-lightgreen bdr-steam-nofocus" id="catalogo">
+    <div class="" id="catalogo">
     </div>
 </div>
 
@@ -26,19 +26,19 @@ $esCliente = $sesion->esCliente();
                 // Iterar sobre los productos y construir el HTML
                 $.each(response, function(index, producto) {
                     htmlContent += `
-                    <div class="d-flex w-100">
-                        <div class="h-100 w-100 shadow-sm d-flex bg-steam-darkgreen bdr-steam-focus">
+                    <div class="">
+                        <div class="">
                             <!-- Product Details -->
-                            <div class = 'me-auto' id='detailsProducto${producto.idproducto}'>
-                                <div class='card-body d-flex'>
-                                    <div class='align-self-center bdr-steam-nofocus m-1 p-1'>
+                            <div class = '' id='detailsProducto${producto.idproducto}'>
+                                <div class=''>
+                                    <div class=''>
                                         <!-- Product Image -->
                                         <a class='link-light text-decoration-none' href='<?php echo BASE_URL ?>/View/Pages/Producto/Producto.php?idproducto=${producto.idproducto}'>
                                             <img src='${producto.icon}'  width='100' height='100' alt='...'>
                                         </a>
                                     </div>
 
-                                    <div class='d-flex flex-column justify-content-center items-center mx-5'>
+                                    <div class=''>
                                         <h5 class='card-title'> <a class='link-light text-decoration-none' href='<?php echo BASE_URL ?>/View/Pages/Producto/Producto.php?idproducto=${producto.idproducto}'> ${producto.pronombre}</a> </h5>
                                         <p class='card-text'> Precio: $ ${producto.proprecio} </p>
                                         <p class='card-text'> Stock: ${producto.procantstock} </p>
@@ -46,8 +46,8 @@ $esCliente = $sesion->esCliente();
                                 </div>
                             </div>
                             <!-- Product Actions -->
-                            <div class='d-flex bg-steam-lightgreen bdr-steam-nofocus'>
-                                <div class="d-flex flex-column m-auto center text-center p-2">
+                            <div class=''>
+                                <div class="">
                                     <div>
                                         <a class='btn btn-primary btn-steam w-100' href='<?php echo BASE_URL ?>/View/Pages/Producto/Producto.php?idproducto=${producto.idproducto}'>Ver detalles</a>
                                     </div>
@@ -107,15 +107,15 @@ $esCliente = $sesion->esCliente();
                 var htmlContent = '';
                 $.each(response, function(index, producto) {
                     htmlContent += `
-                        <div class='card-body d-flex'>
-                            <div class='align-self-center bdr-steam-nofocus m-1 p-1'>
+                        <div class=''>
+                            <div class=''>
                                 <!-- Product Image -->
                                 <a class='link-light text-decoration-none' href='<?php echo BASE_URL ?>/View/Pages/Producto/Producto.php?idproducto=${producto.idproducto}'>
                                     <img src='${producto.icon}'  width='100' height='100' alt='...'>
                                 </a>
                             </div>
 
-                            <div class='d-flex flex-column justify-content-center items-center mx-5'>
+                            <div class=''>
                                 <h5 class='card-title'> <a class='link-light text-decoration-none' href='<?php echo BASE_URL ?>/View/Pages/Producto/Producto.php?idproducto=${producto.idproducto}'> ${producto.pronombre}</a> </h5>
                                 <p class='card-text'> Precio: $ ${producto.proprecio} </p>
                                 <p class='card-text'> Stock: ${producto.procantstock} </p>

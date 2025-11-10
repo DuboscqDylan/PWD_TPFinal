@@ -3,13 +3,13 @@ include_once "../../../configuracion.php";
 include STRUCTURE_PATH . "/HeadSafe.php";
 ?>
 
-<div class="d-flex justify-content-center align-items-start gap-3">
+<div class="">
 
     <!-- Tabla de Productos -->
-    <div class="mt-5" style="max-width: 65%; padding: 20px;">
+    <div class="" style="max-width: 65%; padding: 20px;">
         <h1>Administrar Productos</h1>
-        <table class="table table-bordered table-striped" id="productosTable" style="width: 100%;">
-            <thead class="thead-dark">
+        <table class="" id="productosTable" style="width: 100%;">
+            <thead class="">
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
@@ -28,70 +28,70 @@ include STRUCTURE_PATH . "/HeadSafe.php";
     </div>
 
     <!-- Formulario Estático para Alta de Producto -->
-    <div class="mt-5" style="max-width: 45%; padding: 20px;">
+    <div class="" style="max-width: 45%; padding: 20px;">
         <h2>Alta de Producto</h2>
         <form id="altaProductoForm">
-            <div class="form-group">
+            <div class="">
                 <label for="nombreAlta" class="text-white">Nombre</label>
-                <input type="text" class="form-control" id="nombreAlta" name="nombreAlta" required>
+                <input type="text" class="" id="nombreAlta" name="nombreAlta" required>
             </div>
-            <div class="form-group">
+            <div class="">
                 <label for="detalleAlta" class="text-white">Detalle</label>
-                <input type="text" class="form-control" id="detalleAlta" name="detalleAlta" required>
+                <input type="text" class="" id="detalleAlta" name="detalleAlta" required>
             </div>
-            <div class="form-group">
+            <div class="">
                 <label for="stockAlta" class="text-white">Stock</label>
-                <input type="number" class="form-control" id="stockAlta" name="stockAlta" required>
+                <input type="number" class="" id="stockAlta" name="stockAlta" required>
             </div>
-            <div class="form-group">
+            <div class="">
                 <label for="precioAlta" class="text-white">Precio</label>
-                <input type="number" class="form-control" id="precioAlta" name="precioAlta" required>
+                <input type="number" class="" id="precioAlta" name="precioAlta" required>
             </div>
-            <div class="form-group">
+            <div class="">
                 <label for="idvideoytAlta" class="text-white">Id Youtube</label>
-                <input type="text" class="form-control" id="idvideoytAlta" name="idvideoytAlta">
+                <input type="text" class="" id="idvideoytAlta" name="idvideoytAlta">
             </div>
 
             <button type="submit" class="btn btn-success mt-3">Crear producto</button>
         </form>
-        <div class="d-flex flex-column justify-content-center align-items-center">
-            <div id="errorMessage" class="text text-center mt-3 p-2 bg-danger rounded-3 w-100 text-white d-none"></div>
-            <div id="successMessage" class="text text-center mt-3 p-2 bg-success rounded-3 w-100 text-white d-none"></div>
+        <div class="">
+            <div id="errorMessage" class=""></div>
+            <div id="successMessage" class=""></div>
         </div>
     </div>
 
 
-    <div class="mt-5" style="max-width: 45%; padding: 20px;">
+    <div class="" style="max-width: 45%; padding: 20px;">
         <h2>Modificar Producto</h2>
         <form id="modificarProductoForm">
-            <div class="form-group">
+            <div class="">
                 <label for="idproducto" class="text-white">Id</label>
                 <input type="number" class="form-control" id="idproducto" name="idproducto" required>
             </div>
-            <div class="form-group">
+            <div class="">
                 <label for="nombre" class="text-white">Nombre</label>
                 <input type="text" class="form-control" id="nombre" name="nombre">
             </div>
-            <div class="form-group">
+            <div class="">
                 <label for="detalle" class="text-white">Detalle</label>
                 <input type="text" class="form-control" id="detalle" name="detalle">
             </div>
-            <div class="form-group">
+            <div class="">
                 <label for="stock" class="text-white">Stock</label>
                 <input type="number" class="form-control" id="stock" name="stock">
             </div>
-            <div class="form-group">
+            <div class="">
                 <label for="precio" class="text-white">Precio</label>
                 <input type="number" class="form-control" id="precio" name="precio">
             </div>
-            <div class="form-group">
+            <div class="">
                 <label for="idvideoyt" class="text-white">Id Youtube</label>
                 <input type="text" class="form-control" id="idvideoyt" name="idvideoyt">
             </div>
 
             <button type="submit" class="btn btn-primary mt-3">Actualizar producto</button>
         </form>
-        <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="">
             <div id="errorMessageMod" class="text text-center mt-3 p-2 bg-danger rounded-3 w-100 text-white d-none"></div>
             <div id="successMessageMod" class="text text-center mt-3 p-2 bg-success rounded-3 w-100 text-white d-none"></div>
         </div>
@@ -128,7 +128,7 @@ include STRUCTURE_PATH . "/HeadSafe.php";
                     <td>${producto.proprecio}</td>
                     <td>${producto.idvideoyt}</td>
                     <td>
-                        <div class="d-flex flex-column"> 
+                        <div class=""> 
                             <button class="my-1 btn btn-danger btn-sm" onclick="bajaProducto(${producto.idproducto})">Eliminar</button>
                             ${botonEstado}
                         </div>

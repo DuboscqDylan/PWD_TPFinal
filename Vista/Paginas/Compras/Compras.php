@@ -3,13 +3,13 @@ include_once "../../../configuracion.php";
 include STRUCTURE_PATH . "/HeadSafe.php";
 ?>
 
-<div class="d-flex justify-content-center align-items-start gap-3">
+<div class="">
 
     <!-- Tabla de compras -->
-    <div class="mt-5 text-center d-flex flex gap-5" style="max-width: 100%; padding: 20px;">
+    <div class="" style="max-width: 100%; padding: 20px;">
         <div>
             <h1>Compras Entrantes</h1>
-            <table class="table table-bordered table-striped" id="comprasEntrantesTable" style="width: 100%;">
+            <table class="" id="comprasEntrantesTable" style="width: 100%;">
                 <thead class="thead-dark">
                     <tr>
                         <th>ID</th> <!-- id de compraestado -->
@@ -27,7 +27,7 @@ include STRUCTURE_PATH . "/HeadSafe.php";
         </div>
         <div>
             <h1>Compras concretadas</h1>
-            <table class="table table-bordered table-striped" id="comprasConcretadasTable" style="width: 100%;">
+            <table class="" id="comprasConcretadasTable" style="width: 100%;">
                 <thead class="thead-dark">
                     <tr>
                         <th>ID</th> <!-- id de compraestado -->
@@ -44,7 +44,7 @@ include STRUCTURE_PATH . "/HeadSafe.php";
         </div>
         <div>
             <h1>Compras canceladas</h1>
-            <table class="table table-bordered table-striped" id="comprasCanceladasTable" style="width: 100%;">
+            <table class="" id="comprasCanceladasTable" style="width: 100%;">
                 <thead class="thead-dark">
                     <tr>
                         <th>ID</th> <!-- id de compraestado -->
