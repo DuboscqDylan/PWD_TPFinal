@@ -51,5 +51,28 @@ $menuHtml .= "</div>";
 
     <script src="<?php echo BASE_URL; ?>/Vista/Recursos/js/bootstrap/bootstrap.min.js"></script>
     <script src="<?php echo BASE_URL; ?>/Vista/Recursos/js/bootstrap/bootstrap.bundle.js"></script>
-</html>
+
+    <script src="<?php echo BASE_URL; ?>/Vista/Recursos/js/jquery-3.7.1.min.js"></script>
+
+    <script src="<?php echo BASE_URL; ?>/Vista/Recursos/js/jquery-easyui-1.11.0/jquery.easyui.min.js"></script>
+
+    <script src="<?php echo BASE_URL; ?>/Vista/Recursos/js/md5.min.js"></script>
+
+</head>
+
+<body class="">
+    <header>
+        <nav class="">
+            <div class="">
+                <a class="" href="<?php echo BASE_URL; ?>/index.php">
+                    <div class="">
+                        <img src="<?php echo(BASE_URL);?>/Vista/Media/Sitio/Logo.png" height="50" width="50"></img>
+                        <h4 class=""> Bici-cleta </h4>
+                    </div>
+                </a>
+            </div>
+
+            <?php echo $menuHtml ?>
+        </nav>
+    </header>    
   
