@@ -1,6 +1,6 @@
 <?php
 include_once '../../../configuracion.php';
-include STRUCTURE_PATH . '/Head.php';
+include STRUCTURE_PATH . '/Header.php';
 
 if ($sesion->validar()) { //Si ya tiene una sesion, redirige a Catalogo
     header('Location: '.BASE_URL.'/index.php');
@@ -57,4 +57,4 @@ if ($sesion->validar()) { //Si ya tiene una sesion, redirige a Catalogo
     });
 </script>
 
-<?php include STRUCTURE_PATH . '/Foot.php'; ?>
+<?php include STRUCTURE_PATH . '/Footer.php'; ?>

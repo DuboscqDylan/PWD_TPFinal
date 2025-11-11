@@ -1,6 +1,6 @@
 <?php
 include_once '../../../configuracion.php';
-include STRUCTURE_PATH . '/Head.php';
+include STRUCTURE_PATH . '/Header.php';
 
 $esCliente = $sesion->esCliente();
 ?>
@@ -132,4 +132,4 @@ $esCliente = $sesion->esCliente();
     }
 </script>
 
-<?php include STRUCTURE_PATH . '/Foot.php'; ?>
+<?php include STRUCTURE_PATH . '/Footer.php'; ?>

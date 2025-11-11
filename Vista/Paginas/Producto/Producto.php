@@ -54,7 +54,7 @@ if(!empty($data)){
 
 echo $resultado;
 
-include BASE_URL . "/Vista/Estructura/Footer.php";
+include STRUCTURE_PATH . "/Footer.php";
 
 ?>
 
