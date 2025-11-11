@@ -1,5 +1,5 @@
 <?php
-include_once "../../../configuracion.php";
+include_once BASE_URL . "/configuracion.php";
 include STRUCTURE_PATH . "/Header.php"; 
 ?>
 
