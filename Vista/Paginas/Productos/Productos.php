@@ -31,38 +31,38 @@ if (!empty($data)) {
 
         // Código HTML
         $resultado = "
-        <div class='row h-100 m-5'>
-                <div class='h-100 col-6 bg-steam-lightgreen bdr-steam-nofocus align-content-center overflow-x-scroll'>
+        <div class=''>
+                <div class=''>
 
-                    <div class='row d-flex flex-column align-items-center justify-content-between p-2'>
-                        <div class='d-flex align-items-center justify-content-center overflow-x-scroll p-2'>
+                    <div class=''>
+                        <div class=''>
                             <!-- PORTADA DEL PRODUCTO -->
-                            <div class='d-flex flex-column text-center'>
+                            <div class=''>
                                 
                                 <h1>".$producto->getPronombre()."</h1>
                                 
-                                <div class='bg-steam-lightgreen bdr-steam-nofocus p-1'>
+                                <div class=''>
                                     " . $header . "
                                 </div>
                             </div>
                         </div>
 
-                        <div class='text-center bg-steam-darkgreen bdr-steam-nofocus'>
+                        <div class=''>
                             <!--- TEXTO DESCRIPTIVO DEL PRODUCTO --->
                             <p> ".$producto->getProdetalle()." </p>
                         </div>
                         
                     </div>
                     
-                    <div class='bg-steam-darkgreen bdr-steam-focus d-flex overflow-x-scroll w-75 m-auto' style='height: 200px'>
+                    <div class='' style='height: 200px'>
                         ".$previewDiv."
                     </div>
                     
                 </div>
 
-                <div class='col-6 bg-steam-lightgreen bdr-steam-nofocus d-flex overflow-x-scroll'>
+                <div class=''>
                     <!-- TRAILER/VIDEO/IMAGEN AL RESPECTO SI FUERA EL CASO -->
-                    <div class='m-auto'>
+                    <div class=''>
                         <iframe width='800' height='600' class='bg-steam-lightgreen bdr-steam-nofocus' src='https://www.youtube.com/embed/".$producto->getIdvideoyt()."' frameborder='0' allowfullscreen></iframe>                                 
                     </div>
                 </div>                

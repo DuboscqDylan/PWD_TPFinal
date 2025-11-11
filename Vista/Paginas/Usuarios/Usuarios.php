@@ -3,10 +3,10 @@ include_once "../../../configuracion.php";
 include STRUCTURE_PATH . "/HeadSafe.php"; 
 ?>
 
-<div class="d-flex justify-content-center align-items-start gap-3">
+<div class="">
 
     <!-- Tabla de Usuarios -->
-    <div class="mt-5" style="max-width: 65%; padding: 20px;">
+    <div class="" style="max-width: 65%; padding: 20px;">
         <h1>Administrar Usuarios</h1>
         <table class="table table-bordered table-striped" id="usuariosTable" style="width: 100%;">
             <thead class="thead-dark">
@@ -27,22 +27,22 @@ include STRUCTURE_PATH . "/HeadSafe.php";
 
 
     <!-- Formulario Estático para Alta de Usuario -->
-    <div class=" mt-5" style="max-width: 45%; padding: 20px;">
+    <div class="" style="max-width: 45%; padding: 20px;">
         <h2>Alta de Usuario</h2>
         <form id="altaUsuarioForm">
-            <div class="form-group">
+            <div class="">
                 <label for="user" class="text-white">Nombre</label>
                 <input type="text" class="form-control" id="user" name="user" required>
             </div>
-            <div class="form-group">
+            <div class="">
                 <label for="email" class="text-white">Email</label>
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
-            <div class="form-group">
+            <div class="">
                 <label for="password" class="text-white">Contraseña</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
-            <div class="form-group">
+            <div class="">
                 <label for="rol" class="text-white">Rol</label>
                 <select class="form-control" id="rol" name="rol" required>
                     <option value="">Seleccionar...</option>
@@ -62,23 +62,23 @@ include STRUCTURE_PATH . "/HeadSafe.php";
     </div>
 
     <!-- Formulario Estático para Modificar Usuario -->
-    <div class=" mt-5" style="max-width: 45%; padding: 20px;">
+    <div class=" " style="max-width: 45%; padding: 20px;">
         <h2>Modificar Usuario</h2>
         <form id="modificarUsuarioForm">
-        <div class="form-group">
+        <div class="">
                     <!--  SEGUIMOS DESDE ACA, hay que actualizar el ajax y en modificacionUsuario tener en cuenta el ABMUsuarioRol  -->
                 <label for="usuarioID" class="text-white">Id</label>
                 <input type="text" class="form-control" id="usuarioID" name="usuarioID" required>
             </div>
-            <div class="form-group">
+            <div class="">
                 <label for="modNombre" class="text-white">Nombre</label>
                 <input type="text" class="form-control" id="modNombre" name="modNombre" >
             </div>
-            <div class="form-group">
+            <div class="">
                 <label for="modEmail" class="text-white">Email</label>
                 <input type="email" class="form-control" id="modEmail" name="modEmail" >
             </div>
-            <div class="form-group">
+            <div class="">
                 <label for="modRol" class="text-white">Rol</label>
                 <select class="form-control" id="modRol" name="modRol" >
                     <option value="">Seleccionar...</option>
@@ -91,9 +91,9 @@ include STRUCTURE_PATH . "/HeadSafe.php";
             <input type="hidden" id="modUserId">
             <button type="submit" class="btn btn-primary mt-3">Actualizar usuario</button>
         </form>
-        <div class="d-flex flex-column justify-content-center align-items-center">
-            <div id="errorMessageMod" class="text text-center mt-3 p-2 bg-danger rounded-3 w-100 text-white d-none"></div>
-            <div id="successMessageMod" class="text text-center mt-3 p-2 bg-success rounded-3 w-100 text-white d-none"></div>
+        <div class="">
+            <div id="errorMessageMod" class=""></div>
+            <div id="successMessageMod" class=""></div>
         </div>
     </div>
 

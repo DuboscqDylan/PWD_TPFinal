@@ -3,9 +3,9 @@ include_once '../../../configuracion.php';
 include STRUCTURE_PATH . '/HeadSafe.php';
 ?>
 
-<div class="d-flex justify-content-center align-items-start gap-3">
+<div class="">
     <!-- Tabla de Productos -->
-    <div class="mt-5" style="max-width: 100%; padding: 20px; width:1200px;">
+    <div class="" style="max-width: 100%; padding: 20px; width:1200px;">
         <h1 class="text-center">Mis Compras</h1>
         <table class="table table-bordered table-striped" id="comprasPersonalesTable" style="width: 100%;">
             <thead class="thead-dark">
