@@ -7,7 +7,7 @@ if(!$sesion->validar()) {
 }
 ?>
 
-<div class="d-flex justify-content-center align-items-start gap-3">
+<div class="">
     <h1>PERFIL</h1>
 </div>
 

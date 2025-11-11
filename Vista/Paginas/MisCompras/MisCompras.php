@@ -3,12 +3,12 @@ include_once '../../../configuracion.php';
 include STRUCTURE_PATH . '/HeadSafe.php';
 ?>
 
-<div class="d-flex justify-content-center align-items-start gap-3">
+<div class="">
     <!-- Tabla de Productos -->
-    <div class="mt-5" style="max-width: 100%; padding: 20px; width:1200px;">
-        <h1 class="text-center">Mis Compras</h1>
-        <table class="table table-bordered table-striped" id="comprasPersonalesTable" style="width: 100%;">
-            <thead class="thead-dark">
+    <div class="" style="max-width: 100%; padding: 20px; width:1200px;">
+        <h1 class="">Mis Compras</h1>
+        <table class="" id="comprasPersonalesTable" style="width: 100%;">
+            <thead class="">
                 <tr>
                     <th>Fecha</th>
                     <th>Productos</th>
@@ -73,7 +73,7 @@ include STRUCTURE_PATH . '/HeadSafe.php';
 
                     if (compra.estado == 'Aceptada') {
                         tableContent += `
-                                <button class="btn btn-danger btn-sm" onclick="cancelarCompra(${compra.idcompraestado})">Cancelar</button>
+                                <button class="" onclick="cancelarCompra(${compra.idcompraestado})">Cancelar</button>
                         `;
                     } else {
                         tableContent += `-`; 
