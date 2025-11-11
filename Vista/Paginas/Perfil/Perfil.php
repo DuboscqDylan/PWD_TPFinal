@@ -1,6 +1,6 @@
 <?php
-include_once '../../../configuracion.php';
-include STRUCTURE_PATH . '/Head.php';
+include_once BASE_URL . "/configuracion.php";
+include STRUCTURE_PATH . '/Header.php';
 if(!$sesion->validar()) {
     header("Location: ".BASE_URL."/View/Pages/SesionInvalida/SesionInvalida.php");
     exit();
@@ -11,4 +11,4 @@ if(!$sesion->validar()) {
     <h1>PERFIL</h1>
 </div>
 
-<?php include STRUCTURE_PATH . '/Foot.php'; ?>
+<?php include STRUCTURE_PATH . '/Footer.php'; ?>

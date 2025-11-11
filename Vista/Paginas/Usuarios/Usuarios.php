@@ -1,6 +1,6 @@
 <?php
-include_once "../../../configuracion.php";
-include STRUCTURE_PATH . "/HeadSafe.php"; 
+include_once BASE_URL . "/configuracion.php";
+include STRUCTURE_PATH . "/Header.php"; 
 ?>
 
 <div class="">
@@ -308,4 +308,4 @@ include STRUCTURE_PATH . "/HeadSafe.php";
     });
 </script>
 
-<?php include STRUCTURE_PATH . "/Foot.php"; ?>
+<?php include STRUCTURE_PATH . "/Footer.php"; ?>

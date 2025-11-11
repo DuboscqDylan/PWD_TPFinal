@@ -1,5 +1,5 @@
 <?php 
-include_once '../../../configuracion.php';
+include_once BASE_URL . "/configuracion.php";
 $sesion = new Session();
 $sesion->cerrar();
-header('Location: '.BASE_URL.'/View/Pages/Catalogo/Catalogo.php');
+header('Location: '.BASE_URL.'/Vista/Paginas/Catalogo/Catalogo.php');
