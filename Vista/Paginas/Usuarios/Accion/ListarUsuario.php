@@ -1,11 +1,11 @@
 <?php
-include_once "../../../../configuracion.php";
+include_once BASE_URL.'/configuracion.php';
 
 $data = Funciones::data_submitted(); 
 $salida = [];
 
 // Obtener los usuarios con su rol
-$usuarioRoles = (new ABMUsuarioRol())->buscar($data);
+$usuarioRoles = (new AbmUsuarioRol())->buscar($data);
 
 if (!empty($usuarioRoles)) {
     foreach ($usuarioRoles as $cadaUsuarioRol) {

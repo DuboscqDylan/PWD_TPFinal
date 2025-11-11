@@ -1,10 +1,10 @@
 <?php
-include_once "../../../../configuracion.php";
+include_once BASE_URL.'/configuracion.php';
 
 $data = Funciones::data_submitted();
-$abmUsuario = new ABMUsuario();
-$abmUsuarioRol = new ABMUsuarioRol();
-$abmRol = new ABMRol();
+$abmUsuario = new AbmUsuario();
+$abmUsuarioRol = new AbmUsuarioRol();
+$abmRol = new AbmRol();
 
 if (isset($data['user']) && isset($data['password']) && isset($data['email']) && isset($data['rol'])) {
     $param['usnombre'] = $data['user'];

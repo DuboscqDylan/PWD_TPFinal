@@ -1,5 +1,5 @@
 <?php
-include_once "../../../../configuracion.php";
+include_once BASE_URL.'/configuracion.php';
 
 $data = Funciones::data_submitted();
 
@@ -8,9 +8,9 @@ if (isset($data['idusuario']) && isset($data['rol'])) {
     $rolDescripcion = $data['rol'];
 
     // Crear instancias de ABMUsuario y ABMUsuarioRol
-    $abmUsuario = new ABMUsuario();
-    $abmUsuarioRol = new ABMUsuarioRol();
-    $abmRol = new ABMRol();
+    $abmUsuario = new AbmUsuario();
+    $abmUsuarioRol = new AbmUsuarioRol();
+    $abmRol = new AbmRol();
 
     // Buscar el usuario a dar de baja
     $usuario = $abmUsuario->buscar(['idusuario' => $idUsuario]); // recuperamos el array con el obj

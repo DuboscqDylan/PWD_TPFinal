@@ -1,8 +1,8 @@
 <?php
-include_once '../../../../configuracion.php';
+include_once BASE_URL.'/configuracion.php';
 $data = Funciones::data_submitted();
 
-$resultado = (new ABMUsuario())->registrarUsuario($data);
+$resultado = (new AbmUsuario())->registrarUsuario($data);
 
 echo $resultado;
 ?>
