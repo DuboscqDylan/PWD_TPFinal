@@ -28,7 +28,7 @@ if($sesionValida) {
     <a class='' href='".BASE_URL."/Vista/Paginas/Logout/Logout.php'>Logout</a>";
 }else{
     $menuHtml .= "<a class='' href='".BASE_URL."/Vista/Paginas/Login/Login.php'>Login</a>
-    <a class='' href='".BASE_URL."/Vista/Paginas/Registro/Registro.php'>Registro</a>";
+    <a class='' href='".BASE_URL."/Vista/Paginas/Registrar/Registrar.php'>Registrar</a>";
 }
 
 $menuHtml .= "</div>";
