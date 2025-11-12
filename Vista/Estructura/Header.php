@@ -1,4 +1,5 @@
 <?php
+include_once BASE_URL.'/Control/AbmSession.php';
 
 $session = new Session();
 $sesionValida = $session->validar();
