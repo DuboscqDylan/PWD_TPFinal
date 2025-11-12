@@ -35,7 +35,7 @@ if ($sesion->validar()) { //Si ya tiene una sesion, redirige a Catalogo
             messageContainer.removeClass('d-none bg-danger bg-success').text('');
 
             $.ajax({
-                url: 'Action/LoginAction.php',
+                url: 'Accion/LoginAction.php',
                 type: 'POST',
                 dataType: 'json',
                 data: formData,
