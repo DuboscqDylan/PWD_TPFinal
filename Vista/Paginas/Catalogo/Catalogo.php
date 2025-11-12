@@ -16,7 +16,7 @@ $esCliente = $sesion->esCliente();
 <script>
 $(document).ready(function() {
     $.ajax({
-        url: 'Action/ListarProductos.php',
+        url: 'Accion/ListarProductos.php',
         method: 'POST',
         dataType: 'json',
         success: function(response) {
@@ -54,7 +54,7 @@ $(document).ready(function() {
 
 function agregarItemCarrito(idprod) {
     $.ajax({
-        url: 'Action/AgregarCompraItem.php',
+        url: 'Accion/AgregarCompraItem.php',
         method: 'POST',
         data: {
             idproducto: idprod,
@@ -76,7 +76,7 @@ function agregarItemCarrito(idprod) {
 
 function actualizarProducto(idprod) {
     $.ajax({
-        url: 'Action/ObtenerProducto.php',
+        url: 'Accion/ObtenerProductos.php',
         method: 'POST',
         data: { idproducto: idprod },
         dataType: 'json',
