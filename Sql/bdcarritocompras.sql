@@ -38,9 +38,9 @@ CREATE TABLE `producto` (
   `procantstock` int(11) NOT NULL,
   `proprecio` DECIMAL(10, 2) NOT NULL,
   `prodeshabilitado` timestamp NULL DEFAULT NULL,
-  `idvideoyt` varchar(12) NOT NULL DEFAULT '',
   PRIMARY KEY (`idproducto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
 
 -- Estructura de tabla para la tabla `rol`
@@ -133,11 +133,11 @@ INSERT INTO `menu` (`idmenu`, `menombre`, `medescripcion`, `meurl`, `idpadre`) V
 (1, 'Administrador', '#', '#', NULL),
 (2, 'Deposito', '#', '#', NULL),
 (3, 'Cliente', '#', '#', NULL),
-(4, 'Administrar Usuarios', 'AdministrarUsuarios', '/View/Pages/AdministrarUsuarios/AdministrarUsuarios.php', 1),
-(5, 'Administrar Productos', 'AdministrarProductos', '/View/Pages/AdministrarProductos/AdministrarProductos.php', 2),
-(6, 'Administrar Compras', 'AdministrarCompras', '/View/Pages/AdministrarCompras/AdministrarCompras.php', 2),
-(7, 'Carrito', 'Carrito', '/View/Pages/Carrito/Carrito.php', 3),
-(8, 'Mis Compras', 'MisCompras', '/View/Pages/MisCompras/MisCompras.php', 3);
+(4, 'Administrar Usuarios', 'AdministrarUsuarios', '/Vista/Paginas/Usuarios/Usuarios.php', 1),
+(5, 'Administrar Productos', 'AdministrarProductos', '/Vista/Paginas/Producto/Producto.php', 2),
+(6, 'Administrar Compras', 'AdministrarCompras', '/Vista/Paginas/Compras/Compras.php', 2),
+(7, 'Carrito', 'Carrito', '/Vista/Paginas/Carrito/Carrito.php', 3),
+(8, 'Mis Compras', 'MisCompras', '/Vista/Paginas/MisCompras/MisCompras.php', 3);
 -- --------------------------------------------------------
 
 -- Volcado de datos para la tabla `usuario`
@@ -168,40 +168,24 @@ INSERT INTO `menurol` (`idmenu`, `idrol`) VALUES
 (3, 3); -- Cliente
 -- --------------------------------------------------------
 
--- Volcado de datos para la tabla `producto`
-INSERT INTO `producto` (`idproducto`, `pronombre`, `prodetalle`, `procantstock`, `proprecio`, `prodeshabilitado`, `idvideoyt`) VALUES
-(1, 'Counter Strike', 'Durante las dos últimas décadas, Counter-Strike ha proporcionado una experiencia competitiva de primer nivel para los millones de jugadores de todo el mundo que contribuyeron a darle forma. Ahora el próximo capítulo en la historia de CS está a punto de comenzar. Hablamos de Counter-Strike 2.',
-10, 250.00, NULL, 'c80dVYcL69E'),
-(2, 'Fallout 4', 'Bethesda Game Studios, el galardonado creador de Fallout 3 y The Elder Scrolls V: Skyrim, os da la bienvenida al mundo de Fallout 4, su juego más ambicioso hasta la fecha y la siguiente generación de mundos abiertos.', 
-20, 45.00, NULL, 'XW7Of3g2JME'),
-(3, 'Minecraft', 'Explora mundos generados al azar y construye cosas increíbles, desde las casas más sencillas hasta los castillos más grandiosos. Juega en modo creativo con recursos ilimitados o excava hasta las profundidades del mundo en el modo supervivencia, donde deberás fabricar armas y armaduras para defenderte de las criaturas peligrosas. Escala montañas escarpadas, explora cuevas complejas y extrae grandes vetas de minerales. Descubre los biomas de cuevas y espeleotemas fascinantes. ¡Ilumina tu mundo con velas para presumir tus habilidades de espeleología y montañismo!', 
-30, 130.00, NULL, 'MmB9b5njVbA'),
-(4, 'GTA VI', 'Grand Theft Auto VI pone rumbo al estado de Leonida, hogar de las calles rebosantes de neones de Vice City y sus alrededores, en la evolución más grande e inmersiva de la serie Grand Theft Auto hasta la fecha. Disponible en 2025 para PlayStation®5 y Xbox Series X|S.', 
-0, 200.00, '2024-10-15 18:30:00', 'QdBZY2fkU-0'),
-(5, 'Cruelty Squad', 'Un simulador de fantasía de poder inmersivo con elementos de sigilo táctico ambientado en un mundo de basura lleno de aguas residuales.', 
-10, 19.99, NULL, 'CHm2d3wf8EU'),
-(6, 'Dark Souls: Prepare To Die Edition', 'Dark Souls pondrá a prueba tu habilidad como pocos juegos este año: te pasarás días jugando ya que el nivel de dificultad es muy elevado.', 
-5, 29.99, NULL, 'JUuljyLtA68'),
-(7, 'Death Stranding Director''s Cut', 'El legendario creador de videojuegos Hideo Kojima nos ofrece una experiencia que desafía a todos los géneros y que, ahora, se amplía con este DIRECTOR’S CUT definitivo. En el futuro, un misterioso evento conocido como Death Stranding ha abierto una puerta entre los vivos y los muertos, lo que lleva a grotescas criaturas del otro mundo deambulen por un planeta en ruinas habitado por una sociedad desolada. En el papel de Sam Bridges, tendrás la misión de llevar esperanza a la humanidad conectando a los últimos supervivientes de unos Estados Unidos arrasados. ¿Podrás volver a unir, paso a paso, un mundo hecho añicos?', 
-2, 39.99, NULL, 's2GUQcbz_8Q'),
-(8, 'Dota 2', 'Cada día, millones de jugadores de todo el mundo entran en batalla como uno de los más de cien héroes de Dota. Y no importa si es su décima hora de juego o la milésima, siempre hay algo nuevo que descubrir.', 
-5, 6.66, NULL, '-cSFPIwMEq4'),
-(9, 'Garry''s Mod', 'Garry''s Mod es un sandbox de fisicas. No hay metas predefinidas. Nosotros te damos las herramientas y te dejamos jugar.', 
-3, 9.99, NULL, 'kgXVLw6qpFM&t'),
-(10, 'Hotline Miami', 'Hotline Miami es un juego de acción de alto octanaje que rebosa brutalidad es estado puro, violentos tiroteos y demoledores combates cuerpo a cuerpo.', 
-2, 9.99, NULL, 'mg5s5Dq50Rg'),
-(11, 'JoJo''s Bizarre Adventure: All-Star Battle R', 'La obra maestra de Hirohiko Araki cobra vida en este juego de lucha! ¡Combate contra 50 pintorescos luchadores usando Stands, Hamon y mucho más! ¡Descubre cómo interactúan personajes que no coinciden en la historia cuando se encuentran cara a cara!', 
-8, 49.99, NULL, 'kikKUtGCEsg'),
-(12, 'Mortal Kombat 11', 'Mortal Kombat ha regresado mejor que nunca en esta entrega de la icónica saga.', 
-10, 49.99, NULL, 'UoTams2yc0s'),
-(13, 'Portal 2', '¡La «Iniciativa de Prueba Perpetua» se ha ampliado, permitiéndote ahora diseñar puzles cooperativos para ti y tus amigos!', 
-11, 9.99, NULL, 'tax4e4hBBZc'),
-(14, 'Hatsune Miku: Project DIVA Mega Mix+', '¡Súbete al escenario del primer juego rítmico de Hatsune Miku protagonizado por la estrella pop virtual más famosa del mundo! Disfruta de la gira definitiva de Hatsune Miku. ¡Solo faltas tú!', 
-3, 39.39, NULL, '7IqkUsbXdGA'),
-(15, 'The Elder Scrolls V: Skyrim', 'El nuevo capítulo de la esperadísima saga Elder Scrolls llega de la mano de los creadores de los Juegos del Año 2006 y 2008, Bethesda Game Studios. Skyrim reinventa y el revoluciona el épico universo de fantasía, dando vida a un completo mundo virtual para que puedas explorarlo de la forma que quieras.', 
-5, 19.99, NULL, 'JSRtYpNRoN0'),
-(16, 'The Binding of Isaac: Rebirth', 'Cuando la madre de Isaac comienza a escuchar la voz de Dios exiguiendole que haga un sacrificio para probar su fe, Isaac escapa al sótano y se enfrenta a multitudes de enemigos trastornados, hermanos y hermanas perdidos, sus miedos y, finalmente, a su madre.', 
-6, 14.99, NULL, 'j7yPmbNCP4I');
+-- Volcado de datos para la tabla `producto` (solo bicicletas)
+INSERT INTO `producto` (`idproducto`, `pronombre`, `prodetalle`, `procantstock`, `proprecio`, `prodeshabilitado`) VALUES
+(1, 'Bicicleta de Montaña XTR 29"', 'La XTR 29" es una bicicleta de montaña con cuadro de aluminio liviano, suspensión delantera, transmisión Shimano de 21 velocidades y frenos a disco hidráulicos. Ideal para terrenos exigentes y aventuras al aire libre.', 12, 950.00, NULL),
+(2, 'Bicicleta de Ruta AeroSpeed 105', 'La AeroSpeed 105 combina rendimiento y aerodinámica. Equipada con cuadro de carbono, grupo Shimano 105 de 22 velocidades y ruedas de perfil alto. Diseñada para ciclistas que buscan velocidad y precisión.', 8, 2750.00, NULL),
+(3, 'Bicicleta Urbana EcoRide City', 'La EcoRide City es una bicicleta urbana con cuadro de acero reforzado, canasto delantero, portaequipaje trasero y frenos a disco. Cómoda, resistente y perfecta para desplazamientos diarios en la ciudad.', 15, 680.00, NULL),
+(4, 'Bicicleta Eléctrica VoltX 500', 'La VoltX 500 es una bicicleta eléctrica equipada con motor de 350W y batería de litio de 36V con autonomía de hasta 60 km. Posee frenos hidráulicos, pantalla LCD y asistencia al pedaleo con 5 modos.', 6, 1680.00, NULL),
+(5, 'Bicicleta Gravel Terra GX', 'La Terra GX combina velocidad de ruta con la resistencia del ciclismo off-road. Cuadro de aluminio, transmisión SRAM Apex 1x11 y neumáticos de 40 mm listos para cualquier superficie.', 10, 1850.00, NULL),
+(6, 'Bicicleta Infantil Rocket 16"', 'La Rocket 16" es perfecta para los más pequeños. Cuenta con cuadro de acero, ruedas estabilizadoras desmontables, frenos V-Brake y diseño colorido. Recomendada para niños de 5 a 8 años.', 14, 320.00, NULL),
+(7, 'Bicicleta Plegable UrbanFold', 'La UrbanFold es una bicicleta plegable ligera y práctica con cuadro de aluminio, ruedas de 20", cambios Shimano de 6 velocidades y diseño compacto ideal para transporte urbano o guardar en espacios reducidos.', 9, 740.00, NULL),
+(8, 'Bicicleta BMX StreetRider', 'La StreetRider es una BMX diseñada para trucos y saltos. Cuadro de acero cromoly, llantas de 20", piñón libre y frenos U-Brake traseros. Ideal para skateparks o calle.', 11, 590.00, NULL),
+(9, 'Bicicleta de Montaña TrailMaster 27.5"', 'La TrailMaster 27.5" es una bicicleta todo terreno con suspensión delantera, cuadro de aluminio, transmisión Shimano Altus 3x9 y frenos hidráulicos. Ideal para ciclistas de nivel intermedio.', 10, 870.00, NULL),
+(10, 'Bicicleta de Ruta CarbonSpeed Ultegra', 'La CarbonSpeed Ultegra ofrece un cuadro 100% carbono con grupo Shimano Ultegra R8000 de 22 velocidades. Ligera, aerodinámica y lista para la competencia.', 4, 3450.00, NULL),
+(11, 'Bicicleta de Descenso Downhill Fury', 'La Downhill Fury está diseñada para dominar descensos extremos. Cuenta con cuadro de aluminio reforzado, doble suspensión RockShox y transmisión SRAM GX Eagle 12V.', 3, 3100.00, NULL),
+(12, 'Bicicleta Touring Adventure 700', 'La Adventure 700 es una bicicleta de cicloturismo con cuadro de acero, parrillas delantera y trasera, frenos a disco mecánicos y transmisión Shimano Alivio 3x9. Perfecta para viajes largos.', 7, 1250.00, NULL),
+(13, 'Bicicleta Gravel Carbon GTR', 'La GTR Carbon está pensada para rutas mixtas. Cuadro de carbono, frenos hidráulicos, grupo Shimano GRX y neumáticos de 38 mm para máximo confort y versatilidad.', 5, 2150.00, NULL),
+(14, 'Bicicleta Eléctrica UrbanVolt S', 'La UrbanVolt S es una bicicleta eléctrica urbana con batería integrada de 48V, luces LED y frenos hidráulicos. Autonomía de 70 km por carga.', 6, 1890.00, NULL),
+(15, 'Bicicleta de Pista TrackOne', 'La TrackOne es una bicicleta de pista ultraliviana con cuadro de aluminio aero, transmisión fija y componentes de alta precisión para velocidad en velódromo.', 5, 1150.00, NULL),
+(16, 'Bicicleta FatBike Arctic Beast', 'La Arctic Beast es una fatbike con neumáticos de 4.8”, cuadro de aluminio y frenos hidráulicos. Diseñada para nieve, arena o cualquier terreno extremo.', 4, 1580.00, NULL);
 -- --------------------------------------------------------
 
 -- Volcado de datos para la tabla `compraestadotipo`
