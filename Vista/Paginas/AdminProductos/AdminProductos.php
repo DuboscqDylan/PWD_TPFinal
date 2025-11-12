@@ -1,5 +1,5 @@
 <?php
-include_once ROOT_PATH."/configuracion.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/configuracion.php";
 include STRUCTURE_PATH . "/HeaderSeguro.php";
 ?>
 
