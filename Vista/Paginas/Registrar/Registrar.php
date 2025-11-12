@@ -1,5 +1,5 @@
 <?php
-include_once ROOT_PATH."/configuracion.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
 include STRUCTURE_PATH.'/Header.php';
 
 if ($sesion->validar()) { //Si ya tiene una sesion, redirige a Catalogo
