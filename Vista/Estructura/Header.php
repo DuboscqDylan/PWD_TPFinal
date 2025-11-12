@@ -63,7 +63,7 @@ if ($sesionValida) {
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center" href="<?php echo BASE_URL; ?>/index.php">
-                    <img src="<?php echo(BASE_URL); ?>/Vista/Media/Sitio/Logo/Logo.png" alt="Logo" width="50" height="50" class="me-2 rounded-circle">
+                    <img src="<?php echo(BASE_URL); ?>/Vista/Media/Sitio/Logo/Logo2.png" alt="Logo" width="50" height="50" class="me-2 rounded-circle">
                     <h4 class="m-0 fw-bold">Bici-cleta</h4>
                 </a>
 
