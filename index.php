@@ -1,6 +1,6 @@
 <?php
 include_once 'configuracion.php';
-include STRUCTURE_PATH . '/Head.php';
+include STRUCTURE_PATH . '/Header.php';
 ?>
 
 <!-- <body> ...-->
@@ -17,4 +17,4 @@ include STRUCTURE_PATH . '/Head.php';
     </div>
 <!--... </body>-->
 
-<?php include STRUCTURE_PATH . '/Foot.php'; ?>
+<?php include STRUCTURE_PATH . '/Footer.php'; ?>
