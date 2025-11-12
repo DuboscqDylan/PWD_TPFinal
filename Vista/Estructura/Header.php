@@ -13,7 +13,7 @@ if($sesionValida){
 }
 
 $menuHtml = "<div class=''>
-            <a class='' href'".BASE_URL."/Vista/Paginas/Catalogo/Catalogo.php>Catálogo</a>";
+            <a class='' href='".BASE_URL."/Vista/Paginas/Catalogo/Catalogo.php'>Catálogo</a>";
 
 foreach($menues as $menu){
     if($menu->getPadre() != null){
