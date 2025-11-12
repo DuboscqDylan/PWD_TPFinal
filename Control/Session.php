@@ -70,7 +70,7 @@ class Session
     }
 
     /**
-     * Devuelve lista de roles del usuario logeado. Necesario en session por seguridad.
+     * Devuelve lista de roles del usuario logeado.
      */
     public function getRoles()
     {
