@@ -1,5 +1,5 @@
 <?php
-include_once BASE_URL.'/configuracion.php';
+include_once ROOT_PATH."/configuracion.php";
 $data = Funciones::data_submitted(); 
 
 $respuesta = (new Session())->iniciarSesion($data);

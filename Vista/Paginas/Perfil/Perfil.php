@@ -1,5 +1,5 @@
 <?php
-include_once BASE_URL . "/configuracion.php";
+include_once ROOT_PATH."/configuracion.php";
 include STRUCTURE_PATH . '/Header.php';
 if(!$sesion->validar()) {
     header("Location: ".BASE_URL."/View/Pages/SesionInvalida/SesionInvalida.php");

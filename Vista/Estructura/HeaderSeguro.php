@@ -1,4 +1,5 @@
 <?php
+include_once ROOT_PATH.'/Control/Session.php';
 
 $session = new Session();
 $sesionValida = $session->validar();
