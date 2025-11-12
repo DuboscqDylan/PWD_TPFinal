@@ -1,5 +1,5 @@
 <?php
-include_once BASE_URL.'/Control/AbmSession.php';
+include_once ROOT_PATH.'/Control/AbmSession.php';
 
 $session = new Session();
 $sesionValida = $session->validar();
