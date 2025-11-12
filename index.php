@@ -7,7 +7,7 @@ include STRUCTURE_PATH . '/Header.php';
 <div class="container text-center mt-5">
     <div class="card shadow-lg border-0 rounded-4 p-4">
         <div class="card-body">
-            <img src="Vista/Media/sitio/Logo.png" alt="Logo del sitio" class="mb-4" height="120">
+            <img src="Vista/Media/sitio/Logo/Logo.png" alt="Logo del sitio" class="mb-4" height="120">
 
             <h1 class="fw-bold text-primary mb-3">Trabajo Práctico Final</h1>
             <h3 class="text-secondary mb-4">Programación Web Dinámica</h3>
