@@ -71,7 +71,7 @@ $menuHtml .= "</div>";
 
 <body class="">
     <header>
-        <nav class="">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
             <div class="">
                 <a class="" href="<?php echo BASE_URL; ?>/index.php">
                     <div class="">

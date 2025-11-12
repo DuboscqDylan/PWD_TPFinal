@@ -7,17 +7,34 @@ if ($sesion->validar()) { //Si ya tiene una sesion, redirige a Catalogo
 }
 ?>
 
-<div class="">
-    <div class="" style="max-width: 400px;">
-        <h2 class="m-4">Login</h2>
-        <form id="loginForm" method="POST" class="">
-            <input type="text" name="user" id="user" placeholder="Usuario" class="border-0 border-bottom p-2 bg-transparent text-white" style="outline: none; box-shadow: none;" required>
-            <input type="password" name="password" id="password" placeholder="Contraseña" class="border-0 border-bottom p-2 bg-transparent text-white" style="outline: none; box-shadow: none;" required>
-            <button type="submit" class="btn btn-primary btn-steam">Ingresar</a> </button>
-        </form>
-        <div id="messageContainer" class="">
+<!-- Contenedor principal centrado -->
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+    <div class="card shadow p-4 bg-primary text-white" style="max-width: 400px; width: 100%; border-radius: 10px;">
+        <h2 class="text-center mb-4 fw-bold">Iniciar Sesión</h2>
+        
+        <form id="loginForm" method="POST" class="d-flex flex-column gap-3">
+            <input type="text" 
+                   name="user" 
+                   id="user" 
+                   placeholder="Usuario" 
+                   class="form-control border-0 border-bottom bg-transparent text-white" 
+                   style="outline: none; box-shadow: none;" 
+                   required>
 
-        </div>
+            <input type="password" 
+                   name="password" 
+                   id="password" 
+                   placeholder="Contraseña" 
+                   class="form-control border-0 border-bottom bg-transparent text-white" 
+                   style="outline: none; box-shadow: none;" 
+                   required>
+
+            <button type="submit" class="btn btn-light text-primary fw-bold w-100 mt-3">
+                Ingresar
+            </button>
+        </form>
+
+        <div id="messageContainer" class="mt-3 text-center fw-semibold rounded p-2 d-none"></div>
     </div>
 </div>
 
