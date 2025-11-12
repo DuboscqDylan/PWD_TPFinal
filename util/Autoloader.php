@@ -11,7 +11,7 @@ spl_autoload_register(function ($class_name) {
         $_SERVER['ROOT'] . '/Util/',
         $_SERVER['ROOT'] . '/Control/',
         $_SERVER['ROOT'] . '/Vista/Recursos/',
-        //  $GLOBALS['ROOT'].'util/class/',
+        $_SERVER['ROOT'].'/Util/',
     );
     //print_object($directories) ;
 

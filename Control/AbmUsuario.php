@@ -170,10 +170,14 @@ class AbmUsuario {
                 $where .= " AND usmail = '".$param['usmail']."'"; 
             }
             if (isset($param['usdeshabilitado'])) {
-                $where .= " AND usdeshabilitado ='".$param['usdeshabilitado']."'";
+                if (is_null($param['usdeshabilitado'])) {
+                    $where .= " AND usdeshabilitado IS NULL";
+                } else {
+                    $where .= " AND usdeshabilitado = '".$param['usdeshabilitado']."'";
+                } 
             }
-        }
         $arreglo = (new Usuario())->listar($where);
         return $arreglo;
     }
+}
 }

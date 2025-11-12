@@ -1,8 +1,9 @@
 <?php 
 
-include_once 'BaseDatos.php';
-include_once 'Usuario.php';
-include_once 'Rol.php';
+include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
+include_once ROOT_PATH.'/Modelo/conector/BaseDatos.php';
+include_once ROOT_PATH.'/Modelo/Usuario.php';
+include_once ROOT_PATH.'/Modelo/Rol.php';
 
 class UsuarioRol {
     private $objUsuario;

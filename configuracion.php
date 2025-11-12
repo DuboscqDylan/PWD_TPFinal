@@ -16,6 +16,7 @@ define('STRUCTURE_PATH', ROOT_PATH.'/Vista/Estructura'); // Directorio de la est
 $_SERVER["ROOT"] = ROOT_PATH; //Establece directorio raiz en array
 
 // Global includes
-include_once(ROOT_PATH.'/Util/autoloader.php'); // Funciones usadas en toda la sesion
+include_once(ROOT_PATH.'/Util/Autoloader.php'); // Funciones usadas en toda la sesion
+include_once(ROOT_PATH.'/Util/funciones.php');
 require_once 'vendor/autoload.php'; // Con Composer
 ?>

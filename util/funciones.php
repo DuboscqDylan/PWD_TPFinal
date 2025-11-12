@@ -1,4 +1,5 @@
 <?php 
+include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
 function data_submitted() {
     
     $_AAux= array();
@@ -20,24 +21,16 @@ function verEstructura($e){
 }
 
 spl_autoload_register(function ($class_name) {
-   
-
-//function __autoload($class_name){
-    //echo "class ".$class_name ;
     $directorys = array(
-        $_SESSION['ROOT'].'Modelo/',
-        $_SESSION['ROOT'].'Modelo/conector/',
-        $_SESSION['ROOT'].'Control/',
-      //  $GLOBALS['ROOT'].'util/class/',
+        ROOT_PATH.'Modelo/',
+        ROOT_PATH.'Modelo/conector/',
+        ROOT_PATH.'Control/',
     );
-    //print_object($directorys) ;
     foreach($directorys as $directory){
         if(file_exists($directory.$class_name . '.php')){
-            // echo "se incluyo".$directory.$class_name . '.php';
             require_once($directory.$class_name . '.php');
             return;
         }
     }
-//}
 });
 ?>
