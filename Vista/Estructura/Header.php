@@ -1,7 +1,7 @@
 <?php
 include_once ROOT_PATH.'/Control/Session.php';
 
-$session = new Session();
+$sesion = new Session();
 $sesionValida = $session->validar();
 $menues =  [];
 $compraEstado = null;
