@@ -65,7 +65,7 @@ if ($sesionValida) {
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center" href="<?php echo BASE_URL; ?>/index.php">
                     <img src="<?php echo(BASE_URL); ?>/Vista/Media/Sitio/Logo/Logo2.png" alt="Logo" width="50" height="50" class="me-2 rounded-circle">
-                    <h4 class="m-0 fw-bold">Bici-cleta</h4>
+                    <h4 class="m-0 fw-bold">BIKE SHOP</h4>
                 </a>
 
                 <!-- Botón responsive -->

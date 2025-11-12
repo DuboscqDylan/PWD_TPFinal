@@ -76,7 +76,7 @@ $menuHtml .= "</div>";
                 <a class="" href="<?php echo BASE_URL; ?>/index.php">
                     <div class="">
                         <img src="<?php echo(BASE_URL);?>/Vista/Media/Sitio/Logo.png" height="50" width="50"></img>
-                        <h4 class=""> Bici-cleta </h4>
+                        <h4 class=""> BIKE SHOP </h4>
                     </div>
                 </a>
             </div>

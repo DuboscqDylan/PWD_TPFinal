@@ -4,7 +4,7 @@
             
             <!-- Columna 1: Nombre y descripción -->
             <div class="col-md-4 mb-3 mb-md-0">
-                <strong class="text-white">Bici-cleta</strong><br>
+                <strong class="text-white">BIKE SHOP</strong><br>
                 <span class="text-secondary">Programación Web Dinámica</span>
             </div>
 
@@ -33,7 +33,7 @@
 
         <!-- Derechos -->
         <div class="text-center text-secondary" style="font-size: 0.8rem;">
-            © <?php echo date("Y"); ?> Bici-cleta — Todos los derechos reservados.
+            © <?php echo date("Y"); ?> BIKE SHOP — Todos los derechos reservados.
         </div>
     </div>
 </footer>
