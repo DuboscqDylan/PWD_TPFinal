@@ -3,27 +3,35 @@ include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
 include STRUCTURE_PATH . '/HeaderSeguro.php';
 ?>
 
-<div class="">
-<div class="">
-    <!-- Tabla de Productos -->
-    <div class="" style="max-width: 100%; padding: 20px; width:1200px;">
-        <h1 class="">Mis Compras</h1>
-        <table class="" id="comprasPersonalesTable" style="width: 100%;">
-            <thead class="">
-                <tr>
-                    <th>Fecha</th>
-                    <th>Productos</th>
-                    <th>Total</th>
-                    <th>Estado</th>
-                    <th>Accion</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Las compras serán cargadas dinámicamente aquí -->
-            </tbody>
-        </table>
+<!-- Contenido principal -->
+<div class="container my-5">
+
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body">
+
+            <h1 class="fw-bold text-primary mb-4 text-center">Mis Compras</h1>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0" id="comprasPersonalesTable" style="width: 100%;">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Productos</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Las compras serán cargadas dinámicamente aquí -->
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
     </div>
 </div>
+
 <script>
     $(document).ready(function() {
         listarComprasPersonales();
@@ -43,11 +51,11 @@ include STRUCTURE_PATH . '/HeaderSeguro.php';
                 $.each(response, function(index, compra) {
                     var estadoClass = '';
                     if (compra.estado == 'Cancelada') {
-                        estadoClass = 'bg-danger text-white';
+                        estadoClass = 'badge bg-danger';
                     } else if (compra.estado == 'Enviada') {
-                        estadoClass = 'bg-success text-white';
+                        estadoClass = 'badge bg-success';
                     } else if (compra.estado == 'Aceptada') {
-                        estadoClass = 'bg-primary text-white';
+                        estadoClass = 'badge bg-primary';
                     }
 
                     tableContent += `
@@ -57,7 +65,7 @@ include STRUCTURE_PATH . '/HeaderSeguro.php';
                     `;
 
                     $.each(compra.items, function(index, item) {
-                        tableContent += `${item.pronombre} x ${item.cicantidad}<br>`;
+                        tableContent += `<div>${item.pronombre} <span class="text-muted">x ${item.cicantidad}</span></div>`;
                     });
 
                     let total = 0;
@@ -67,17 +75,19 @@ include STRUCTURE_PATH . '/HeaderSeguro.php';
 
                     tableContent += `
                             </td>
-                            <td>$${total.toFixed(2)}</td>
-                            <td class="${estadoClass}">${compra.estado}</td>
+                            <td><strong>$${total.toFixed(2)}</strong></td>
+                            <td><span class="${estadoClass}">${compra.estado}</span></td>
                             <td>
                     `;
 
                     if (compra.estado == 'Aceptada') {
                         tableContent += `
-                                <button class="" onclick="cancelarCompra(${compra.idcompraestado})">Cancelar</button>
+                            <button class="btn btn-outline-danger btn-sm rounded-pill px-3 shadow-sm" onclick="cancelarCompra(${compra.idcompraestado})">
+                                Cancelar
+                            </button>
                         `;
                     } else {
-                        tableContent += `-`; 
+                        tableContent += `<span class="text-muted">-</span>`; 
                     }
 
                     tableContent += `
@@ -113,7 +123,5 @@ include STRUCTURE_PATH . '/HeaderSeguro.php';
         }
     }
 </script>
-
-
 
 <?php include STRUCTURE_PATH . '/Footer.php'; ?>
