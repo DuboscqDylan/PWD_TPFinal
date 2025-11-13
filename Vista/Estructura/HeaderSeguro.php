@@ -65,7 +65,7 @@ $menuHtml .= "</div>";
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm px-4">
         <a class="navbar-brand d-flex align-items-center" href="<?php echo BASE_URL; ?>/index.php">
-            <img src="<?php echo BASE_URL; ?>/Vista/Media/Sitio/Logo.png" height="45" class="me-2" alt="Logo">
+            <img src="<?php echo BASE_URL; ?>/Vista/Media/Sitio/Logo/Logo2.png" height="45" class="me-2 rounded-circle" alt="Logo">
             <h4 class="mb-0 text-white fw-bold">Bike Shop</h4>
         </a>
 
