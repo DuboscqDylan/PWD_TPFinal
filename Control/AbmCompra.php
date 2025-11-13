@@ -141,8 +141,8 @@ class AbmCompra {
                         $mailer = new PHPMailer(true);
                         try {
                             //MODIFICAR PARA TESTEOS
-                            $emailOrigen = ''; // Correo Origen
-                            $passOrigen = ''; // Contraseña de aplicación (Generada en Google)
+                            $emailOrigen = 'dylan.duboscq@est.fi.uncoma.edu.ar'; // Correo Origen
+                            $passOrigen = 'sggv myrs vvhd atjk'; // Contraseña de aplicación (Generada en Google)
 
                             // Configuración del servidor SMTP
                             $mailer->isSMTP();
