@@ -76,7 +76,7 @@ Class AbmProducto
         $productos = (new AbmProducto())->buscar($param); //Recupera productos
         foreach($productos as $producto) {
             if (!$producto->getProdeshabilitado()) { //Convierte en forma de array los que estan habilitados
-                $prod['icon'] = BASE_URL."/View/Media/Product/".$producto->getIdproducto()."/icon.png";
+                $prod['icon'] = BASE_URL."/Vista/Media/Producto/".$producto->getIdproducto()."/icon.png";
                 $prod['idproducto'] = $producto->getIdproducto();
                 $prod['pronombre'] = $producto->getPronombre();
                 $prod['prodetalle'] = $producto->getProdetalle();
@@ -221,7 +221,7 @@ Class AbmProducto
         $respuesta = [];
         $productos = (new AbmProducto())->buscar($param); //Recupera productos
         foreach($productos as $producto) {
-            $prod['icon'] = BASE_URL."/View/Media/Product/".$producto->getIdproducto()."/icon.png";
+            $prod['icon'] = BASE_URL."/Vista/Media/Producto/".$producto->getIdproducto()."/icon.png";
             $prod['idproducto'] = $producto->getIdproducto();
             $prod['pronombre'] = $producto->getPronombre();
             $prod['prodetalle'] = $producto->getProdetalle();
