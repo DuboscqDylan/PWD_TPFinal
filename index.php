@@ -24,7 +24,7 @@ include STRUCTURE_PATH . '/Header.php';
                 <a href="Vista/Paginas/Registrar/registrar.php" class="btn btn-outline-primary px-4 py-2 rounded-pill shadow-sm">
                     Registrarse
                 </a>
-                <a href="Vista/Paginas/Compras/lista_compras.php" class="btn btn-success px-4 py-2 rounded-pill shadow-sm">
+                <a href="Vista/Paginas/Compras/Accion/ListarCompras.php" class="btn btn-success px-4 py-2 rounded-pill shadow-sm">
                     Ver compras
                 </a>
                 <a href="Vista/Paginas/Contacto/contacto.php" class="btn btn-warning px-4 py-2 rounded-pill shadow-sm">
