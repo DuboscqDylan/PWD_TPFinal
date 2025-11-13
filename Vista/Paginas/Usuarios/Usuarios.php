@@ -120,7 +120,7 @@ include STRUCTURE_PATH . "/Header.php";
 
         function cargarUsuarios() {
             $.ajax({
-                url: 'Action/ListarUsuarios.php',
+                url: 'Accion/ListarUsuarios.php',
                 method: 'POST',
                 data: {
                     todo: true
@@ -153,7 +153,7 @@ include STRUCTURE_PATH . "/Header.php";
         function modificarUsuario(id) {
             // Cargar la información del usuario a modificar
             $.ajax({
-                url: 'Action/ListarUsuarios.php',
+                url: 'Accion/ListarUsuarios.php',
                 method: 'POST',
                 data: {
                     idusuario: id
@@ -179,7 +179,7 @@ include STRUCTURE_PATH . "/Header.php";
         window.bajaUsuario = function(id, rol) {
             if (confirm('¿Estás seguro de dar de baja este usuario?')) {
                 $.ajax({
-                    url: 'Action/BajaUsuarios.php',
+                    url: 'Accion/BajaUsuarios.php',
                     method: 'POST',
                     data: {
                         idusuario: id,
@@ -217,7 +217,7 @@ include STRUCTURE_PATH . "/Header.php";
             };
 
             $.ajax({
-                url: 'Action/AltaUsuario.php',
+                url: 'Accion/AltaUsuario.php',
                 type: 'POST',
                 data: formData,
                 success: function(response) {
@@ -278,7 +278,7 @@ include STRUCTURE_PATH . "/Header.php";
 
             console.log(formData);
             $.ajax({
-                url: 'Action/ModificacionUsuario.php',
+                url: 'Accion/ModificacionUsuario.php',
                 type: 'POST',
                 data: formData,
                 success: function(response) {
