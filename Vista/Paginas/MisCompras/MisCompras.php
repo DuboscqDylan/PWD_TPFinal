@@ -39,7 +39,7 @@ include STRUCTURE_PATH . '/HeaderSeguro.php';
 
     function listarComprasPersonales() {
         $.ajax({
-            url: 'Action/ListarCompras.php',
+            url: 'Accion/ListarCompras.php',
             method: 'POST',
             data: {
                 idusuario: <?php echo $usuario->getIdusuario(); ?>
@@ -107,7 +107,7 @@ include STRUCTURE_PATH . '/HeaderSeguro.php';
     function cancelarCompra(idcompraestado) {
         if (confirm('¿Estás seguro de que deseas cancelar esta compra?')) {
             $.ajax({
-                url: 'Action/CancelarCompra.php',
+                url: 'Accion/CancelarCompra.php',
                 method: 'POST',
                 data: {
                     idcompraestado: idcompraestado,
