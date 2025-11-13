@@ -7,7 +7,7 @@ if(!$sesion->validar()) {
 }
 ?>
 
-<div class="">
+<div class="container my-5">
     <h1>PERFIL</h1>
 </div>
 
