@@ -71,7 +71,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
 
     function cargarComprasEntrantes() {
         $.ajax({
-            url: 'Action/ListarCompraEstados.php',
+            url: 'Accion/ListarCompraEstados.php',
             method: 'GET',
             data: {
                 idcompraestadotipo: 2
@@ -102,7 +102,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
 
     function cargarComprasConcretadas() {
         $.ajax({
-            url: 'Action/ListarCompraEstados.php',
+            url: 'Accion/ListarCompraEstados.php',
             method: 'GET',
             data: {
                 idcompraestadotipo: 3
@@ -128,7 +128,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
 
     function cargarComprasCanceladas() {
         $.ajax({
-            url: 'Action/ListarCompraEstados.php',
+            url: 'Accion/ListarCompraEstados.php',
             method: 'GET',
             data: {
                 idcompraestadotipo: 4
@@ -155,7 +155,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
     function enviarCompra(idcompraEstado) {
         if (confirm("¿Desea enviar la compra?")) {
             $.ajax({
-                url: 'Action/CambiarEstado.php',
+                url: 'Accion/CambiarEstado.php',
                 method: 'POST',
                 data: {
                     idcompraestado: idcompraEstado,
@@ -176,7 +176,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
     function cancelarCompra(idcompraEstado) {
         if (confirm("¿Desea cancelar la compra?")) {
             $.ajax({
-                url: 'Action/CambiarEstado.php',
+                url: 'Accion/CambiarEstado.php',
                 method: 'POST',
                 data: {
                     idcompraestado: idcompraEstado,
