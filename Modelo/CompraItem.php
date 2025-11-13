@@ -2,7 +2,7 @@
 include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
 include_once ROOT_PATH.'/Modelo/conector/BaseDatos.php';
 include_once ROOT_PATH.'/Modelo/Compra.php';
-include_once 'Producto.php';
+include_once ROOT_PATH.'/Modelo/Producto.php';
 // idcompraitem(bigint) idproducto(obj) idcompra(obj) cicantidad(int)
 
 class CompraItem {
