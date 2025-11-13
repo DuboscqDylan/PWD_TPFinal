@@ -80,7 +80,7 @@ function actualizarCarrito() {
 }
 
 function sumar(idproducto, cantidad) {
-    $.post('<?php echo BASE_URL ?>/Accion/Sumar.php', {
+    $.post('<?php echo BASE_URL ?>/Vista/Paginas/Carrito/Accion/Sumar.php', {
         idproducto: idproducto,
         idcompra: <?php echo $compraEstado ? $compraEstado->getObjCompra()->getIdcompra() : 0; ?>,
         cicantidad: cantidad
@@ -90,7 +90,7 @@ function sumar(idproducto, cantidad) {
 }
 
 function restar(idproducto, cantidad) {
-    $.post('<?php echo BASE_URL ?>/Accion/Restar.php', {
+    $.post('<?php echo BASE_URL ?>/Vista/Paginas/Carrito/Accion/Restar.php', {
         idproducto: idproducto,
         idcompra: <?php echo $compraEstado ? $compraEstado->getObjCompra()->getIdcompra() : 0; ?>,
         cicantidad: cantidad
@@ -100,7 +100,7 @@ function restar(idproducto, cantidad) {
 }
 
 function vaciarCarrito() {
-    $.post('<?php echo BASE_URL ?>/Accion/Vaciar.php', {
+    $.post('<?php echo BASE_URL ?>/Vista/Paginas/Carrito/Accion/Vaciar.php', {
         idcompra: <?php echo $compraEstado ? $compraEstado->getObjCompra()->getIdcompra() : 0; ?>
     }, function(respuesta) {
         alert(respuesta.message);
@@ -110,7 +110,7 @@ function vaciarCarrito() {
 
 function comprarCarrito() {
     if (!confirm("¿Deseas realizar la compra?")) return;
-    $.post('<?php echo BASE_URL ?>/Accion/ComprarCarrito.php', {
+    $.post('<?php echo BASE_URL ?>/Vista/Paginas/Carrito/Accion/ComprarCarrito.php', {
         idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0; ?>,
         idnuevoestadotipo: 2
     }, function(respuesta) {
