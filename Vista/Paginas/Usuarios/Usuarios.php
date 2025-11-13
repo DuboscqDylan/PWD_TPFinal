@@ -1,6 +1,6 @@
 <?php 
 include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
-include STRUCTURE_PATH . "/Header.php"; 
+include STRUCTURE_PATH . "/HeaderSeguro.php"; 
 ?>
 
 <!-- Contenido principal -->
@@ -322,4 +322,4 @@ include STRUCTURE_PATH . "/Header.php";
     });
 </script>
 
-<?php include STRUCTURE_PATH . "/Foot.php"; ?>
+<?php include STRUCTURE_PATH . "/Footer.php"; ?>
