@@ -55,7 +55,7 @@ Class AbmProducto
         return $resp;
     }
 
-    public function modificacion($param) {
+    public function modificar($param) {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
             $elObjtProducto = $this->cargarObjeto($param);

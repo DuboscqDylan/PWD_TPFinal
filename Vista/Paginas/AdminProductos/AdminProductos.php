@@ -105,7 +105,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
 
         function cargarProductos() {
             $.ajax({
-                url: 'Action/ListarProductos.php',
+                url: 'Accion/ListarProductos.php',
                 method: 'POST',
                 data: 'todo',
                 dataType: 'json',
@@ -162,7 +162,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
 
             // Envío de los datos a través de Ajax
             $.ajax({
-                url: 'Action/AltaProducto.php',
+                url: 'Accion/Alta.php',
                 type: 'POST',
                 data: formData,
                 success: function(response) {
@@ -194,7 +194,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
         window.bajaProducto = function(idproducto) {
             if (confirm('¿Está seguro que desea eliminar el producto?')) {
                 $.ajax({
-                    url: 'Action/BajaProductos.php',
+                    url: 'Accion/Baja.php',
                     type: 'POST',
                     data: {
                         idproducto: idproducto
@@ -218,7 +218,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
         window.deshabilitarProducto = function(idproducto) {
             if (confirm('¿Está seguro que desea deshabilitar el producto?')) {
                 $.ajax({
-                    url: 'Action/DeshabilitarProducto.php',
+                    url: 'Accion/Deshabilitar.php',
                     type: 'POST',
                     dataType: 'json',
                     data: {
@@ -243,7 +243,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
         window.habilitarProducto = function(idproducto) {
             if (confirm('¿Está seguro que desea habilitar el producto?')) {
                 $.ajax({
-                    url: 'Action/HabilitarProducto.php',
+                    url: 'Accion/Habilitar.php',
                     type: 'POST',
                     dataType: 'json',
                     data: {
@@ -291,7 +291,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
             }
             
             $.ajax({
-                url: 'Action/ModificacionProductos.php',
+                url: 'Accion/Modificar.php',
                 type: 'POST',
                 data: formData,
                 success: function(response) {

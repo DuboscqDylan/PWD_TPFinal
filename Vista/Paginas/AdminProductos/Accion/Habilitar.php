@@ -2,6 +2,6 @@
 include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
 $data = data_submitted();  // Obtener los datos enviados
 
-$respuesta = (new AbmProducto())->Habilitar($data);
+$respuesta = (new AbmProducto())->habilitarProducto($data);
 
 echo json_encode($respuesta);
