@@ -13,48 +13,50 @@ if(!empty($data)){
 
         $scanHeader = glob($rutaImagenes.'/*.png');
         if(!empty($scanHeader)){
-            $header = "<img class='' src='".$scanHeader[0]."' height='250' alt='portada'>";
+            $header = "<img class='img-fluid rounded shadow-sm' src='".$scanHeader[0]."' height='250' alt='portada'>";
         }else{
-            $header = '<p>No hay portada</p>';
+            $header = '<p class="text-muted text-center">No hay portada</p>';
         }
 
         $scanDiv = glob($rutaImagenes."/Preview/*");
         if(!empty($scanDiv)){
             $previaDiv="";
             foreach($scanDiv as $ruta) {
-                $previaDiv .= "<img class='' src='".$ruta."'>'";
+                $previaDiv .= "<img class='img-thumbnail m-2 shadow-sm' src='".$ruta."'>";
             }
         }else{
-            $previaDiv = "<p class=''> No hay imagenes </p>";
+            $previaDiv = "<p class='text-muted fst-italic text-center'> No hay imagenes </p>";
         }
 
-        $resultado = "<div class=''>
-                        <!---Portada--->
-                        <div class=''>
-                            <div class=''>
-                                <h1>".$producto->getPronombre()."</h1>
-                            </div>
-                            <div class=''>
-                            ".$header."
-                            </div>
-                        <div>
-                        <!---Detalle--->
-                        <div class=''>
-                            <p>".$producto->getProdetalle()."</p>
-                        </div>
-                        <div class=''>
-                        </div>
-                    </div>";
+        $resultado = "
+        <div class='container my-5'>
+            <!---Portada--->
+            <div class='card shadow-lg border-0 rounded-4 mb-4 p-4'>
+                <div class='card-header bg-primary text-white text-center rounded-top-4'>
+                    <h1 class='fw-bold mb-0'>".$producto->getPronombre()."</h1>
+                </div>
+                <div class='card-body text-center'>
+                    ".$header."
+                </div>
+            </div>
+
+            <!---Detalle--->
+            <div class='card border-0 shadow-sm rounded-4 p-4 mb-4'>
+                <p class='lead text-muted'>".$producto->getProdetalle()."</p>
+            </div>
+
+            <div class='d-flex flex-wrap justify-content-center'>
+                ".$previaDiv."
+            </div>
+        </div>";
     }else{
-        $resultado = "<h3> No se encontró el producto </h3>";
+        $resultado = "<h3 class='text-danger text-center mt-5'> No se encontró el producto </h3>";
     }
 }else{
-    $resultado = "<h3> No se seleccionó un producto </h3>";
+    $resultado = "<h3 class='text-warning text-center mt-5'> No se seleccionó un producto </h3>";
 }
 
 echo $resultado;
 
 include STRUCTURE_PATH . "/Footer.php";
-
 ?>
-
