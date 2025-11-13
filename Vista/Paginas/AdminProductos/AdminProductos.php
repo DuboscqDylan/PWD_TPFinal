@@ -1,99 +1,102 @@
+
 <?php
 include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
 include STRUCTURE_PATH . "/HeaderSeguro.php";
 ?>
 
-<div class="">
+<div class="container-fluid my-5 d-flex flex-wrap justify-content-around">
 
     <!-- Tabla de Productos -->
-    <div class="" style="max-width: 65%; padding: 20px;">
-        <h1>Administrar Productos</h1>
-        <table class="" id="productosTable" style="width: 100%;">
-            <thead class="">
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Detalle</th>
-                    <th>Stock</th>
-                    <th>Estado</th>
-                    <th>Precio</th>
-                    <th>IDVideoYT</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Los productos serán cargados dinámicamente aquí -->
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Formulario Estático para Alta de Producto -->
-    <div class="" style="max-width: 45%; padding: 20px;">
-        <h2>Alta de Producto</h2>
-        <form id="altaProductoForm">
-            <div class="">
-                <label for="nombreAlta" class="text-white">Nombre</label>
-                <input type="text" class="" id="nombreAlta" name="nombreAlta" required>
-            </div>
-            <div class="">
-                <label for="detalleAlta" class="text-white">Detalle</label>
-                <input type="text" class="" id="detalleAlta" name="detalleAlta" required>
-            </div>
-            <div class="">
-                <label for="stockAlta" class="text-white">Stock</label>
-                <input type="number" class="" id="stockAlta" name="stockAlta" required>
-            </div>
-            <div class="">
-                <label for="precioAlta" class="text-white">Precio</label>
-                <input type="number" class="" id="precioAlta" name="precioAlta" required>
-            </div>
-            <div class="">
-                <label for="idvideoytAlta" class="text-white">Id Youtube</label>
-                <input type="text" class="" id="idvideoytAlta" name="idvideoytAlta">
-            </div>
-
-            <button type="submit" class="btn btn-success mt-3">Crear producto</button>
-        </form>
-        <div class="">
-            <div id="errorMessage" class=""></div>
-            <div id="successMessage" class=""></div>
+    <div class="card shadow-lg border-0 rounded-4 p-4 bg-light mb-5" style="max-width: 65%; padding: 20px;">
+        <h1 class="fw-bold text-primary mb-4">Administrar Productos</h1>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle" id="productosTable" style="width: 100%;">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Detalle</th>
+                        <th>Stock</th>
+                        <th>Estado</th>
+                        <th>Precio</th>
+                        <th>IDVideoYT</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Los productos serán cargados dinámicamente aquí -->
+                </tbody>
+            </table>
         </div>
     </div>
 
+    <!-- Formulario Estático para Alta de Producto -->
+    <div class="card shadow border-0 rounded-4 p-4 bg-dark text-white mb-5" style="max-width: 45%; padding: 20px;">
+        <h2 class="fw-semibold mb-4 text-success">Alta de Producto</h2>
+        <form id="altaProductoForm">
+            <div class="mb-3">
+                <label for="nombreAlta" class="form-label text-white">Nombre</label>
+                <input type="text" class="form-control" id="nombreAlta" name="nombreAlta" required>
+            </div>
+            <div class="mb-3">
+                <label for="detalleAlta" class="form-label text-white">Detalle</label>
+                <input type="text" class="form-control" id="detalleAlta" name="detalleAlta" required>
+            </div>
+            <div class="mb-3">
+                <label for="stockAlta" class="form-label text-white">Stock</label>
+                <input type="number" class="form-control" id="stockAlta" name="stockAlta" required>
+            </div>
+            <div class="mb-3">
+                <label for="precioAlta" class="form-label text-white">Precio</label>
+                <input type="number" class="form-control" id="precioAlta" name="precioAlta" required>
+            </div>
+            <div class="mb-3">
+                <label for="idvideoytAlta" class="form-label text-white">Id Youtube</label>
+                <input type="text" class="form-control" id="idvideoytAlta" name="idvideoytAlta">
+            </div>
 
-    <div class="" style="max-width: 45%; padding: 20px;">
-        <h2>Modificar Producto</h2>
+            <button type="submit" class="btn btn-success mt-3 w-100">Crear producto</button>
+        </form>
+        <div class="mt-3">
+            <div id="errorMessage" class="alert alert-danger d-none text-center"></div>
+            <div id="successMessage" class="alert alert-success d-none text-center"></div>
+        </div>
+    </div>
+
+    <!-- Formulario Modificar Producto -->
+    <div class="card shadow border-0 rounded-4 p-4 bg-dark text-white mb-5" style="max-width: 45%; padding: 20px;">
+        <h2 class="fw-semibold mb-4 text-primary">Modificar Producto</h2>
         <form id="modificarProductoForm">
-            <div class="">
-                <label for="idproducto" class="text-white">Id</label>
+            <div class="mb-3">
+                <label for="idproducto" class="form-label text-white">Id</label>
                 <input type="number" class="form-control" id="idproducto" name="idproducto" required>
             </div>
-            <div class="">
-                <label for="nombre" class="text-white">Nombre</label>
+            <div class="mb-3">
+                <label for="nombre" class="form-label text-white">Nombre</label>
                 <input type="text" class="form-control" id="nombre" name="nombre">
             </div>
-            <div class="">
-                <label for="detalle" class="text-white">Detalle</label>
+            <div class="mb-3">
+                <label for="detalle" class="form-label text-white">Detalle</label>
                 <input type="text" class="form-control" id="detalle" name="detalle">
             </div>
-            <div class="">
-                <label for="stock" class="text-white">Stock</label>
+            <div class="mb-3">
+                <label for="stock" class="form-label text-white">Stock</label>
                 <input type="number" class="form-control" id="stock" name="stock">
             </div>
-            <div class="">
-                <label for="precio" class="text-white">Precio</label>
+            <div class="mb-3">
+                <label for="precio" class="form-label text-white">Precio</label>
                 <input type="number" class="form-control" id="precio" name="precio">
             </div>
-            <div class="">
-                <label for="idvideoyt" class="text-white">Id Youtube</label>
+            <div class="mb-3">
+                <label for="idvideoyt" class="form-label text-white">Id Youtube</label>
                 <input type="text" class="form-control" id="idvideoyt" name="idvideoyt">
             </div>
 
-            <button type="submit" class="btn btn-primary mt-3">Actualizar producto</button>
+            <button type="submit" class="btn btn-primary mt-3 w-100">Actualizar producto</button>
         </form>
-        <div class="">
-            <div id="errorMessageMod" class="text text-center mt-3 p-2 bg-danger rounded-3 w-100 text-white d-none"></div>
-            <div id="successMessageMod" class="text text-center mt-3 p-2 bg-success rounded-3 w-100 text-white d-none"></div>
+        <div class="mt-3">
+            <div id="errorMessageMod" class="alert alert-danger d-none text-center"></div>
+            <div id="successMessageMod" class="alert alert-success d-none text-center"></div>
         </div>
     </div>
 
@@ -112,29 +115,28 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                 success: function(response) {
                     var tableContent = '';
                     $.each(response, function(index, producto) {
-                        // Determinar estado y el botón correspondiente
                         const estado = producto.prodeshabilitado ? 'Deshabilitado' : 'Disponible';
                         const botonEstado = producto.prodeshabilitado ?
                             `<button class="my-1 btn btn-success btn-sm" onclick="habilitarProducto(${producto.idproducto})">Habilitar</button>` :
                             `<button class="my-1 btn btn-warning btn-sm" onclick="deshabilitarProducto(${producto.idproducto})">Deshabilitar</button>`;
 
                         tableContent += `
-                <tr id="producto-${producto.idproducto}">
-                    <td>${producto.idproducto}</td>
-                    <td>${producto.pronombre}</td>
-                    <td>${producto.prodetalle}</td>
-                    <td>${producto.procantstock}</td>
-                    <td>${estado}</td>
-                    <td>${producto.proprecio}</td>
-                    <td>${producto.idvideoyt}</td>
-                    <td>
-                        <div class=""> 
-                            <button class="my-1 btn btn-danger btn-sm" onclick="bajaProducto(${producto.idproducto})">Eliminar</button>
-                            ${botonEstado}
-                        </div>
-                    </td>
-                </tr>
-                `;
+                            <tr id="producto-${producto.idproducto}">
+                                <td>${producto.idproducto}</td>
+                                <td>${producto.pronombre}</td>
+                                <td>${producto.prodetalle}</td>
+                                <td>${producto.procantstock}</td>
+                                <td>${estado}</td>
+                                <td>${producto.proprecio}</td>
+                                <td>${producto.idvideoyt}</td>
+                                <td>
+                                    <div class="d-flex flex-column align-items-start">
+                                        <button class="my-1 btn btn-danger btn-sm" onclick="bajaProducto(${producto.idproducto})">Eliminar</button>
+                                        ${botonEstado}
+                                    </div>
+                                </td>
+                            </tr>
+                        `;
                     });
                     $('#productosTable tbody').html(tableContent);
                 },
@@ -144,7 +146,9 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
             });
         }
 
+        // (El resto del JS no se toca)
 
+        
         // Manejo de alta de producto
         $('#altaProductoForm').submit(function(e) {
             e.preventDefault(); // Evita el envío por defecto del formulario
@@ -319,6 +323,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
             });
         });
     });
+
 </script>
 
-<?php include STRUCTURE_PATH . "/Foot.php"; ?>
+<?php include STRUCTURE_PATH . "/Footer.php"; ?>

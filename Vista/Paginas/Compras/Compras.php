@@ -3,62 +3,75 @@ include_once ROOT_PATH."/configuracion.php";
 include STRUCTURE_PATH . "/HeaderSeguro.php";
 ?>
 
-<div class="">
+<div class="container my-5">
 
     <!-- Tabla de compras -->
-    <div class="" style="max-width: 100%; padding: 20px;">
-        <div>
-            <h1>Compras Entrantes</h1>
-            <table class="" id="comprasEntrantesTable" style="width: 100%;">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>ID</th> <!-- id de compraestado -->
-                        <th>Estado</th> <!-- idcompraestadotipo en compraestado -->
-                        <th>Fecha Inicio</th> <!-- fechaInicio en compraestado -->
-                        <th>Fecha Fin</th> <!-- fechaFin en compraestado -->
-                        <th>Usuario</th> <!-- usuario relacionado con la compra -->
-                        <th>Acción</th> <!-- Botones de acción -->
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Las compras serán cargadas dinámicamente aquí -->
-                </tbody>
-            </table>
+    <div class="card shadow-lg border-0 rounded-4 p-4" style="max-width: 100%;">
+
+        <!-- Compras Entrantes -->
+        <div class="mb-5">
+            <h1 class="fw-bold text-primary mb-4">Compras Entrantes</h1>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle" id="comprasEntrantesTable" style="width: 100%;">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>ID</th>
+                            <th>Estado</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
+                            <th>Usuario</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Las compras serán cargadas dinámicamente aquí -->
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div>
-            <h1>Compras concretadas</h1>
-            <table class="" id="comprasConcretadasTable" style="width: 100%;">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>ID</th> <!-- id de compraestado -->
-                        <th>Estado</th> <!-- idcompraestadotipo en compraestado -->
-                        <th>Fecha Inicio</th> <!-- fechaInicio en compraestado -->
-                        <th>Fecha Fin</th> <!-- fechaFin en compraestado -->
-                        <th>Usuario</th> <!-- usuario relacionado con la compra -->
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Las compras serán cargadas dinámicamente aquí -->
-                </tbody>
-            </table>
+
+        <!-- Compras concretadas -->
+        <div class="mb-5">
+            <h1 class="fw-bold text-success mb-4">Compras Concretadas</h1>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle" id="comprasConcretadasTable" style="width: 100%;">
+                    <thead class="table-success">
+                        <tr>
+                            <th>ID</th>
+                            <th>Estado</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
+                            <th>Usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Las compras serán cargadas dinámicamente aquí -->
+                    </tbody>
+                </table>
+            </div>
         </div>
+
+        <!-- Compras canceladas -->
         <div>
-            <h1>Compras canceladas</h1>
-            <table class="" id="comprasCanceladasTable" style="width: 100%;">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>ID</th> <!-- id de compraestado -->
-                        <th>Estado</th> <!-- idcompraestadotipo en compraestado -->
-                        <th>Fecha Inicio</th> <!-- fechaInicio en compraestado -->
-                        <th>Fecha Fin</th> <!-- fechaFin en compraestado -->
-                        <th>Usuario</th> <!-- usuario relacionado con la compra -->
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Las compras serán cargadas dinámicamente aquí -->
-                </tbody>
-            </table>
+            <h1 class="fw-bold text-danger mb-4">Compras Canceladas</h1>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle" id="comprasCanceladasTable" style="width: 100%;">
+                    <thead class="table-danger">
+                        <tr>
+                            <th>ID</th>
+                            <th>Estado</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
+                            <th>Usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Las compras serán cargadas dinámicamente aquí -->
+                    </tbody>
+                </table>
+            </div>
         </div>
+
     </div>
 </div>
 
@@ -73,30 +86,27 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
         $.ajax({
             url: 'Accion/ListarCompraEstados.php',
             method: 'GET',
-            data: {
-                idcompraestadotipo: 2
-            },
+            data: { idcompraestadotipo: 2 },
             dataType: 'json',
             success: function(response) {
                 var tableContent = '';
                 $.each(response, function(index, compra) {
                     tableContent += `
-                            <tr id="compra-${compra.idcompra}">
-                                <td>${compra.idcompra}</td>
-                                <td>${compra.estado}</td>
-                                <td>${compra.cefechaini}</td>
-                                <td>${compra.cefechafin ?? 'N/A'}</td>
-                                <td>${compra.usuario}</td>
-                                <td>
-                                    <button class="btn btn-success" onclick="enviarCompra(${compra.idcompraestado})">Enviar</button>
-                                    <button class="btn btn-danger" onclick="cancelarCompra(${compra.idcompraestado})">Cancelar</button>
-                                </td>
-                            </tr>
-                        `;
+                        <tr id="compra-${compra.idcompra}">
+                            <td>${compra.idcompra}</td>
+                            <td>${compra.estado}</td>
+                            <td>${compra.cefechaini}</td>
+                            <td>${compra.cefechafin ?? 'N/A'}</td>
+                            <td>${compra.usuario}</td>
+                            <td>
+                                <button class="btn btn-success btn-sm rounded-pill px-3 shadow-sm" onclick="enviarCompra(${compra.idcompraestado})">Enviar</button>
+                                <button class="btn btn-danger btn-sm rounded-pill px-3 shadow-sm" onclick="cancelarCompra(${compra.idcompraestado})">Cancelar</button>
+                            </td>
+                        </tr>
+                    `;
                 });
                 $('#comprasEntrantesTable tbody').html(tableContent);
             }
-
         });
     }
 
@@ -104,52 +114,48 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
         $.ajax({
             url: 'Accion/ListarCompraEstados.php',
             method: 'GET',
-            data: {
-                idcompraestadotipo: 3
-            },
+            data: { idcompraestadotipo: 3 },
             dataType: 'json',
             success: function(response) {
                 var tableContent = '';
                 $.each(response, function(index, compra) {
                     tableContent += `
-                            <tr id="compra-${compra.idcompra}">
-                                <td class="bg-success text-white" >${compra.idcompra}</td>
-                                <td class="bg-success text-white" >${compra.estado}</td>
-                                <td class="bg-success text-white" >${compra.cefechaini}</td>
-                                <td class="bg-success text-white" >${compra.cefechafin ?? 'N/A'}</td>
-                                <td class="bg-success text-white" >${compra.usuario}</td>
-                            </tr>
-                        `;
+                        <tr id="compra-${compra.idcompra}">
+                            <td class="bg-success text-white">${compra.idcompra}</td>
+                            <td class="bg-success text-white">${compra.estado}</td>
+                            <td class="bg-success text-white">${compra.cefechaini}</td>
+                            <td class="bg-success text-white">${compra.cefechafin ?? 'N/A'}</td>
+                            <td class="bg-success text-white">${compra.usuario}</td>
+                        </tr>
+                    `;
                 });
                 $('#comprasConcretadasTable tbody').html(tableContent);
             }
-        })
+        });
     }
 
     function cargarComprasCanceladas() {
         $.ajax({
             url: 'Accion/ListarCompraEstados.php',
             method: 'GET',
-            data: {
-                idcompraestadotipo: 4
-            },
+            data: { idcompraestadotipo: 4 },
             dataType: 'json',
             success: function(response) {
                 var tableContent = '';
                 $.each(response, function(index, compra) {
                     tableContent += `
-                            <tr id="compra-${compra.idcompra}">
-                                <td class="bg-danger text-white">${compra.idcompra}</td>
-                                <td class="bg-danger text-white">${compra.estado}</td>
-                                <td class="bg-danger text-white">${compra.cefechaini}</td>
-                                <td class="bg-danger text-white">${compra.cefechafin ?? 'N/A'}</td>
-                                <td class="bg-danger text-white">${compra.usuario}</td>
-                            </tr>
-                        `;
+                        <tr id="compra-${compra.idcompra}">
+                            <td class="bg-danger text-white">${compra.idcompra}</td>
+                            <td class="bg-danger text-white">${compra.estado}</td>
+                            <td class="bg-danger text-white">${compra.cefechaini}</td>
+                            <td class="bg-danger text-white">${compra.cefechafin ?? 'N/A'}</td>
+                            <td class="bg-danger text-white">${compra.usuario}</td>
+                        </tr>
+                    `;
                 });
                 $('#comprasCanceladasTable tbody').html(tableContent);
             }
-        })
+        });
     }
 
     function enviarCompra(idcompraEstado) {
@@ -192,7 +198,6 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                 }
             });
         }
-
     }
 </script>
 
