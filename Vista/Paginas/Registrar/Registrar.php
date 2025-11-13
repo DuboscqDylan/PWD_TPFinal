@@ -63,7 +63,7 @@ if ($sesion->validar()) { //Si ya tiene una sesion, redirige a Catalogo
                 idrol: 3 //Crea Cliente por este medio, los demas roles los crea un admin
             };
             $.ajax({
-                url: 'Action/RegisterAction.php',
+                url: 'Accion/AccionRegistrar.php',
                 type: 'POST',
                 data: formData,
                 success: function(response) {
@@ -73,7 +73,7 @@ if ($sesion->validar()) { //Si ya tiene una sesion, redirige a Catalogo
                             .removeClass('d-none')
                             .addClass('d-block');
                         setTimeout(function() {
-                            window.location.href = "<?php echo BASE_URL?>/View/Pages/Login/Login.php";
+                            window.location.href = "<?php echo BASE_URL?>/Vista/Paginas/Login/Login.php";
                         }, 2000);
                     } else {
                         $('#errorMessage')
