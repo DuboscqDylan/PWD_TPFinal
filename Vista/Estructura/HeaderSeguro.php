@@ -96,7 +96,7 @@ $(document).ready(function() {
 // Actualiza el ícono del carrito con la cantidad de productos
 function actualizarIconoCarrito() {
     $.ajax({
-        url: '<?php echo BASE_URL; ?>/Action/ListarCarrito.php',
+        url: '<?php echo BASE_URL; ?>/Accion/ListarCarrito.php',
         method: 'POST',
         data: { idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0; ?> },
         dataType: 'json',
