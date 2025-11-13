@@ -176,7 +176,7 @@ class Producto {
                 prodetalle = '".addslashes($this->getProdetalle())."', 
                 procantstock = ".$this->getProcantstock().", 
                 proprecio = ".$this->getProprecio().", 
-                prodeshabilitado = ".$desha.", 
+                prodeshabilitado = ".$desha." 
             WHERE idproducto = ".$this->getIdproducto();
             if ($bd->Ejecutar($consulta)) {
                 $resultado = true;

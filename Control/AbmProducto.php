@@ -5,11 +5,11 @@ Class AbmProducto
     private function cargarObjeto($param)
     {
         $obj = null;
-        if (array_key_exists('proprecio', $param) && array_key_exists('pronombre', $param) && array_key_exists('prodetalle', $param) && array_key_exists('procantstock', $param) && array_key_exists('idvideoyt', $param)) {
+        if (array_key_exists('proprecio', $param) && array_key_exists('pronombre', $param) && array_key_exists('prodetalle', $param) && array_key_exists('procantstock', $param)) {
             $idproducto = array_key_exists('idproducto', $param) ? $param['idproducto'] : null;
             $prodeshabilitado = array_key_exists('prodeshabilitado', $param) ? $param['prodeshabilitado'] : null;
             $obj = new Producto();
-            $obj->cargarDatos($idproducto, $param['pronombre'], $param['prodetalle'], $param['procantstock'], $param['proprecio'], $prodeshabilitado, $param['idvideoyt']);
+            $obj->cargarDatos($idproducto, $param['pronombre'], $param['prodetalle'], $param['procantstock'], $param['proprecio'], $prodeshabilitado);
         }
     
         return $obj;
@@ -235,7 +235,7 @@ Class AbmProducto
 
     /**
      * Modifica los productos y retorna un arreglo con el mensaje del estado de la operación
-     * @param array $param['idproducto'], $param['pronombre'], $param['prodetalle'], $param['procantstock'], $param['proprecio'], $param['idvideoyt']
+     * @param array $param['idproducto'], $param['pronombre'], $param['prodetalle'], $param['procantstock'], $param['proprecio']
      */
     public function modificarProductos($param = null){
         $respuesta = [];
@@ -266,12 +266,7 @@ Class AbmProducto
                 } else {
                     $param['proprecio'] = $producto->getProprecio();
                 }
-                if(isset($param['idvideoyt'])) {
-                    $param['idvideoyt'] = $param['idvideoyt'];
-                } else {
-                    $param['idvideoyt'] = $producto->getIdvideoyt();
-                }
-                
+
                 $modificacion = (new AbmProducto())->modificacion($param);
                 
                 if ($modificacion) {
@@ -310,9 +305,6 @@ Class AbmProducto
             }
             if (isset($param['prodeshabilitado'])) {
                 $where .= " AND prodeshabilitado = '".$param['prodeshabilitado']."'";
-            }
-            if (isset($param['idvideoyt'])) {
-                $where .= " AND idvideoyt = '".$param['idvideoyt']."'";
             }
         }
         $arreglo = (new Producto())->listar($where);
