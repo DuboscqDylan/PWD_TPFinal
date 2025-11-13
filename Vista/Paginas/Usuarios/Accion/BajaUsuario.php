@@ -1,7 +1,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
 
-$data = Funciones::data_submitted();
+$data = data_submitted();
 
 if (isset($data['idusuario']) && isset($data['rol'])) {
     $idUsuario = $data['idusuario'];

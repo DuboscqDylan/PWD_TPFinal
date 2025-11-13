@@ -1,6 +1,6 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
-$data = Funciones::data_submitted();  // Obtener los datos enviados
+$data = data_submitted();  // Obtener los datos enviados
 
 $respuesta = (new AbmProducto())->Modificar($data);
 
