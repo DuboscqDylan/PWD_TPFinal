@@ -98,7 +98,7 @@ class AbmCompraEstado {
      * Retorna un array con los compraItems (en forma de array) de un estadocompra especificado en $param
      * @param array $param ['idcompraestado']
      */
-    public function listarCarrito($param) {
+    public function listarCompras($param) {
         $items = [];
         $compraEstado = (new AbmCompraEstado())->buscar($param)[0];
         $compraItems = (new AbmCompraItem())->buscar(['compra'=> $compraEstado->getObjCompra()]);
@@ -115,7 +115,6 @@ class AbmCompraEstado {
             $nuevoElem['procantstock'] = $producto->getProcantstock();
             $nuevoElem['proprecio'] = $producto->getProprecio();
             $nuevoElem['prodeshabilitado'] = $producto->getProdeshabilitado();
-            $nuevoElem['idvideoyt'] = $producto->getIdvideoyt();
             array_push($items, $nuevoElem);
         }
         return $items;
