@@ -116,7 +116,7 @@ function comprarCarrito() {
     }, function(respuesta) {
         alert(respuesta.message);
         if (respuesta.success)
-            window.location.href = "<?php echo BASE_URL ?>/View/Pages/MisCompras/MisCompras.php";
+            window.location.href = "<?php echo BASE_URL ?>/Vista/Paginas/MisCompras/MisCompras.php";
     }, 'json');
 }
 </script>
