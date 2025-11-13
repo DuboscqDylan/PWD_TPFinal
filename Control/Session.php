@@ -192,12 +192,21 @@ class Session
      */
     public function validarPagina($menues = [])
     {
-        // Verifica que pagina actual este permitida por menues obtenidos (DIFERENCIA CON Head.php)
-        $menuesFiltrados = array_filter($menues, function ($menu) {
-            return (BASE_URL . $menu->getMeurl()) == CURRENT_URL;
-        });
-        //Si no esta vacio, entonces encontro la pagina actual en sus posibles menues
-        return !empty($menuesFiltrados);
+        if (empty($menues)) return false; // sin menús = sin permisos
+
+        // Normalizamos la URL actual (sin parámetros ni slashes extras)
+        $urlActual = strtok(CURRENT_URL, '?'); // elimina query string
+        $urlActual = rtrim($urlActual, '/');   // elimina barra final si existe
+
+        foreach ($menues as $menu) {
+            $menuUrl = BASE_URL . '/' . ltrim($menu->getMeurl(), '/');
+            $menuUrl = rtrim($menuUrl, '/');
+            if ($menuUrl === $urlActual) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
