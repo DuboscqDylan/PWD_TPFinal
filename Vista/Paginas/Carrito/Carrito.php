@@ -22,7 +22,7 @@ $(document).ready(function() {
 
 function actualizarCarrito() {
     $.ajax({
-        url: '<?php echo BASE_URL ?>/Action/ListarCarrito.php',
+        url: '<?php echo BASE_URL ?>/Accion/ListarCarrito.php',
         method: 'POST',
         data: { idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0 ?> },
         dataType: 'json',
@@ -80,7 +80,7 @@ function actualizarCarrito() {
 }
 
 function sumar(idproducto, cantidad) {
-    $.post('<?php echo BASE_URL ?>/Action/Sumar.php', {
+    $.post('<?php echo BASE_URL ?>/Accion/Sumar.php', {
         idproducto: idproducto,
         idcompra: <?php echo $compraEstado ? $compraEstado->getObjCompra()->getIdcompra() : 0; ?>,
         cicantidad: cantidad
@@ -90,7 +90,7 @@ function sumar(idproducto, cantidad) {
 }
 
 function restar(idproducto, cantidad) {
-    $.post('<?php echo BASE_URL ?>/Action/Restar.php', {
+    $.post('<?php echo BASE_URL ?>/Accion/Restar.php', {
         idproducto: idproducto,
         idcompra: <?php echo $compraEstado ? $compraEstado->getObjCompra()->getIdcompra() : 0; ?>,
         cicantidad: cantidad
@@ -100,7 +100,7 @@ function restar(idproducto, cantidad) {
 }
 
 function vaciarCarrito() {
-    $.post('<?php echo BASE_URL ?>/Action/VaciarCarrito.php', {
+    $.post('<?php echo BASE_URL ?>/Accion/Vaciar.php', {
         idcompra: <?php echo $compraEstado ? $compraEstado->getObjCompra()->getIdcompra() : 0; ?>
     }, function(respuesta) {
         alert(respuesta.message);
@@ -110,7 +110,7 @@ function vaciarCarrito() {
 
 function comprarCarrito() {
     if (!confirm("¿Deseas realizar la compra?")) return;
-    $.post('<?php echo BASE_URL ?>/Action/ComprarCarrito.php', {
+    $.post('<?php echo BASE_URL ?>/Accion/ComprarCarrito.php', {
         idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0; ?>,
         idnuevoestadotipo: 2
     }, function(respuesta) {

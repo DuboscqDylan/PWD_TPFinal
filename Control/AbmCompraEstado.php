@@ -98,7 +98,7 @@ class AbmCompraEstado {
      * Retorna un array con los compraItems (en forma de array) de un estadocompra especificado en $param
      * @param array $param ['idcompraestado']
      */
-    public function listarCompras($param) {
+    public function listarCarrito($param) {
         $items = [];
         $compraEstado = (new AbmCompraEstado())->buscar($param)[0];
         $compraItems = (new AbmCompraItem())->buscar(['compra'=> $compraEstado->getObjCompra()]);

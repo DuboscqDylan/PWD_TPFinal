@@ -2,6 +2,6 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD_TPFINAL/configuracion.php";
 $data = data_submitted();
 
-$respuesta = (new ABMCompraEstado())->listarCarrito($data);
+$respuesta = (new AbmCompraEstado())->listarCarrito($data);
 echo json_encode($respuesta);
 ?>
