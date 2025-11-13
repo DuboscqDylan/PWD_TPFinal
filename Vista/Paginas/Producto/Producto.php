@@ -2,7 +2,7 @@
 include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
 include STRUCTURE_PATH."/Header.php";
 
-$data = Funciones :: data_submitted();
+$data = data_submitted();
 
 if(!empty($data)){
     $arregloProductos = (new AbmProducto())->buscar(['idproducto' => $data['idproducto']]);
