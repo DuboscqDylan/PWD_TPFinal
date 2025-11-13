@@ -10,17 +10,15 @@ class Producto {
     private $procantstock;
     private $proprecio;
     private $prodeshabilitado;
-    private $idvideoyt;
     private $mensajeOperacion;
 
-    public function __construct($idproducto = null, $pronombre = null, $prodetalle = null, $procantstock = null, $proprecio = null, $prodeshabilitado = null, $idvideoyt = null) {
+    public function __construct($idproducto = null, $pronombre = null, $prodetalle = null, $procantstock = null, $proprecio = null, $prodeshabilitado = null) {
         $this->idproducto = $idproducto;
         $this->pronombre = $pronombre;
         $this->prodetalle = $prodetalle;
         $this->procantstock = $procantstock;
         $this->proprecio = $proprecio;
         $this->prodeshabilitado = $prodeshabilitado;
-        $this->idvideoyt = $idvideoyt;
     }
 
     // Getters
@@ -47,10 +45,6 @@ class Producto {
     public function getProdeshabilitado() {
         return $this->prodeshabilitado;
     } 
-
-    public function getIdvideoyt() {
-        return $this->idvideoyt;
-    }
 
     public function getMensajeOperacion() {
         return $this->mensajeOperacion;
@@ -80,23 +74,18 @@ class Producto {
         $this->prodeshabilitado = $prodeshabilitado;
     }
 
-    public function setIdvideoyt($idvideoyt) {
-        $this->idvideoyt = $idvideoyt;
-    }
-
     public function setMensajeOperacion($mensajeOperacion) {
         $this->mensajeOperacion = $mensajeOperacion;
     }
 
     // metodos CRUD
-    public function cargarDatos($idproducto, $pronombre = null, $prodetalle = null, $procantstock = null, $proprecio = null, $prodeshabilitado = null, $idvideoyt = null) {
+    public function cargarDatos($idproducto, $pronombre = null, $prodetalle = null, $procantstock = null, $proprecio = null, $prodeshabilitado = null) {
         $this->setIdproducto($idproducto);
         $this->setPronombre($pronombre);
         $this->setProdetalle($prodetalle);
         $this->setProcantstock($procantstock);
         $this->setProprecio($proprecio);
         $this->setProdeshabilitado($prodeshabilitado);
-        $this->setIdvideoyt($idvideoyt);
     }
 
     /**
@@ -111,7 +100,7 @@ class Producto {
             $consulta = "SELECT * FROM producto WHERE idproducto = $idproducto";
             if ($bd->Ejecutar($consulta)) {
                 if ($row = $bd->Registro()) {
-                    $this->cargarDatos($idproducto, $row['pronombre'], $row['prodetalle'], $row['procantstock'], $row['proprecio'], $row['prodeshabilitado'], $row['idvideoyt']);
+                    $this->cargarDatos($idproducto, $row['pronombre'], $row['prodetalle'], $row['procantstock'], $row['proprecio'], $row['prodeshabilitado']);
                     $resultado = true;
                 }
             }
@@ -136,7 +125,7 @@ class Producto {
             if ($base->Ejecutar($consulta)) {
                 while ($row = $base->Registro()) {
                     $obj = new Producto();
-                    $obj->cargarDatos($row['idproducto'], $row['pronombre'], $row['prodetalle'], $row['procantstock'], $row['proprecio'], $row['prodeshabilitado'], $row['idvideoyt']);
+                    $obj->cargarDatos($row['idproducto'], $row['pronombre'], $row['prodetalle'], $row['procantstock'], $row['proprecio'], $row['prodeshabilitado']);
                     array_push($coleccion, $obj);
                 }
             } else {
@@ -153,8 +142,8 @@ class Producto {
         $bd = new BaseDatos();
     
         if ($bd->Iniciar()) {
-            $consulta = "INSERT INTO producto (pronombre, prodetalle, procantstock, proprecio, idvideoyt) VALUES 
-            ('".$this->getPronombre()."','".$this->getProdetalle()."',".$this->getProcantstock().",".$this->getProprecio().", '".$this->getIdvideoyt()."')";
+            $consulta = "INSERT INTO producto (pronombre, prodetalle, procantstock, proprecio) VALUES 
+            ('".$this->getPronombre()."','".$this->getProdetalle()."','".$this->getProcantstock()."','".$this->getProprecio()."')";
             if ($bd->Ejecutar($consulta)) {
                 $resultado = true;
             } else {
@@ -187,8 +176,7 @@ class Producto {
                 prodetalle = '".addslashes($this->getProdetalle())."', 
                 procantstock = ".$this->getProcantstock().", 
                 proprecio = ".$this->getProprecio().", 
-                prodeshabilitado = ".$desha.",
-                idvideoyt = '".addslashes($this->getIdvideoyt())."' 
+                prodeshabilitado = ".$desha.", 
             WHERE idproducto = ".$this->getIdproducto();
             if ($bd->Ejecutar($consulta)) {
                 $resultado = true;
@@ -231,8 +219,7 @@ class Producto {
             "prodetalle: ".$this->getProdetalle()."\n".
             "procantstock: ".$this->getProcantstock()."\n".
             "proprecio: ".$this->getProprecio()."\n".
-            "prodeshabilitado: ".$this->getProdeshabilitado())."\n".
-            "idvideoyt: ".$this->getIdvideoyt();
+            "prodeshabilitado: ".$this->getProdeshabilitado())."\n";
     }
 }
 ?>

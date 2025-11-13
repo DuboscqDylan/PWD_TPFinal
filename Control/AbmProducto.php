@@ -69,13 +69,13 @@ Class AbmProducto
     /**
      * Lista productos con su informacion necesaria para ser mostrados en Catalogo.
      * Retorna un array de productos (en forma de array) que cumplan $param
-     * @param array $param ['idproducto', 'proprecio', 'pronombre', 'prodetalle', 'procantstock', 'deshabilitado', 'idvideoyt']
+     * @param array $param ['idproducto', 'proprecio', 'pronombre', 'prodetalle', 'procantstock', 'deshabilitado'
      */
     public function listarProductos($param = null) {
         $respuesta = [];
         $productos = (new AbmProducto())->buscar($param); //Recupera productos
         foreach($productos as $producto) {
-            if ($producto->getProdeshabilitado() == null) { //Convierte en forma de array los que estan habilitados
+            if (!$producto->getProdeshabilitado()) { //Convierte en forma de array los que estan habilitados
                 $prod['icon'] = BASE_URL."/View/Media/Product/".$producto->getIdproducto()."/icon.png";
                 $prod['idproducto'] = $producto->getIdproducto();
                 $prod['pronombre'] = $producto->getPronombre();
@@ -83,7 +83,6 @@ Class AbmProducto
                 $prod['procantstock'] = $producto->getProcantstock();
                 $prod['proprecio'] = $producto->getProprecio();
                 $prod['prodeshabilitado'] = $producto->getProdeshabilitado();
-                $prod['idvideoyt'] = $producto->getIdvideoyt();
                 array_push($respuesta, $prod);
             }
         }
@@ -92,7 +91,7 @@ Class AbmProducto
 
     /**
      * Se encarga de realizar el alta de un producto y retorna un arreglo con el mensaje de confirmación
-     * @param array $param ['nombre], $param ['stock], $param ['detalle], $param ['precio], $param ['idvideoyt]
+     * @param array $param ['nombre], $param ['stock], $param ['detalle], $param ['precio]
      */
     public function altaProducto($param = null){
         $respuesta = [];
@@ -101,16 +100,6 @@ Class AbmProducto
             $param['prodetalle'] = $param['detalle'];
             $param['procantstock'] = $param['stock'];
             $param['proprecio'] = $param['precio'];
-        
-            if(isset($param['idvideoyt'])) {
-                if ($param['idvideoyt'] != "null") {
-                    $param['idvideoyt'] = $param['idvideoyt'];
-                } else {
-                    $param['idvideoyt'] = "dQw4w9WgXcQ";
-                }
-            } else {
-                $param['idvideoyt'] = 'dQw4w9WgXcQ';
-            }
         
             if ((new ABMProducto())->alta($param)) {
                 $respuesta = ['success' => true, 'message' => 'Producto agregado exitosamente.'];
@@ -163,7 +152,6 @@ Class AbmProducto
                 $param['prodetalle'] = $producto->getProdetalle();
                 $param['procantstock'] = $producto->getProcantstock();
                 $param['proprecio'] = $producto->getProprecio();
-                $param['idvideoyt'] = $producto->getIdvideoyt();
                 
                 
                 $datetime = new DateTime('now');
@@ -208,13 +196,6 @@ Class AbmProducto
                 $param['proprecio'] = $producto->getProprecio();
                 $param['prodeshabilitado'] = null;
         
-                if(isset($param['idvideoyt'])) {
-                    $param['idvideoyt'] = $param['idvideoyt'];
-                } else {
-                    $param['idvideoyt'] = $producto->getIdvideoyt();
-                }
-        
-        
                 $modificacion = (new AbmProducto())->modificacion($param);
         
                 if ($modificacion) {
@@ -234,7 +215,7 @@ Class AbmProducto
     /**
      * Lista productos con su informacion necesaria para ser mostrados en Administrar productos.
      * Retorna un array de productos (en forma de array) que cumplan $param
-     * @param array $param ['idproducto', 'proprecio', 'pronombre', 'prodetalle', 'procantstock', 'deshabilitado', 'idvideoyt']
+     * @param array $param ['idproducto', 'proprecio', 'pronombre', 'prodetalle', 'procantstock', 'deshabilitado'
      */
     public function listarProductosAdministrar($param = null) {
         $respuesta = [];
@@ -247,7 +228,6 @@ Class AbmProducto
             $prod['procantstock'] = $producto->getProcantstock();
             $prod['proprecio'] = $producto->getProprecio();
             $prod['prodeshabilitado'] = $producto->getProdeshabilitado();
-            $prod['idvideoyt'] = $producto->getIdvideoyt();
             array_push($respuesta, $prod);            
         }
         return $respuesta;
@@ -328,7 +308,7 @@ Class AbmProducto
             if (isset($param['procantstock'])) {
                 $where .= " AND procantstock = ".$param['procantstock'];
             }
-            if (isset($param['deshabilitado'])) {
+            if (isset($param['prodeshabilitado'])) {
                 $where .= " AND prodeshabilitado = '".$param['prodeshabilitado']."'";
             }
             if (isset($param['idvideoyt'])) {
