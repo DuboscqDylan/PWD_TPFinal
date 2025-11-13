@@ -108,7 +108,7 @@ class AbmCompraEstado {
             //$objCompra = $compraItem->getObjCompra(); // No se usa, pero puede ser obtenido
             $nuevoElem['idcompraitem'] = $compraItem->getIdcompraitem();
             $nuevoElem['cicantidad'] = $compraItem->getCicantidad();
-            $nuevoElem['icon'] = BASE_URL."/View/Media/Product/".$producto->getIdproducto()."/icon.png";
+            $nuevoElem['icon'] = BASE_URL."/Vista/Media/Producto/".$producto->getIdproducto()."/icon.png";
             $nuevoElem['idproducto'] = $producto->getIdproducto();
             $nuevoElem['pronombre'] = $producto->getPronombre();
             $nuevoElem['prodetalle'] = $producto->getProdetalle();

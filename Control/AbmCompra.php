@@ -154,7 +154,7 @@ class AbmCompra {
                             $mailer->Port = 587; // Puerto SMTP (Gmail)
                             
                             // Configuración del correo
-                            $mailer->setFrom($emailOrigen, 'PWDG42024'); // Remitente
+                            $mailer->setFrom($emailOrigen, 'PWD_TPFinal'); // Remitente
                             $mailer->addAddress($usuario->getUsmail()); // Destinatario
                             $mailer->Subject = 'Cambio de estado de tu compra ID#'.$compra->getIdcompra().'.'; // Asunto
 
@@ -249,7 +249,7 @@ class AbmCompra {
         $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
         // Configurar el PDF
-        $pdf->SetCreator('PWDG42024/TPF');
+        $pdf->SetCreator('PWD_TPFinal');
         $pdf->SetAuthor('FF-MN-JV');
         $pdf->SetTitle($tituloPDF);
         $pdf->SetSubject('Factura');
@@ -259,7 +259,7 @@ class AbmCompra {
         $pdf->AddPage();
 
         // Asegurarse de que la imagen exista
-        $imagePath = ROOT_PATH.'/View/Media/Site/logo.jpg';
+        $imagePath = ROOT_PATH.'/Vista/Media/sitio/Logo/Logo.jpg';
         if (file_exists($imagePath)) {
             $pdf->Image($imagePath, 15, 14, 20, 20);
         } else {
@@ -357,7 +357,7 @@ class AbmCompra {
                 $prod['pronombre'] = $objProducto->getPronombre();
                 $prod['cicantidad'] = $item->getCicantidad();
                 $prod['proprecio'] = $objProducto->getProprecio();
-                $prod['icon'] = BASE_URL.'/View/Media/Product/' . $objProducto->getIdproducto() . '/icon.jpg';
+                $prod['icon'] = BASE_URL.'/Vista/Media/Producto/' . $objProducto->getIdproducto() . '/icon.jpg';
                 array_push($items, $prod);
             }
             $comp = [
