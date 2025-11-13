@@ -51,7 +51,7 @@ function actualizarCarrito() {
                             <div class="flex-grow-1">
                                 <h5 class="fw-bold mb-1 text-dark">${item.pronombre}</h5>
                                 <p class="text-secondary small mb-1">Stock: ${item.procantstock}</p>
-                                <p class="fw-semibold mb-0 text-success">$${item.proprecio.toFixed(2)}</p>
+                                <p class="fw-semibold mb-0 text-success">$${parseFloat(item.proprecio).toFixed(2)}</p>
                             </div>
                             <div class="text-center">
                                 <button class="btn btn-outline-success btn-sm" onclick="sumar(${item.idproducto},1)">+</button>
