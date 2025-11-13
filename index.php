@@ -1,6 +1,7 @@
 <?php
 include_once 'configuracion.php';
 include STRUCTURE_PATH . '/Header.php';
+//prueba para pshear img
 ?>
 
 <!-- Contenido principal -->
@@ -34,5 +35,6 @@ include STRUCTURE_PATH . '/Header.php';
         </div>
     </div>
 </div>
+
 
 <?php include STRUCTURE_PATH . '/Footer.php'; ?>
