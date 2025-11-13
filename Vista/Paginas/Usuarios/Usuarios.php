@@ -115,15 +115,16 @@ include STRUCTURE_PATH . "/Header.php";
 </div>
 
 <script>
-    // --- Tu código JavaScript original, intacto ---
     $(document).ready(function() {
-        cargarUsuarios();
+        cargarUsuarios(); // Funcion que es llamada al cargar la página, y contiene la llamada AJAX para cargar los usuarios
 
         function cargarUsuarios() {
             $.ajax({
                 url: 'Accion/ListarUsuarios.php',
                 method: 'POST',
-                data: { todo: true },
+                data: {
+                    todo: true
+                },
                 dataType: 'json',
                 success: function(response) {
                     var tableContent = '';
@@ -133,12 +134,13 @@ include STRUCTURE_PATH . "/Header.php";
                             <td>${usuario.idusuario}</td>
                             <td>${usuario.usnombre}</td>
                             <td>${usuario.usmail}</td>
-                            <td>${usuario.usdeshabilitado}</td>
+                            <td>${usuario.usdeshabilitado} </td>
                             <td>${usuario.rol}</td>
                             <td>
                                 <button class="btn btn-danger btn-sm" onclick="bajaUsuario(${usuario.idusuario}, '${usuario.rol}')">Baja</button>
                             </td>
-                        </tr>`;
+                        </tr>
+                    `;
                     });
                     $('#usuariosTable tbody').html(tableContent);
                 },
@@ -148,39 +150,176 @@ include STRUCTURE_PATH . "/Header.php";
             });
         }
 
-        // --- resto de tu código JS exactamente igual ---
-        // (funciones modificarUsuario, bajaUsuario, alta y modificación)
-        // ...
+        function modificarUsuario(id) {
+            // Cargar la información del usuario a modificar
+            $.ajax({
+                url: 'Accion/ListarUsuarios.php',
+                method: 'POST',
+                data: {
+                    idusuario: id
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.length > 0) {
+                        const usuario = response[0];
+                        $('#modUserId').val(usuario.idusuario);
+                        $('#modNombre').val(usuario.usnombre);
+                        $('#modEmail').val(usuario.usmail);
+                        $('#modRol').val(usuario.rol);
+                        $('#modificarUsuarioForm').show();
+                    }
+                },
+                error: function() {
+                    alert('Error al cargar la información del usuario.');
+                }
+            });
+        }
 
-        function modificarUsuario(id) { // Cargar la información del usuario a modificar 
-        $.ajax({ url: 'Accion/ListarUsuarios.php', method: 'POST', 
-        data: { idusuario: id }, dataType: 'json', success: function(response) { 
-            if (response.length > 0) { const usuario = response[0]; $('#modUserId').val(usuario.idusuario); 
-            $('#modNombre').val(usuario.usnombre); $('#modEmail').val(usuario.usmail); $('#modRol').val(usuario.rol);
-            $('#modificarUsuarioForm').show(); } }, error: function() { alert('Error al cargar la información del usuario.'); }
-         }); 
-        } // Manejo de la baja de un usuario 
-        window.bajaUsuario = function(id, rol) { if (confirm('¿Estás seguro de dar de baja este usuario?')) { 
-            $.ajax({ url: 'Accion/BajaUsuarios.php', 
-            method: 'POST', data: { idusuario: id, rol: rol }, dataType: 'json', 
-            success: function(response) { if (response) { alert(response.message); 
-        // Eliminar la fila de la tabla 
-        $('#usuario-' + id).remove(); } else { alert(response.message); } }, 
-        error: function() { alert('Error al procesar la solicitud de baja.'); } }); } } 
-        Alta de usuario $('#altaUsuarioForm').submit(function(e) { e.preventDefault(); 
-        $('#errorMessage').text('').removeClass('d-block').addClass('d-none'); $('#successMessage').text('').removeClass('d-block').addClass('d-none'); pass = $('#password').val() passMD5 = md5(pass) const formData = { user: $('#user').val(), email: $('#email').val(), password: passMD5, rol: $('#rol').val() }; 
-        $.ajax({ url: 'Accion/AltaUsuario.php', type: 'POST', data: formData, 
-        success: function(response) { if (response.trim() === 'success') { $('#errorMessage') .text('Usuario creado exitosamente.') .removeClass('d-block') .addClass('d-none'); $('#successMessage') .text('Usuario creado exitosamente.') .removeClass('d-none') .addClass('d-block'); 
-        cargarUsuarios();} 
-        // Recargar la lista de usuarios 
-        else { $('#successMessage') .text('Usuario creado exitosamente.') .removeClass('d-block') .addClass('d-none'); $('#errorMessage') .text(response) .removeClass('d-none') .addClass('d-block'); } }, error: function() { $('#successMessage') .text('Usuario creado exitosamente.') .removeClass('d-block') .addClass('d-none'); $('#errorMessage') .text('Ocurrió un error al procesar la solicitud.') .removeClass('d-none') .addClass('d-block'); } }); }); 
-        // Modificación de usuario 
-        $('#modificarUsuarioForm').submit(function(e) { e.preventDefault(); $('#errorMessage').text('').removeClass('d-block').addClass('d-none'); $('#successMessage').text('').removeClass('d-block').addClass('d-none'); var formData = { usuarioID: parseInt($('#usuarioID').val(), 10), } if ($('#modNombre').val().trim() != "") { formData['modNombre'] = $('#modNombre').val(); } if ($('#modEmail').val().trim() != "") { formData['modEmail'] = $('#modEmail').val(); } if ($('#modRol').val().trim() != "") { formData['modRol'] = $('#modRol').val(); } console.log(formData); $.ajax({ url: 'Accion/ModificacionUsuario.php', type: 'POST', data: formData, success: function(response) { var res = JSON.parse(response); console.log(res); if (res.success) { $('#errorMessageMod') .text(res.message) .removeClass('d-block') .addClass('d-none'); $('#successMessageMod') .text(res.message) .removeClass('d-none') .addClass('d-block'); cargarUsuarios(); 
-        // Recargar la lista de usuarios 
-        } else { $('#successMessageMod') .text(res.message) .removeClass('d-block') .addClass('d-none'); cargarUsuarios(); $('#errorMessageMod') .text(res.message) .removeClass('d-none') .addClass('d-block'); } }, error: function() { $('#successMessageMod') .text(res.message) .removeClass('d-block') .addClass('d-none'); $('#errorMessageMod') .text('Ocurrió un error al procesar la solicitud.') .removeClass('d-none') .addClass('d-block'); } }); }); }); </script> <?php include STRUCTURE_PATH . "/Footer.php"; ?>
+        // Manejo de la baja de un usuario
+        window.bajaUsuario = function(id, rol) {
+            if (confirm('¿Estás seguro de dar de baja este usuario?')) {
+                $.ajax({
+                    url: 'Accion/BajaUsuarios.php',
+                    method: 'POST',
+                    data: {
+                        idusuario: id,
+                        rol: rol
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response) {
+                            alert(response.message);
+                            // Eliminar la fila de la tabla
+                            $('#usuario-' + id).remove();
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function() {
+                        alert('Error al procesar la solicitud de baja.');
+                    }
+                });
+            }
+        }
 
+        // Alta de usuario
+        $('#altaUsuarioForm').submit(function(e) {
+            e.preventDefault();
+            $('#errorMessage').text('').removeClass('d-block').addClass('d-none');
+            $('#successMessage').text('').removeClass('d-block').addClass('d-none');
+            pass = $('#password').val()
+            passMD5 = md5(pass)
+            const formData = {
+                user: $('#user').val(),
+                email: $('#email').val(),
+                password: passMD5,
+                rol: $('#rol').val()
+            };
+
+            $.ajax({
+                url: 'Accion/AltaUsuario.php',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    if (response.trim() === 'success') {
+                        $('#errorMessage')
+                            .text('Usuario creado exitosamente.')
+                            .removeClass('d-block')
+                            .addClass('d-none');
+                        $('#successMessage')
+                            .text('Usuario creado exitosamente.')
+                            .removeClass('d-none')
+                            .addClass('d-block');
+                        cargarUsuarios(); // Recargar la lista de usuarios
+                    } else {
+                        $('#successMessage')
+                            .text('Usuario creado exitosamente.')
+                            .removeClass('d-block')
+                            .addClass('d-none');
+                        $('#errorMessage')
+                            .text(response)
+                            .removeClass('d-none')
+                            .addClass('d-block');
+                    }
+                },
+                error: function() {
+                    $('#successMessage')
+                            .text('Usuario creado exitosamente.')
+                            .removeClass('d-block')
+                            .addClass('d-none');
+                    $('#errorMessage')
+                        .text('Ocurrió un error al procesar la solicitud.')
+                        .removeClass('d-none')
+                        .addClass('d-block');
+                }
+            });
+                
+        });
+
+
+        // Modificación de usuario
+       $('#modificarUsuarioForm').submit(function(e) {
+            e.preventDefault();
+            $('#errorMessage').text('').removeClass('d-block').addClass('d-none');
+            $('#successMessage').text('').removeClass('d-block').addClass('d-none');
+            
+            var formData = {
+                usuarioID: parseInt($('#usuarioID').val(), 10),
+            }
+            if ($('#modNombre').val().trim() != "") {
+                formData['modNombre'] = $('#modNombre').val();
+            }
+            if ($('#modEmail').val().trim() != "") {
+                formData['modEmail'] = $('#modEmail').val();
+            }
+            if ($('#modRol').val().trim() != "") {
+                formData['modRol'] = $('#modRol').val();
+            }
+
+            console.log(formData);
+            $.ajax({
+                url: 'Accion/ModificacionUsuario.php',
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    var res = JSON.parse(response);
+                    console.log(res);
+                    if (res.success) {
+                        $('#errorMessageMod')
+                            .text(res.message)
+                            .removeClass('d-block')
+                            .addClass('d-none');
+                        $('#successMessageMod')
+                            .text(res.message)
+                            .removeClass('d-none')
+                            .addClass('d-block');
+                        cargarUsuarios(); // Recargar la lista de usuarios
+                    } else {
+                        $('#successMessageMod')
+                            .text(res.message)
+                            .removeClass('d-block')
+                            .addClass('d-none');
+                        cargarUsuarios();
+                        $('#errorMessageMod')
+                            .text(res.message)
+                            .removeClass('d-none')
+                            .addClass('d-block');
+                    }
+                },
+                error: function() {
+                    $('#successMessageMod')
+                            .text(res.message)
+                            .removeClass('d-block')
+                            .addClass('d-none');
+                    $('#errorMessageMod')
+                        .text('Ocurrió un error al procesar la solicitud.')
+                        .removeClass('d-none')
+                        .addClass('d-block');
+                }
+            });
+        });
 
     });
 </script>
 
-<?php include STRUCTURE_PATH . "/Footer.php"; ?>
+<?php include STRUCTURE_PATH . "/Foot.php"; ?>
