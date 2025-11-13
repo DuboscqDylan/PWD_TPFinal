@@ -11,7 +11,6 @@ if ($sesionValida) {
     $menues = $sesion->getMenues();
     $compraEstado = $sesion->crearCarrito();
 }
-
 // Construcción del menú dinámico
 $menuHtml = "<ul class='navbar-nav me-auto mb-2 mb-lg-0'>";
 $menuHtml .= "<li class='nav-item'><a class='nav-link' href='" . BASE_URL . "/Vista/Paginas/Catalogo/Catalogo.php'>Catálogo</a></li>";
@@ -49,13 +48,13 @@ if ($sesionValida) {
     <title>Programación Web Dinámica</title>
 
     <!-- CSS de Bootstrap -->
-    <link href="<?php echo BASE_URL;?>/Vista/Recursos/css/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo BASE_URL;?>/Vista/Recursos/css/styles.css" rel="stylesheet">
+    <link href="<?php echo BASE_URL; ?>/Vista/Recursos/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo BASE_URL; ?>/Vista/Recursos/css/styles.css" rel="stylesheet">
 
     <!-- JS -->
-    <script src="<?php echo BASE_URL;?>/Vista/Recursos/js/bootstrap/bootstrap.bundle.js"></script>
-    <script src="<?php echo BASE_URL;?>/Vista/Recursos/js/jquery-3.7.1.min.js"></script>
-    <script src="<?php echo BASE_URL;?>/Vista/Recursos/js/md5.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>/Vista/Recursos/js/bootstrap/bootstrap.bundle.js"></script>
+    <script src="<?php echo BASE_URL; ?>/Vista/Recursos/js/jquery-3.7.1.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>/Vista/Recursos/js/md5.min.js"></script>
 </head>
 
 <body>
@@ -64,7 +63,7 @@ if ($sesionValida) {
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
             <div class="container-fluid">
                 <a class="navbar-brand d-flex align-items-center" href="<?php echo BASE_URL; ?>/index.php">
-                    <img src="<?php echo(BASE_URL); ?>/Vista/Media/Sitio/Logo/Logo2.png" alt="Logo" width="50" height="50" class="me-2 rounded-circle">
+                    <img src="<?php echo (BASE_URL); ?>/Vista/Media/Sitio/Logo/Logo2.png" alt="Logo" width="50" height="50" class="me-2 rounded-circle">
                     <h4 class="m-0 fw-bold">BIKE SHOP</h4>
                 </a>
 
@@ -80,5 +79,30 @@ if ($sesionValida) {
             </div>
         </nav>
     </header>
-</body>
-</html>
+
+<?php if ($sesionValida) : ?>
+<script>
+$(document).ready(function() {
+    actualizarIconoCarrito();
+});
+
+function actualizarIconoCarrito() {
+    $.ajax({
+        url: '<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Accion/ListarCarrito.php',
+        method: 'POST',
+        data: { idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0; ?> },
+        dataType: 'json',
+        success: function(respuesta) {
+            if (respuesta.length > 0) {
+                let total = 0;
+                respuesta.forEach(item => { total += item.cicantidad; });
+                $('#contadorCarrito').text(total);
+                $('#contadorCarrito').show();
+            } else {
+                $('#contadorCarrito').hide();
+            }
+        }
+    });
+}
+</script>
+<?php endif; ?>

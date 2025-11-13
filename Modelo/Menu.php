@@ -139,6 +139,10 @@ class Menu
         $this->mensajeoperacion = $mensajeoperacion;
     }
 
+    public function setObjPadre($ObjPadre){
+        $this->ObjPadre = $ObjPadre;
+    }
+
     public function cargarDatos($idmenu, $menombre, $medescripcion, $meurl, $ObjMenu, $medeshabilitado)
     {
         $this->setIdmenu($idmenu);
@@ -147,6 +151,7 @@ class Menu
         $this->setMeurl($meurl);
         $this->setObjMenu($ObjMenu);
         $this->setMedeshabilitado($medeshabilitado);
+        $this->setObjPadre($ObjMenu);
     }
 
 
@@ -285,7 +290,6 @@ class Menu
             $sql .= 'WHERE ' . $parametro;
         }
         $res = $base->Ejecutar($sql);
-        if ($res > -1) {
             if ($res > 0) {
 
                 while ($row = $base->Registro()) {
@@ -294,13 +298,12 @@ class Menu
                     if ($row['idpadre'] != null) {
                         $objMenuPadre = new Menu();
                         $objMenuPadre->setIdmenu($row['idpadre']);
-                        $objMenuPadre->cargar();
                     }
                     $obj->cargarDatos($row['idmenu'], $row['menombre'], $row['medescripcion'], $row['meurl'], $objMenuPadre, $row['medeshabilitado']);
                     array_push($arreglo, $obj);
                 }
             }
-        }
+        
 
         return $arreglo;
     }
