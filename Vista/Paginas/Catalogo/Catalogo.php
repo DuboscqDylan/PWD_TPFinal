@@ -1,6 +1,6 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
-include STRUCTURE_PATH . '/HeaderSeguro.php';
+include STRUCTURE_PATH . '/Header.php';
 
 $esCliente = $sesion->esCliente();
 ?>

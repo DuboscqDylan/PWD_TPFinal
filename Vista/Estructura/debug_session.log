@@ -1,0 +1,676 @@
+=== 2025-11-13T14:52:33+01:00 (tz: Europe/Berlin)
+ ===
+=== DEBUG SESION ===
+Sesión válida: SI
+HTTP_HOST: localhost
+REQUEST_URI: /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+DOMAIN_URL: http://localhost
+BASE_URL: http://localhost/PWD_TPFinal
+CURRENT_URL: http://localhost/PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+
+MENUES (count = 9):
+  [1] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [2] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [3] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [4] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [5] menu->getMeurl(): /Vista/Paginas/Usuarios/Usuarios.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Usuarios/Usuarios.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Usuarios/Usuarios.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [6] menu->getMeurl(): /Vista/Paginas/Producto/Producto.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Producto/Producto.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Producto/Producto.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [7] menu->getMeurl(): /Vista/Paginas/Compras/Compras.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Compras/Compras.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Compras/Compras.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [8] menu->getMeurl(): /Vista/Paginas/Carrito/Carrito.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Carrito/Carrito.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Carrito/Carrito.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [9] menu->getMeurl(): /Vista/Paginas/MisCompras/MisCompras.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/MisCompras/MisCompras.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/MisCompras/MisCompras.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+
+=== 2025-11-13T14:55:30+01:00 (tz: Europe/Berlin)
+ ===
+=== DEBUG SESION ===
+Sesión válida: SI
+HTTP_HOST: localhost
+REQUEST_URI: /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+DOMAIN_URL: http://localhost
+BASE_URL: http://localhost/PWD_TPFinal
+CURRENT_URL: http://localhost/PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+
+MENUES (count = 9):
+  [1] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [2] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [3] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [4] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [5] menu->getMeurl(): /Vista/Paginas/Usuarios/Usuarios.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Usuarios/Usuarios.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Usuarios/Usuarios.php
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [6] menu->getMeurl(): /Vista/Paginas/Producto/Producto.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Producto/Producto.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Producto/Producto.php
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [7] menu->getMeurl(): /Vista/Paginas/Compras/Compras.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Compras/Compras.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Compras/Compras.php
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [8] menu->getMeurl(): /Vista/Paginas/Carrito/Carrito.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Carrito/Carrito.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Carrito/Carrito.php
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [9] menu->getMeurl(): /Vista/Paginas/MisCompras/MisCompras.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/MisCompras/MisCompras.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/MisCompras/MisCompras.php
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+
+=== 2025-11-13T14:56:03+01:00 (tz: Europe/Berlin)
+ ===
+=== DEBUG SESION ===
+Sesión válida: SI
+HTTP_HOST: localhost
+REQUEST_URI: /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+DOMAIN_URL: http://localhost
+BASE_URL: http://localhost/PWD_TPFinal
+CURRENT_URL: http://localhost/PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+
+MENUES (count = 9):
+  [1] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [2] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [3] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [4] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [5] menu->getMeurl(): /Vista/Paginas/Usuarios/Usuarios.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Usuarios/Usuarios.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Usuarios/Usuarios.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [6] menu->getMeurl(): /Vista/Paginas/Producto/Producto.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Producto/Producto.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Producto/Producto.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [7] menu->getMeurl(): /Vista/Paginas/Compras/Compras.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Compras/Compras.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Compras/Compras.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [8] menu->getMeurl(): /Vista/Paginas/Carrito/Carrito.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Carrito/Carrito.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Carrito/Carrito.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [9] menu->getMeurl(): /Vista/Paginas/MisCompras/MisCompras.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/MisCompras/MisCompras.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/MisCompras/MisCompras.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+
+=== 2025-11-13T14:56:17+01:00 (tz: Europe/Berlin)
+ ===
+=== DEBUG SESION ===
+Sesión válida: SI
+HTTP_HOST: localhost
+REQUEST_URI: /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+DOMAIN_URL: http://localhost
+BASE_URL: http://localhost/PWD_TPFinal
+CURRENT_URL: http://localhost/PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+
+MENUES (count = 9):
+  [1] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [2] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [3] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [4] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [5] menu->getMeurl(): /Vista/Paginas/Usuarios/Usuarios.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Usuarios/Usuarios.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Usuarios/Usuarios.php
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [6] menu->getMeurl(): /Vista/Paginas/Producto/Producto.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Producto/Producto.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Producto/Producto.php
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [7] menu->getMeurl(): /Vista/Paginas/Compras/Compras.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Compras/Compras.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Compras/Compras.php
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [8] menu->getMeurl(): /Vista/Paginas/Carrito/Carrito.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Carrito/Carrito.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Carrito/Carrito.php
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [9] menu->getMeurl(): /Vista/Paginas/MisCompras/MisCompras.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/MisCompras/MisCompras.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/MisCompras/MisCompras.php
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+
+=== 2025-11-13T14:56:51+01:00 (tz: Europe/Berlin)
+ ===
+=== DEBUG SESION ===
+Sesión válida: SI
+HTTP_HOST: localhost
+REQUEST_URI: /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+DOMAIN_URL: http://localhost
+BASE_URL: http://localhost/PWD_TPFinal
+CURRENT_URL: http://localhost/PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+
+MENUES (count = 9):
+  [1] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [2] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [3] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [4] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [5] menu->getMeurl(): /Vista/Paginas/Usuarios/Usuarios.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Usuarios/Usuarios.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Usuarios/Usuarios.php
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [6] menu->getMeurl(): /Vista/Paginas/Producto/Producto.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Producto/Producto.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Producto/Producto.php
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [7] menu->getMeurl(): /Vista/Paginas/Compras/Compras.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Compras/Compras.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Compras/Compras.php
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [8] menu->getMeurl(): /Vista/Paginas/Carrito/Carrito.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Carrito/Carrito.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Carrito/Carrito.php
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [9] menu->getMeurl(): /Vista/Paginas/MisCompras/MisCompras.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/MisCompras/MisCompras.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/MisCompras/MisCompras.php
+       current path  : /PWD_TPFinal/Vista/Estructura/HeaderSeguro.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+
+=== 2025-11-13T14:59:12+01:00 (tz: Europe/Berlin)
+ ===
+=== DEBUG SESION ===
+Sesión válida: SI
+HTTP_HOST: localhost
+REQUEST_URI: /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+DOMAIN_URL: http://localhost
+BASE_URL: http://localhost/PWD_TPFinal
+CURRENT_URL: http://localhost/PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+
+MENUES (count = 9):
+  [1] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [2] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [3] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [4] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [5] menu->getMeurl(): /Vista/Paginas/Usuarios/Usuarios.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Usuarios/Usuarios.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Usuarios/Usuarios.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [6] menu->getMeurl(): /Vista/Paginas/Producto/Producto.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Producto/Producto.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Producto/Producto.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [7] menu->getMeurl(): /Vista/Paginas/Compras/Compras.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Compras/Compras.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Compras/Compras.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [8] menu->getMeurl(): /Vista/Paginas/Carrito/Carrito.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Carrito/Carrito.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Carrito/Carrito.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [9] menu->getMeurl(): /Vista/Paginas/MisCompras/MisCompras.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/MisCompras/MisCompras.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/MisCompras/MisCompras.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+
+=== 2025-11-13T15:05:25+01:00 (tz: Europe/Berlin)
+ ===
+=== DEBUG SESION ===
+Sesión válida: SI
+HTTP_HOST: localhost
+REQUEST_URI: /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+DOMAIN_URL: http://localhost
+BASE_URL: http://localhost/PWD_TPFinal
+CURRENT_URL: http://localhost/PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+
+MENUES (count = 20):
+  [1] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [2] menu->getMeurl(): /Vista/Paginas/Catalogo/Catalogo.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  YES
+       match path normalized? YES
+       match suffix?          YES
+
+  [3] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [4] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [5] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [6] menu->getMeurl(): /Vista/Paginas/Usuarios/Usuarios.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Usuarios/Usuarios.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Usuarios/Usuarios.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [7] menu->getMeurl(): /Vista/Paginas/Producto/Producto.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Producto/Producto.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Producto/Producto.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [8] menu->getMeurl(): /Vista/Paginas/Compras/Compras.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Compras/Compras.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Compras/Compras.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [9] menu->getMeurl(): /Vista/Paginas/Carrito/Carrito.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Carrito/Carrito.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Carrito/Carrito.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [10] menu->getMeurl(): /Vista/Paginas/MisCompras/MisCompras.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/MisCompras/MisCompras.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/MisCompras/MisCompras.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [11] menu->getMeurl(): /Vista/Paginas/Catalogo/Catalogo.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  YES
+       match path normalized? YES
+       match suffix?          YES
+
+  [12] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [13] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [14] menu->getMeurl(): #
+       candidate full: http://localhost/PWD_TPFinal/#
+       candidate path: /PWD_TPFinal/
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [15] menu->getMeurl(): /Vista/Paginas/Usuarios/Usuarios.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Usuarios/Usuarios.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Usuarios/Usuarios.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [16] menu->getMeurl(): /Vista/Paginas/Producto/Producto.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Producto/Producto.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Producto/Producto.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [17] menu->getMeurl(): /Vista/Paginas/Compras/Compras.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Compras/Compras.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Compras/Compras.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [18] menu->getMeurl(): /Vista/Paginas/Carrito/Carrito.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Carrito/Carrito.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Carrito/Carrito.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [19] menu->getMeurl(): /Vista/Paginas/MisCompras/MisCompras.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/MisCompras/MisCompras.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/MisCompras/MisCompras.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  NO
+       match path normalized? NO
+       match suffix?          NO
+
+  [20] menu->getMeurl(): /Vista/Paginas/Catalogo/Catalogo.php
+       candidate full: http://localhost/PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       candidate path: /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       current path  : /PWD_TPFinal/Vista/Paginas/Catalogo/Catalogo.php
+       match exact full URL?  YES
+       match path normalized? YES
+       match suffix?          YES
+
+

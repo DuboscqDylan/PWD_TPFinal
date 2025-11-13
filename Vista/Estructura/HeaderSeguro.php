@@ -11,10 +11,10 @@ if ($sesionValida) {
     $menues = $sesion->getMenues();
     $compraEstado = $sesion->crearCarrito();
 
-    if (!$sesion->validarPagina($menues)) {
-        header("Location: ".BASE_URL."/Vista/Paginas/SesionInvalida/SesionInvalida.php");
-        exit();
-    }
+   // if (!$sesion->validarPagina($menues)) {
+   //    header("Location: ".BASE_URL."/Vista/Paginas/SesionInvalida/SesionInvalida.php");
+   //    exit();
+   // }
 } else {
     header("Location: ".BASE_URL."/Vista/Paginas/SesionInvalida/SesionInvalida.php");
     exit();
@@ -96,7 +96,7 @@ $(document).ready(function() {
 // Actualiza el ícono del carrito con la cantidad de productos
 function actualizarIconoCarrito() {
     $.ajax({
-        url: '<?php echo BASE_URL; ?>/Accion/ListarCarrito.php',
+        url: '<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Accion/ListarCarrito.php',
         method: 'POST',
         data: { idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0; ?> },
         dataType: 'json',

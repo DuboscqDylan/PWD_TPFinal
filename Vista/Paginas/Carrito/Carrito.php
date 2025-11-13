@@ -22,7 +22,7 @@ $(document).ready(function() {
 
 function actualizarCarrito() {
     $.ajax({
-        url: '<?php echo BASE_URL ?>/Accion/ListarCarrito.php',
+        url: '<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Accion/ListarCarrito.php',
         method: 'POST',
         data: { idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0 ?> },
         dataType: 'json',
