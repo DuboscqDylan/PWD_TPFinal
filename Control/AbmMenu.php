@@ -25,7 +25,7 @@ class AbmMenu{
             }else{
                 $param['medeshabilitado']= date("Y-m-d H:i:s");
             }
-            $obj->cargarDatos($param['idmenu'], $param['menombre'],$param['medescripcion'],$objmenu,$param['medeshabilitado']); 
+            $obj->cargarDatos($param['idmenu'], $param['menombre'],$param['medescripcion'],$param['meurl'],$objmenu,$param['medeshabilitado']); 
         }
         return $obj;
     }
@@ -116,20 +116,15 @@ class AbmMenu{
      * @return boolean
      */
     public function buscar($param){
-        $where = " true ";
-        /*if ($param<>NULL){
-            if  (isset($param['id']))
-                $where.=" and id =".$param['id'];
-            if  (isset($param['descrip']))
-                 $where.=" and descrip ='".$param['descrip']."'";
-        }*/
+        $where = "";
+        if ($param<>NULL){
+            if  (isset($param['idpadre']))
+                $where.="idpadre =".$param['idpadre'];
+            if  (isset($param['medescripcion']))
+                 $where.="medescripcion ='".$param['medescripcion']."'";
+        }
         $arreglo = Menu::listar($where);  
         return $arreglo;
-            
-            
-      
-        
     }
-   
 }
 ?>

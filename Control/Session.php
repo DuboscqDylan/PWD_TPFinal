@@ -179,7 +179,7 @@ class Session
                 array_push($menues, ($menuRol->getObjMenu()));
             }
             foreach ($menues as $menu) { //Busca menues hijos y los agrega al array de menues
-                $hijos = (new AbmMenu())->buscar(['padre' => $menu]);
+                $hijos = (new AbmMenu())->buscar(['idpadre' => $menu->getIdmenu()]);
                 $menues = array_merge($menues, $hijos);
             }
         }
