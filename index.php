@@ -19,10 +19,10 @@ include STRUCTURE_PATH . '/Header.php';
             </p>
 
             <div class="d-flex justify-content-center gap-3 flex-wrap">
-                <a href="Vista/Paginas/Login/login.php" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm">
+                <a href="Vista/Paginas/Login/Login.php" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm">
                     Iniciar sesión
                 </a>
-                <a href="Vista/Paginas/Registrar/registrar.php" class="btn btn-outline-primary px-4 py-2 rounded-pill shadow-sm">
+                <a href="Vista/Paginas/Registrar/Registrar.php" class="btn btn-outline-primary px-4 py-2 rounded-pill shadow-sm">
                     Registrarse
                 </a>
                 <a href="Vista/Paginas/MisCompras/MisCompras.php" class="btn btn-success px-4 py-2 rounded-pill shadow-sm">
