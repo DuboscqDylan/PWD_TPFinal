@@ -113,14 +113,14 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
 
     </div>
 </div>
-
+<script src="<?php echo BASE_URL; ?>/Vista/Recursos/js/md5.min.js"></script>
 <script>
     $(document).ready(function() {
         cargarUsuarios(); // Funcion que es llamada al cargar la página, y contiene la llamada AJAX para cargar los usuarios
 
         function cargarUsuarios() {
             $.ajax({
-                url: 'Accion/ListarUsuarios.php',
+                url: '/PWD_TPFINAL/Vista/Paginas/Usuarios/Accion/ListarUsuarios.php',
                 method: 'POST',
                 data: {
                     todo: true
@@ -153,7 +153,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
         function modificarUsuario(id) {
             // Cargar la información del usuario a modificar
             $.ajax({
-                url: 'Accion/ListarUsuarios.php',
+                url: '/PWD_TPFINAL/Vista/Paginas/Usuarios/Accion/ListarUsuarios.php',
                 method: 'POST',
                 data: {
                     idusuario: id
@@ -179,7 +179,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
         window.bajaUsuario = function(id, rol) {
             if (confirm('¿Estás seguro de dar de baja este usuario?')) {
                 $.ajax({
-                    url: 'Accion/BajaUsuarios.php',
+                    url: '/PWD_TPFINAL/Vista/Paginas/Usuarios/Accion/BajaUsuario.php',
                     method: 'POST',
                     data: {
                         idusuario: id,
@@ -217,7 +217,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
             };
 
             $.ajax({
-                url: 'Accion/AltaUsuario.php',
+                url: '/PWD_TPFINAL/Vista/Paginas/Usuarios/Accion/AltaUsuario.php',
                 type: 'POST',
                 data: formData,
                 success: function(response) {
@@ -278,7 +278,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
 
             console.log(formData);
             $.ajax({
-                url: 'Accion/ModificacionUsuario.php',
+                url: '/PWD_TPFINAL/Vista/Paginas/Usuarios/Accion/ModificarUsuario.php',
                 type: 'POST',
                 data: formData,
                 success: function(response) {
