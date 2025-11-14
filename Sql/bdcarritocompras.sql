@@ -134,7 +134,7 @@ INSERT INTO `menu` (`idmenu`, `menombre`, `medescripcion`, `meurl`, `idpadre`) V
 (2, 'Deposito', '#', '#', NULL),
 (3, 'Cliente', '#', '#', NULL),
 (4, 'Administrar Usuarios', 'AdministrarUsuarios', '/Vista/Paginas/Usuarios/Usuarios.php', 1),
-(5, 'Administrar Productos', 'AdministrarProductos', '/Vista/Paginas/Producto/Producto.php', 2),
+(5, 'Administrar Productos', 'AdministrarProductos', '/Vista/Paginas/AdminProductos/AdminProductos.php', 2),
 (6, 'Administrar Compras', 'AdministrarCompras', '/Vista/Paginas/Compras/Compras.php', 2),
 (7, 'Carrito', 'Carrito', '/Vista/Paginas/Carrito/Carrito.php', 3),
 (8, 'Mis Compras', 'MisCompras', '/Vista/Paginas/MisCompras/MisCompras.php', 3);
