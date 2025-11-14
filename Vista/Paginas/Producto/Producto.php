@@ -9,7 +9,8 @@ if(!empty($data)){
     $resultado = null;
     if(!empty($arregloProductos)){
         $producto = $arregloProductos[0];
-        $rutaImagenes = BASE_URL."/Vista/Media/Producto/".$producto->getIdproducto();
+       $rutaImagenes = $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/Vista/Media/Producto/".$producto->getIdproducto();
+
 
         $scanHeader = glob($rutaImagenes.'/*.png');
         if(!empty($scanHeader)){

@@ -120,7 +120,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                                 <td>${producto.procantstock}</td>
                                 <td>${estado}</td>
                                 <td>${producto.proprecio}</td>
-                                <td>${producto.idvideoyt}</td>
+                                
                                 <td>
                                     <div class="d-flex flex-column align-items-start">
                                         <button class="my-1 btn btn-danger btn-sm" onclick="bajaProducto(${producto.idproducto})">Eliminar</button>
@@ -153,7 +153,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                 detalle: $('#detalleAlta').val(),
                 stock: $('#stockAlta').val(),
                 precio: $('#precioAlta').val(),
-                idvideoyt: $('#idvideoytAlta').val()
+                
             };
 
             // Envío de los datos a través de Ajax
@@ -282,9 +282,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
             if (!isNaN(parseFloat($('#precio').val()))) {
                 formData.precio = parseFloat($('#precio').val()); // Validar si es NaN
             }
-            if ($('#idvideoyt').val().trim() != "") {
-                formData.idvideoyt = $('#idvideoyt').val().trim();
-            }
+           
             
             $.ajax({
                 url: 'Accion/Modificar.php',
