@@ -67,20 +67,20 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                 <input type="number" class="form-control" id="idproducto" name="idproducto" required>
             </div>
             <div class="mb-3">
-                <label for="nombre" class="form-label text-white">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre">
+                <label for="pronombre" class="form-label text-white">Nombre</label>
+                <input type="text" class="form-control" id="pronombre" name="pronombre">
             </div>
             <div class="mb-3">
-                <label for="detalle" class="form-label text-white">Detalle</label>
-                <input type="text" class="form-control" id="detalle" name="detalle">
+                <label for="prodetalle" class="form-label text-white">Detalle</label>
+                <input type="text" class="form-control" id="prodetalle" name="prodetalle">
             </div>
             <div class="mb-3">
-                <label for="stock" class="form-label text-white">Stock</label>
-                <input type="number" class="form-control" id="stock" name="stock">
+                <label for="procantstock" class="form-label text-white">Stock</label>
+                <input type="number" class="form-control" id="procantstock" name="procantstock">
             </div>
             <div class="mb-3">
-                <label for="precio" class="form-label text-white">Precio</label>
-                <input type="number" class="form-control" id="precio" name="precio">
+                <label for="proprecio" class="form-label text-white">Precio</label>
+                <input type="number" class="form-control" id="proprecio" name="proprecio">
             </div>
            >
 
@@ -149,10 +149,10 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
 
             // Recopilación de los datos del formulario
             const formData = {
-                nombre: $('#nombreAlta').val(),
-                detalle: $('#detalleAlta').val(),
-                stock: $('#stockAlta').val(),
-                precio: $('#precioAlta').val(),
+                pronombre: $('#nombreAlta').val(),
+                prodetalle: $('#detalleAlta').val(),
+                procantstock: $('#stockAlta').val(),
+                proprecio: $('#precioAlta').val(),
                 
             };
 
@@ -270,17 +270,17 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                 idproducto: parseInt($('#idproducto').val(), 10)
             }; // Convertir a entero
 
-            if ($('#nombre').val().trim() != "") {
-                formData.nombre = $('#nombre').val().trim();
+            if ($('#pronombre').val().trim() != "") {
+                formData.pronombre = $('#pronombre').val().trim();
             }
-            if ($('#detalle').val().trim() != "") {
-                formData.detalle = $('#detalle').val().trim();
+            if ($('#prodetalle').val().trim() != "") {
+                formData.prodetalle = $('#prodetalle').val().trim();
             }
-            if (!isNaN(parseInt($('#stock').val(), 10))) {
-                formData.stock = parseInt($('#stock').val(), 10); // Validar si es NaN    
+            if (!isNaN(parseInt($('#procantstock').val(), 10))) {
+                formData.procantstock = parseInt($('#procantstock').val(), 10); // Validar si es NaN    
             }
-            if (!isNaN(parseFloat($('#precio').val()))) {
-                formData.precio = parseFloat($('#precio').val()); // Validar si es NaN
+            if (!isNaN(parseFloat($('#proprecio').val()))) {
+                formData.proprecio = parseFloat($('#proprecio').val()); // Validar si es NaN
             }
            
             

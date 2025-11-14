@@ -57,7 +57,7 @@ Class AbmProducto
 
     public function modificar($param) {
         $resp = false;
-        if ($this->seteadosCamposClaves($param)) {
+        if ((isset($param['idproducto']))) {
             $elObjtProducto = $this->cargarObjeto($param);
             if ($elObjtProducto != null and $elObjtProducto->modificar()) {
                 $resp = true;
@@ -160,7 +160,7 @@ Class AbmProducto
                 // se setea a  00:00:00 por la zona horaria del servidor
         
         
-                $modificacion = (new AbmProducto())->modificacion($param);
+                $modificacion = (new AbmProducto())->modificar($param);
         
                 if ($modificacion) {
                     $respuesta =['success' => true, 'message' => 'Producto deshabilitado exitosamente.'];
@@ -196,7 +196,7 @@ Class AbmProducto
                 $param['proprecio'] = $producto->getProprecio();
                 $param['prodeshabilitado'] = null;
         
-                $modificacion = (new AbmProducto())->modificacion($param);
+                $modificacion = (new AbmProducto())->modificar($param);
         
                 if ($modificacion) {
                     $respuesta = ['success' => true, 'message' => 'Producto habilitado exitosamente.'];
@@ -267,7 +267,7 @@ Class AbmProducto
                     $param['proprecio'] = $producto->getProprecio();
                 }
 
-                $modificacion = (new AbmProducto())->modificacion($param);
+                $modificacion = (new AbmProducto())->modificar($param);
                 
                 if ($modificacion) {
                     $respuesta = ['success' => true, 'message' => 'Producto modificado exitosamente.'];
