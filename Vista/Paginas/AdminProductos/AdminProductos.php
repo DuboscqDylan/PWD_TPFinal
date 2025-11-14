@@ -19,7 +19,6 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                         <th>Stock</th>
                         <th>Estado</th>
                         <th>Precio</th>
-                        <th>IDVideoYT</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -50,11 +49,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                 <label for="precioAlta" class="form-label text-white">Precio</label>
                 <input type="number" class="form-control" id="precioAlta" name="precioAlta" required>
             </div>
-            <div class="mb-3">
-                <label for="idvideoytAlta" class="form-label text-white">Id Youtube</label>
-                <input type="text" class="form-control" id="idvideoytAlta" name="idvideoytAlta">
-            </div>
-
+           
             <button type="submit" class="btn btn-success mt-3 w-100">Crear producto</button>
         </form>
         <div class="mt-3">
@@ -87,10 +82,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                 <label for="precio" class="form-label text-white">Precio</label>
                 <input type="number" class="form-control" id="precio" name="precio">
             </div>
-            <div class="mb-3">
-                <label for="idvideoyt" class="form-label text-white">Id Youtube</label>
-                <input type="text" class="form-control" id="idvideoyt" name="idvideoyt">
-            </div>
+           >
 
             <button type="submit" class="btn btn-primary mt-3 w-100">Actualizar producto</button>
         </form>
