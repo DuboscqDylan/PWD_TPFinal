@@ -5,12 +5,12 @@ function data_submitted() {
     $_AAux= array();
     if (!empty($_REQUEST))
         $_AAux =$_REQUEST;
-     if (count($_AAux)){
-            foreach ($_AAux as $indice => $valor) {
-                if ($valor=="")
-                    $_AAux[$indice] = 'null' ;
-            }
-        }
+    // if (count($_AAux)){
+          //  foreach ($_AAux as $indice => $valor) {
+           //     if ($valor=="")
+           //         $_AAux[$indice] = 'null' ;
+           // }
+      //  }
      return $_AAux;
         
 }
