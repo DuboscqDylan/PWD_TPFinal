@@ -259,7 +259,7 @@ class AbmCompra {
         $pdf->AddPage();
 
         // Asegurarse de que la imagen exista
-        $imagePath = ROOT_PATH.'/Vista/Media/sitio/Logo/Logo.jpg';
+        $imagePath = ROOT_PATH.'/Vista/Media/sitio/Logo/Logo.png';
         if (file_exists($imagePath)) {
             $pdf->Image($imagePath, 15, 14, 20, 20);
         } else {
