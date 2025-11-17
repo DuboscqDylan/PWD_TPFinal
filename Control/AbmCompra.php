@@ -279,7 +279,7 @@ class AbmCompra {
         $pdf->Cell(0, 6, 'Black Mesa', 0, 1);
         $pdf->Cell(0, 6, 'Dirección: Calle Falsa 123', 0, 1);
         $pdf->Cell(0, 6, 'Teléfono: (985) 420-6969', 0, 1);
-        $pdf->Cell(0, 6, 'Email: blackmesa@mail', 0, 1);
+        $pdf->Cell(0, 6, 'Email: bikeshop@mail', 0, 1);
         $pdf->Ln(10);
 
         // **Información del cliente**
@@ -357,7 +357,7 @@ class AbmCompra {
                 $prod['pronombre'] = $objProducto->getPronombre();
                 $prod['cicantidad'] = $item->getCicantidad();
                 $prod['proprecio'] = $objProducto->getProprecio();
-                $prod['icon'] = BASE_URL.'/Vista/Media/Producto/' . $objProducto->getIdproducto() . '/icon.jpg';
+                $prod['icon'] = BASE_URL.'/Vista/Media/Producto/' . $objProducto->getIdproducto() . '/icon.png';
                 array_push($items, $prod);
             }
             $comp = [
