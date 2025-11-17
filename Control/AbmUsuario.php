@@ -67,20 +67,34 @@ class AbmUsuario {
     
 
     /**
-     * Elimina un usuario de la BD
+     * Pone la fecha de deshabilitado del usuario
      * @param array $param
      * @return boolean
      */
     public function baja($param) {
-        $resp = false;
-        if ($this->seteadosCamposClaves($param)) {
-            $usuario = $this->cargarObjetoConClave($param);
-            if ($usuario != null and $usuario->eliminar()) {
-                $resp = true;
-            }
+    $resp = false;
+
+    if ($this->seteadosCamposClaves($param)) {
+
+        // Obtener OBJETO COMPLETO del usuario
+        $usuarioArr = $this->buscar(['idusuario' => $param['idusuario']]);
+        if (count($usuarioArr) === 0) {
+            return false;
         }
-        return $resp;
+
+        $usuario = $usuarioArr[0];
+
+        // Setear fecha de deshabilitación
+        $usuario->setUsdeshabilitado(date("Y-m-d H:i:s"));
+
+        // Modificar usuario en la BD sin borrar datos
+        if ($usuario->modificar()) {
+            $resp = true;
+        }
     }
+
+    return $resp;
+}
 
     /**
      * Modificar un usuario de la BD
