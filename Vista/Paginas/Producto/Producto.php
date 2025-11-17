@@ -5,30 +5,41 @@ include STRUCTURE_PATH."/Header.php";
 $data = data_submitted();
 
 if(!empty($data)){
+
     $arregloProductos = (new AbmProducto())->buscar(['idproducto' => $data['idproducto']]);
-    $resultado = null;
+
     if(!empty($arregloProductos)){
+
         $producto = $arregloProductos[0];
-       $rutaImagenes = $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/Vista/Media/Producto/".$producto->getIdproducto();
 
+        // Ruta física para buscar archivos
+        $rutaImagenesFS = $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/Vista/Media/Producto/".$producto->getIdproducto();
+        
+        // Ruta web para mostrarlos
+        $rutaImagenesWEB = BASE_URL."/Vista/Media/Producto/".$producto->getIdproducto();
 
-        $scanHeader = glob($rutaImagenes.'/*.png');
+        // Buscar portada
+        $scanHeader = glob($rutaImagenesFS.'/*.png');
+
         if(!empty($scanHeader)){
-            $header = "<img class='img-fluid rounded shadow-sm' src='".$scanHeader[0]."' height='250' alt='portada'>";
-        }else{
+            $nombreArchivo = basename($scanHeader[0]);
+            $header = "<img class='img-fluid rounded shadow-sm' src='".$rutaImagenesWEB."/".$nombreArchivo."' height='250' alt='portada'>";
+        } else {
             $header = '<p class="text-muted text-center">No hay portada</p>';
         }
 
-        $scanDiv = glob($rutaImagenes."/Preview/*");
+        // Buscar imágenes en Preview
+        $scanDiv = glob($rutaImagenesFS."/Preview/*");
+
         if(!empty($scanDiv)){
-            $previaDiv="";
-            foreach($scanDiv as $ruta) {
-                $previaDiv .= "<img class='img-thumbnail m-2 shadow-sm' src='".$ruta."'>";
+            $previaDiv = "";
+            foreach($scanDiv as $ruta){
+                $archivo = basename($ruta);
+                $previaDiv .= "<img class='img-thumbnail m-2 shadow-sm' src='".$rutaImagenesWEB."/Preview/".$archivo."'>";
             }
-        }else{
+        } else {
             $previaDiv = "<p class='text-muted fst-italic text-center'> No hay imagenes </p>";
         }
-
         $resultado = "
         <div class='container my-5'>
             <!---Portada--->
