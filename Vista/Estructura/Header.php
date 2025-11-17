@@ -11,6 +11,7 @@ if ($sesionValida) {
     $menues = $sesion->getMenues();
     $compraEstado = $sesion->crearCarrito();
 }
+
 // Construcción del menú dinámico
 $menuHtml = "<ul class='navbar-nav me-auto mb-2 mb-lg-0'>";
 $menuHtml .= "<li class='nav-item'><a class='nav-link' href='" . BASE_URL . "/Vista/Paginas/Catalogo/Catalogo.php'>Catálogo</a></li>";
@@ -58,55 +59,120 @@ if ($sesionValida) {
 </head>
 
 <body>
-    <header>
-        <!-- Navbar principal -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
-            <div class="container-fluid">
-                <a class="navbar-brand d-flex align-items-center" href="<?php echo BASE_URL; ?>/index.php">
-                    <img src="<?php echo (BASE_URL); ?>/Vista/Media/Sitio/Logo/Logo2.png" alt="Logo" width="50" height="50" class="me-2 rounded-circle">
-                    <h4 class="m-0 fw-bold">BIKE SHOP</h4>
-                </a>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="<?php echo BASE_URL; ?>/index.php">
+                <img src="<?php echo BASE_URL; ?>/Vista/Media/Sitio/Logo/Logo2.png" alt="Logo" width="50" height="50" class="me-2 rounded-circle">
+                <h4 class="m-0 fw-bold">BIKE SHOP</h4>
+            </a>
 
-                <!-- Botón responsive -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <!-- Botón responsive -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <!-- Menú dinámico -->
-                <div class="collapse navbar-collapse" id="menuPrincipal">
-                    <?php echo $menuHtml; ?>
-                </div>
+            <!-- Menú -->
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+                <?php echo $menuHtml; ?>
             </div>
-        </nav>
-    </header>
 
-    <?php if ($sesionValida) : ?>
-        <script>
-            $(document).ready(function() {
-                actualizarIconoCarrito();
+            <!-- 🔹 ICONO DE CARRITO (abre el panel derecho) -->
+            <?php if ($sesionValida) : ?>
+                <button class="btn btn-light position-relative"
+                        id="botonCarrito"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasCarrito"
+                        style="display:none;">
+                    🛒
+                    <span id="contadorCarrito"
+                          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                          style="display:none;">
+                        0
+                    </span>
+                </button>
+            <?php endif; ?>
+        </div>
+    </nav>
+</header>
+
+
+<!-- 🟦 PANEL DERECHO (OFFCANVAS) -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Mi Carrito</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+    </div>
+
+    <div class="offcanvas-body" id="carritoContenido">
+        <!-- Aquí se cargan los items del carrito -->
+        <div class="text-center text-muted">Cargando...</div>
+    </div>
+
+    <div class="p-3">
+        <a href="<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Carrito.php" class="btn btn-primary w-100">
+            Ir al carrito
+        </a>
+    </div>
+</div>
+
+
+<?php if ($sesionValida) : ?>
+<script>
+$(document).ready(function() {
+    actualizarIconoCarrito();
+});
+
+// 🔹 ACTUALIZA EL ICONO DEL CARRITO
+function actualizarIconoCarrito() {
+    $.ajax({
+        url: '<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Accion/ListarCarrito.php',
+        method: 'POST',
+        data: {
+            idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0; ?>
+        },
+        dataType: 'json',
+        success: function(respuesta) {
+            if (respuesta.length > 0) {
+                let total = 0;
+                respuesta.forEach(item => total += item.cicantidad);
+
+                $('#contadorCarrito').text(total).show();
+                $('#botonCarrito').show();
+
+                cargarCarritoPanel();
+            } else {
+                $('#contadorCarrito').hide();
+            }
+        }
+    });
+}
+
+// 🔹 CARGA EL PANEL DERECHO
+function cargarCarritoPanel() {
+    $.ajax({
+        url: '<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Accion/ListarCarrito.php',
+        method: 'POST',
+        data: {
+            idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0; ?>
+        },
+        dataType: 'json',
+        success: function(respuesta) {
+            let html = "";
+
+            respuesta.forEach(item => {
+                html += `
+                    <div class="border rounded p-2 mb-2">
+                        <strong>${item.producto.pronombre}</strong><br>
+                        Cantidad: ${item.cicantidad} <br>
+                        Precio: $${item.producto.proprecio}
+                    </div>
+                `;
             });
 
-            function actualizarIconoCarrito() {
-                $.ajax({
-                    url: '<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Accion/ListarCarrito.php',
-                    method: 'POST',
-                    data: {
-                        idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0; ?>
-                    },
-                    dataType: 'json',
-                    success: function(respuesta) {
-                        if (respuesta.length > 0) {
-                            let total = 0;
-                            respuesta.forEach(item => {
-                                total += item.cicantidad;
-                            });
-                            $('#contadorCarrito').text(total);
-                            $('#contadorCarrito').show();
-                        } else {
-                            $('#contadorCarrito').hide();
-                        }
-                    }
-                });
-            }
-        </script>
-    <?php endif; ?>
+            $('#carritoContenido').html(html);
+        }
+    });
+}
+</script>
+<?php endif; ?>
