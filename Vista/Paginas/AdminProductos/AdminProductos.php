@@ -123,7 +123,6 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                                 
                                 <td>
                                     <div class="d-flex flex-column align-items-start">
-                                        <button class="my-1 btn btn-danger btn-sm" onclick="bajaProducto(${producto.idproducto})">Eliminar</button>
                                         ${botonEstado}
                                     </div>
                                 </td>

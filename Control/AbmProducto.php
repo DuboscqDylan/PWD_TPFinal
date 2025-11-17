@@ -71,23 +71,23 @@ Class AbmProducto
      * Retorna un array de productos (en forma de array) que cumplan $param
      * @param array $param ['idproducto', 'proprecio', 'pronombre', 'prodetalle', 'procantstock', 'deshabilitado'
      */
-    public function listarProductos($param = null) {
-        $respuesta = [];
-        $productos = (new AbmProducto())->buscar($param); //Recupera productos
-        foreach($productos as $producto) {
-            if (!$producto->getProdeshabilitado()) { //Convierte en forma de array los que estan habilitados
-                $prod['icon'] = BASE_URL."/Vista/Media/Producto/".$producto->getIdproducto()."/icon.png";
-                $prod['idproducto'] = $producto->getIdproducto();
-                $prod['pronombre'] = $producto->getPronombre();
-                $prod['prodetalle'] = $producto->getProdetalle();
-                $prod['procantstock'] = $producto->getProcantstock();
-                $prod['proprecio'] = $producto->getProprecio();
-                $prod['prodeshabilitado'] = $producto->getProdeshabilitado();
-                array_push($respuesta, $prod);
-            }
-        }
-        return $respuesta;
+public function listarProductos($param = null) {
+    $respuesta = [];
+    $productos = (new AbmProducto())->buscar($param);
+    
+    foreach($productos as $producto) {
+        $prod['icon'] = BASE_URL."/Vista/Media/Producto/".$producto->getIdproducto()."/icon.png";
+        $prod['idproducto'] = $producto->getIdproducto();
+        $prod['pronombre'] = $producto->getPronombre();
+        $prod['prodetalle'] = $producto->getProdetalle();
+        $prod['procantstock'] = $producto->getProcantstock();
+        $prod['proprecio'] = $producto->getProprecio();
+        $prod['prodeshabilitado'] = $producto->getProdeshabilitado();
+        
+        $respuesta[] = $prod;
     }
+    return $respuesta;
+}
 
     /**
      * Se encarga de realizar el alta de un producto y retorna un arreglo con el mensaje de confirmación
@@ -155,7 +155,7 @@ Class AbmProducto
                 
                 
                 $datetime = new DateTime('now');
-                $datetime->setTime(0, 0, 0); // Hora: 00:11:12
+                //$datetime->setTime(0, 0, 0); // Hora: 00:11:12
                 $param['prodeshabilitado'] = $datetime->format('Y-m-d H:i:s'); 
                 // se setea a  00:00:00 por la zona horaria del servidor
         
