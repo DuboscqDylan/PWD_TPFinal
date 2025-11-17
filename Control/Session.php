@@ -8,7 +8,9 @@ class Session
     */
     public function __construct()
     {
-        session_start();
+         if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
     }
 
     /**
@@ -17,7 +19,7 @@ class Session
     public function iniciar($username, $pass)
     {
         $resp = false;
-
+        //var_dump("DEBUG iniciar():", $username, $pass);
         $obj = new AbmUsuario();
         $param['usnombre'] = $username;
         $param['uspass'] = $pass;
@@ -29,7 +31,7 @@ class Session
             $_SESSION['idusuario'] = $usuario->getIdusuario();
             $resp = true;
         } else {
-            $this->cerrar();
+            //$this->cerrar();
         }
         return $resp;
     }

@@ -19,6 +19,5 @@ $_SERVER["ROOT"] = ROOT_PATH; //Establece directorio raiz en array
 include_once(ROOT_PATH.'/Util/Autoloader.php'); // Funciones usadas en toda la sesion
 include_once(ROOT_PATH.'/Util/funciones.php');
 include_once(ROOT_PATH.'/Control/Session.php');
-$sesion = new Session();
 require_once 'vendor/autoload.php'; // Con Composer
 ?>

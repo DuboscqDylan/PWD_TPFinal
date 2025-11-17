@@ -1,6 +1,7 @@
 <?php
 include_once ROOT_PATH . '/Control/Session.php';
 
+$sesion = new Session();
 $sesionValida = $sesion->validar();
 $menues = [];
 $compraEstado = null;
@@ -79,29 +80,33 @@ if ($sesionValida) {
         </nav>
     </header>
 
-<?php if ($sesionValida) : ?>
-<script>
-$(document).ready(function() {
-    actualizarIconoCarrito();
-});
+    <?php if ($sesionValida) : ?>
+        <script>
+            $(document).ready(function() {
+                actualizarIconoCarrito();
+            });
 
-function actualizarIconoCarrito() {
-    $.ajax({
-        url: '<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Accion/ListarCarrito.php',
-        method: 'POST',
-        data: { idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0; ?> },
-        dataType: 'json',
-        success: function(respuesta) {
-            if (respuesta.length > 0) {
-                let total = 0;
-                respuesta.forEach(item => { total += item.cicantidad; });
-                $('#contadorCarrito').text(total);
-                $('#contadorCarrito').show();
-            } else {
-                $('#contadorCarrito').hide();
+            function actualizarIconoCarrito() {
+                $.ajax({
+                    url: '<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Accion/ListarCarrito.php',
+                    method: 'POST',
+                    data: {
+                        idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0; ?>
+                    },
+                    dataType: 'json',
+                    success: function(respuesta) {
+                        if (respuesta.length > 0) {
+                            let total = 0;
+                            respuesta.forEach(item => {
+                                total += item.cicantidad;
+                            });
+                            $('#contadorCarrito').text(total);
+                            $('#contadorCarrito').show();
+                        } else {
+                            $('#contadorCarrito').hide();
+                        }
+                    }
+                });
             }
-        }
-    });
-}
-</script>
-<?php endif; ?>
+        </script>
+    <?php endif; ?>
