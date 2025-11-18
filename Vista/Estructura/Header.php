@@ -149,30 +149,39 @@ function actualizarIconoCarrito() {
 }
 
 // 🔹 CARGA EL PANEL DERECHO
+
 function cargarCarritoPanel() {
     $.ajax({
         url: '<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Accion/ListarCarrito.php',
         method: 'POST',
-        data: {
-            idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0; ?>
-        },
+        data: { idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0; ?> },
         dataType: 'json',
         success: function(respuesta) {
-            let html = "";
 
+            if (respuesta.length === 0) {
+                $("#carritoContenido").html(`
+                    <div class="text-center text-muted">Tu carrito está vacío</div>
+                `);
+                return;
+            }
+
+            let html = "";
             respuesta.forEach(item => {
                 html += `
-                    <div class="border rounded p-2 mb-2">
-                        <strong>${item.producto.pronombre}</strong><br>
-                        Cantidad: ${item.cicantidad} <br>
-                        Precio: $${item.producto.proprecio}
-                    </div>
-                `;
+                    <div class="border rounded p-2 mb-2 d-flex align-items-center">
+                        <img src="${item.icon}" class="me-2" style="width:50px;height:50px;object-fit:cover;">
+                        <div>
+                            <strong>${item.pronombre}</strong><br>
+                            Cantidad: ${item.cicantidad}<br>
+                            Precio: $${item.proprecio}
+                        </div>
+                    </div>`;
             });
 
             $('#carritoContenido').html(html);
         }
     });
 }
+
 </script>
 <?php endif; ?>
