@@ -156,6 +156,11 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                 success: function(response) {
                     var tableContent = '';
                     $.each(response, function(index, usuario) {
+                        const estado = usuario.usdeshabilitado ? 'Deshabilitado' : 'Disponible';
+                        const botonEstado = usuario.usdeshabilitado ?
+                            `<button class="my-1 btn btn-success btn-sm" onclick="habilitarUsuario(${usuario.idproducto})">Habilitar</button>` :
+                            `<button class="my-1 btn btn-warning btn-sm" onclick="bajaUsuario(${usuario.idproducto})">Deshabilitar</button>`;
+
                         tableContent += `
                         <tr id="usuario-${usuario.idusuario}">
                             <td>${usuario.idusuario}</td>
@@ -163,9 +168,11 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                             <td>${usuario.usmail}</td>
                             <td>${usuario.usdeshabilitado} </td>
                             <td>${usuario.rol}</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm" onclick="bajaUsuario(${usuario.idusuario}, '${usuario.rol}')">Baja</button>
-                            </td>
+                             <td>
+                                    <div class="d-flex flex-column align-items-start">
+                                        ${botonEstado}
+                                    </div>
+                                </td>
                         </tr>
                     `;
                     });
@@ -217,7 +224,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                         if (response) {
                             alert(response.message);
                             // Eliminar la fila de la tabla
-                            $('#usuario-' + id).remove();
+                            //$('#usuario-' + id).remove();
                         } else {
                             alert(response.message);
                         }
@@ -228,6 +235,31 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                 });
             }
         }
+
+         // habilitado de usuario
+        window.habilitarUsuario = function(idusuario) {
+            if (confirm('¿Está seguro que desea habilitar el usuario?')) {
+                $.ajax({
+                    url: 'Accion/AltaUsuario.php',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        idusuario: idusuario 
+                    },
+                    success: function(response) {
+                        if (response) {
+                            alert(response.message);
+                            cargarUsuarios(); // Recargar la lista 
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function() {
+                        alert('Ocurrió un error al procesar la solicitud.');
+                    }
+                });
+            }
+        };
 
         // Alta de usuario
         $('#altaUsuarioForm').submit(function(e) {

@@ -174,7 +174,7 @@ class Session
         $menues = [];
         if ($this->validar()) {
             $objRol = $this->getRoles()[0];
-            $menuRoles = (new AbmMenuRol())->buscar(['rol' => $objRol]); // [objMenuRol($objmenu, $objrol),objMenuRol($objmenu2, $objrol),...]
+            $menuRoles = (new AbmMenuRol())->buscar(['rol' => $objRol]); 
 
             // Obtiene menues para dicho rol
             foreach ($menuRoles as $menuRol) {

@@ -6,7 +6,9 @@ $abmUsuario = new AbmUsuario();
 $abmUsuarioRol = new AbmUsuarioRol();
 $abmRol = new AbmRol();
 
-if (isset($data['user']) && isset($data['password']) && isset($data['email']) && isset($data['rol'])) {
+$abmUsuario->alta($data);
+
+/*if (isset($data['user']) && isset($data['password']) && isset($data['email']) && isset($data['rol'])) {
     $param['usnombre'] = $data['user'];
     $param['usmail'] = $data['email'];
     $param['uspass'] = $data['password'];
@@ -38,5 +40,5 @@ if (isset($data['user']) && isset($data['password']) && isset($data['email']) &&
     }
 } else {
     echo 'Datos incompletos';
-}
+}*/
 ?>

@@ -190,7 +190,7 @@ class AbmUsuario {
                     $where .= " AND usdeshabilitado = '".$param['usdeshabilitado']."'";
                 } 
             }
-            //echo "WHERE generado: " . $where . "<br>";
+           // echo "WHERE generado: " . $where . "<br>";
         $arreglo = (new Usuario())->listar($where);
         return $arreglo;
     }

@@ -21,11 +21,11 @@ if (isset($data['idusuario']) && isset($data['rol'])) {
     $rolObj = $rol[0]; // Obtener el objeto rol
 
     // Intentar dar de baja el rol y el usuario
-    $bajaUsuarioRol = $abmUsuarioRol->baja(['usuario' => $usuarioObj, 'rol' => $rolObj]); // pasamos el obj
+    //$bajaUsuarioRol = $abmUsuarioRol->baja(['usuario' => $usuarioObj, 'rol' => $rolObj]); // pasamos el obj
     $bajaUsuario = $abmUsuario->baja(['idusuario' => $idUsuario]); // pasamos el id
 
     // Verificar si las bajas fueron exitosas
-    if ($bajaUsuarioRol && $bajaUsuario) {
+    if ($bajaUsuario) {
         echo json_encode(['success' => true, 'message' => 'Usuario dado de baja correctamente.']);
     } else {
         echo json_encode(['success' => false, 'message' => 'Error al dar de baja el usuario.']);
