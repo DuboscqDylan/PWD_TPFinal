@@ -3,17 +3,20 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD_TPFINAL/configuracion.php";
 include STRUCTURE_PATH . "/HeaderSeguro.php";
 ?>
 
-<div class="container my-5">
-    <h2 class="text-center mb-4 fw-bold text-success">🛒 Carrito de Compras</h2>
-    <div id="carrito" class="row g-3 justify-content-center">
-        <!-- Aquí se cargarán los productos -->
-    </div>
+<!-- Main para que el footer quede abajo -->
+<main class="d-flex flex-column flex-grow-1">
+    <div class="container my-5">
+        <h2 class="text-center mb-4 fw-bold text-success">🛒 Carrito de Compras</h2>
+        <div id="carrito" class="row g-3 justify-content-center min-vh-50">
+            <!-- Aquí se cargarán los productos -->
+        </div>
 
-    <div class="text-center mt-4">
-        <button class="btn btn-success px-4 me-2" onclick="comprarCarrito()">Comprar</button>
-        <button class="btn btn-danger px-4" onclick="vaciarCarrito()">Vaciar carrito</button>
+        <div class="text-center mt-4">
+            <button class="btn btn-success px-4 me-2" onclick="comprarCarrito()">Comprar</button>
+            <button class="btn btn-danger px-4" onclick="vaciarCarrito()">Vaciar carrito</button>
+        </div>
     </div>
-</div>
+</main>
 
 <script>
 $(document).ready(function() {
@@ -32,7 +35,7 @@ function actualizarCarrito() {
 
             if (respuesta.length === 0) {
                 $('#carrito').html(`
-                    <div class="col-12 text-center text-muted fs-5 mt-4">
+                    <div class="col-12 d-flex align-items-center justify-content-center text-center text-muted fs-5" style="height: 50vh;">
                         🕳️ Tu carrito está vacío.
                     </div>
                 `);

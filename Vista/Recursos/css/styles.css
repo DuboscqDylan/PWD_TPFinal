@@ -1,0 +1,18 @@
+/* Asegura que el body ocupe toda la pantalla y pueda empujar el footer */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* El main ocupa todo el espacio sobrante */
+main {
+    flex: 1;
+}
+
+/* Opcional: para que el footer siempre quede al fondo */
+footer {
+    background-color: #f8f9fa; /* o el color que uses */
+    padding: 20px 0;
+}
