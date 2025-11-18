@@ -1,0 +1,166 @@
+[33madc0a29[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m prototipo antes de hacer algun otro cambio
+[33m278e88a[m header
+[33m687f905[m style.css/ header+footer en conttacto.php/ correccion del footer al pie de pagina carrito.php
+[33mf488e91[m obtenerperfil.php y modificacion del diseño perfil
+[33m7ba0916[m solucion al pdf
+[33mdc30380[m arreglos abmcompra
+[33me9a9ad7[m Arreglué portada al ver detalle
+[33mb6c5cdc[m correccion invocacion del logo
+[33m5448ed4[m arreglos en administrar productos del deposito
+[33mb47c554[m Arreglado usdeshabilitado al dar de baja
+[33m423fe6e[m prueba headerseguro
+[33m875865a[m agregue
+[33m5c27e2b[m header mis compras/carrito
+[33m4cc2134[m tcpdf
+[33mf0d99db[m correcciones inicio sesion
+[33m0b52c61[m agregue
+[33mf3c031c[m agregue contacto
+[33mb0595f5[m Perfil implementado
+[33me0e37f0[m Arreglé form modificar producto
+[33me47d94b[m correccion url del menu adminProductos
+[33m5c092e3[m deposito
+[33md99f618[m link
+[33m77bab80[m link
+[33m7d22963[m correccion en compras.php por rol de deposito
+[33mb2cd41d[m Funcionando el administrar usuarios
+[33me0681f4[m correccion nombre ListarUsuarios.php
+[33mc37d36d[m puse correo y psw de app
+[33m1d8f7e5[m Carrito medio funcional
+[33m0f9a1a1[m arreglo vercompras inde3
+[33m97d1cfc[m arreglo vercompras index2
+[33mfdf61c5[m arreglo vercompras index
+[33mc02bcf7[m Merge branch 'main' of https://github.com/DuboscqDylan/PWD_TPFinal
+[33m4c9f427[m arreglo logo headerseguro
+[33m23e9472[m Ahora se ve el carrito
+[33m2180742[m retoque en vista/usuarios.php
+[33mf90607b[m arreglo rutas control
+[33m1b44a3f[m estructura media/producto casi terminada
+[33m4adc336[m estructura media/ arreglo de ruta en abmProducto
+[33m446a93b[m imagenes productos a png 2
+[33m7413951[m imagenes productos a png
+[33m8fb36cb[m Merge branch 'main' of https://github.com/DuboscqDylan/PWD_TPFinal
+[33m0035701[m Funcionan los menus!!!1!
+[33m3dbf671[m Aparece el carrito en el header
+[33mddafb4b[m imagenes productos
+[33me3c75fe[m imagenes productos
+[33m4a710b6[m Medio solucionado lo de carrito
+[33m28e5281[m Merge branch 'main' of https://github.com/DuboscqDylan/PWD_TPFinal
+[33mca17b97[m estilo Adminproductos
+[33m5226d11[m estilo compras
+[33mf7fb406[m estilo perfil
+[33m4c3aecb[m Merge branch 'main' of https://github.com/DuboscqDylan/PWD_TPFinal
+[33mfb90176[m link
+[33m8fed652[m estilo producto
+[33m950112c[m arreglo ruta4
+[33m64216ec[m usuario
+[33mfe20a2b[m Merge branch 'main' of https://github.com/DuboscqDylan/PWD_TPFinal
+[33m3aa0af4[m microarreglo
+[33mf988b4f[m Merge branch 'main' of https://github.com/DuboscqDylan/PWD_TPFinal
+[33mda5f509[m arreglo ruta3
+[33mc29c712[m correcciones Compras
+[33m73687cc[m arreglo rutas2
+[33m8a968b0[m correcciones carrito
+[33m7c4ae89[m Correcciones adminProductos
+[33me8f72b8[m arreglo rutas
+[33mbf1a2e1[m estilo miscompras
+[33mdd7fe49[m carro
+[33m468c22b[m estilo usuarios
+[33m2967114[m Registro arreglado
+[33m276a9f2[m Correccion listarCompras
+[33mfaaa8ea[m Rutas ListarCompras
+[33mc61ac58[m Más correcciones de rutas
+[33m26aaa01[m Corregí una ruta
+[33mdd7051b[m errores de sintaxis para añadir al carro
+[33m4a3518b[m Corregí como se llamaba a data_submitted()
+[33m15abf55[m Solucionado detalle producto
+[33m549fb15[m Solucionado error catalogo
+[33m8654231[m rutas actulizadas catalogo
+[33m1f635c1[m estilo login/registrar
+[33mb9d6f3b[m DETALLES
+[33mb2ca07e[m arreglo ruta catalogo
+[33m1b6d1fd[m Arregle inicio sesión
+[33mfbc5969[m correcciones inicio sesion
+[33m183531a[m Merge branch 'main' of https://github.com/DuboscqDylan/PWD_TPFinal
+[33mf3b3410[m footer
+[33m259db1e[m logo/diseño3
+[33m6e5f4e0[m footer
+[33m1ca776d[m footer
+[33m9eb2c65[m logo/diseño2
+[33mfb36042[m header
+[33m647ec2e[m logo/diseño
+[33ma5a487f[m index
+[33m8fba339[m bd
+[33m52961a8[m detalles
+[33m8b8a0ac[m accion
+[33mfc30e09[m correccion session
+[33m56c4574[m correccion link catalogo
+[33m0a53ce6[m correcion nombre variable sesion2
+[33m838a80f[m correcion nombre variable sesion
+[33mb04d85a[m otras correcciones menores
+[33m54480e2[m correcciones de rutas
+[33md200a7d[m correcciones
+[33m66797c7[m correcciones
+[33mfbc86b4[m correcciones
+[33m8640180[m faltaba include
+[33m54d4b59[m correccion rutas index
+[33m664eb5c[m Correcciones accion Usuario y login
+[33m4bd1ab5[m accion
+[33md3799f6[m accionRegistrar y sesionInvalida
+[33m98e189b[m solucion
+[33me02500f[m class3
+[33me6e3264[m accion
+[33m022e998[m Accion Compras
+[33mbf638e2[m acciones catalogo
+[33mc32ccb3[m Include de configuracion pasa de ruta relativa a absoluta
+[33m3320542[m Corrección rutas STRUCTURE_PATH
+[33m98f307c[m corrección duplicados
+[33m8ae49ad[m Vista producto
+[33m192b8c0[m Merge branch 'main' of https://github.com/DuboscqDylan/PWD_TPFinal
+[33ma67000d[m Varias Paginas
+[33m8408418[m class
+[33m0f0967e[m psuh
+[33mb1e13af[m Paginas
+[33m7c01101[m Quite js de sobra
+[33m0f3303f[m Añadidos los recursos css y js
+[33m0f26c11[m Paginas2
+[33mfbe69f1[m paginas
+[33m170bbbe[m paginas
+[33mf6e78c3[m Añadido HeaderSeguro.php
+[33ma132535[m Footer.php añadido
+[33m3899bd1[m Header.php añadido
+[33m935cfc4[m Merge branch 'main' of https://github.com/DuboscqDylan/PWD_TPFinal
+[33me175152[m index/config
+[33m83b8990[m Merge branch 'main' of https://github.com/DuboscqDylan/PWD_TPFinal
+[33m5f3a06f[m estructure
+[33m83abd2b[m Merge branch 'main' of https://github.com/DuboscqDylan/PWD_TPFinal
+[33m2bfb559[m cambios Util
+[33m7415003[m Mergebranch 'main' of https://github.com/DuboscqDylan/PWD_TPFinal
+[33m6b32750[m estructura media2
+[33mf9749e4[m Mas estructura
+[33m7e8aa80[m agrego control
+[33m8287ed0[m estructura media2
+[33m55414a5[m estructura media
+[33m869c864[m Agrego estructura de directorios en Vista
+[33m3d85c3e[m Catalogo
+[33mdfb1d34[m composer
+[33m28f75f8[m pequeñas correcciones en AbmCompra y Control. Añadí AbmCompraEstadoTipo
+[33m8f15fad[m Añado CompraEstadoTipo - correcciones menores en el modelo
+[33m7c6ea1e[m Merge branch 'main' of https://github.com/DuboscqDylan/PWD_TPFinal
+[33mffaaf90[m agregue los modelos
+[33me1c63ad[m Merge branch 'main' of https://github.com/DuboscqDylan/PWD_TPFinal
+[33m0e8dfa8[m Actualizo cliente.php y alta_menu.php
+[33m6cd7473[m commit prueba
+[33me1fae2f[m Primer cambio a vista
+[33md62f63e[m qcy2
+[33mbbf161d[m qcy2
+[33m956f559[m qcy
+[33mbffc629[m Prueba git push 4
+[33m6af6483[m Prueba git push 4
+[33ma0c5a35[m Prueba git push 4
+[33mee79ddf[m Prueba git push 3
+[33m7e22d2c[m Prueba git push
+[33m072bfd9[m pr
+[33mb261666[m Actualizo proyecto completo
+[33mcb796bb[m mi commit
+[33m67f2979[m Add files via upload
+[33m700ecef[m Add files via upload
