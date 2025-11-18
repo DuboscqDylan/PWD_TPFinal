@@ -36,11 +36,38 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
             </div>
         </div>
 
+                <!-- Tabla de Usuarios Dados de Baja -->
+        <div class="col-12 col-lg-8 mt-5">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body">
+                    <h4 class="card-title text-secondary mb-3">Usuarios Dados de Baja</h4>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0" id="usuariosBajaTable">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Estado</th>
+                                    <th>Rol</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Usuarios de baja cargados dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <!-- Formulario de Alta de Usuario -->
         <div class="col-12 col-lg-5">
             <div class="card shadow-lg border-0 rounded-4">
                 <div class="card-body">
-                    <h4 class="card-title text-success mb-3">Alta de Usuario</h4>
+                    <h4 class="card-title text-success mb-3">Crear Usuario</h4>
                     <form id="altaUsuarioForm">
                         <div class="mb-3">
                             <label for="user" class="form-label fw-semibold">Nombre</label>
