@@ -3,7 +3,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 
-include_once 'AbmCompra.php';
+//include_once 'AbmCompra.php';
 include_once 'AbmCompraEstado.php';
 include_once 'AbmCompraEstadoTipo.php';
 
@@ -259,12 +259,18 @@ class AbmCompra {
         $pdf->AddPage();
 
         // Asegurarse de que la imagen exista
-        $imagePath = ROOT_PATH.'/Vista/Media/sitio/Logo/Logo.png';
-        if (file_exists($imagePath)) {
-            $pdf->Image($imagePath, 15, 14, 20, 20);
-        } else {
-            $pdf->Cell(0, 10, 'Logo no disponible', 0, 1, 'C');
-        }
+        $imagePath = ROOT_PATH.'/Vista/Media/sitio/Logo/Logo2.png';
+if (file_exists($imagePath)) {
+    try {
+        $pdf->Image($imagePath, 15, 14, 20, 20);
+    } catch (Exception $e) {
+        // Si falla la imagen, no cortar el PDF
+        $pdf->Cell(0, 10, 'Logo no disponible', 0, 1, 'C');
+    }
+} else {
+    $pdf->Cell(0, 10, 'Logo no disponible', 0, 1, 'C');
+}
+
 
         // Estilos de fuente
         $pdf->SetFont('helvetica', '', 12);
@@ -276,7 +282,7 @@ class AbmCompra {
 
         // Información de la empresa
         $pdf->SetFont('helvetica', '', 10);
-        $pdf->Cell(0, 6, 'Black Mesa', 0, 1);
+        $pdf->Cell(0, 6, 'bike shop', 0, 1);
         $pdf->Cell(0, 6, 'Dirección: Calle Falsa 123', 0, 1);
         $pdf->Cell(0, 6, 'Teléfono: (985) 420-6969', 0, 1);
         $pdf->Cell(0, 6, 'Email: bikeshop@mail', 0, 1);
