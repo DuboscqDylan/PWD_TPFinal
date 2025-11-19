@@ -1,28 +1,14 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD_TPFINAL/configuracion.php";
 
-session_start();
+$sesion = new Session();
 
-// 📌 Verificar sesión
-if (!isset($_SESSION['idusuario'])) {
-    echo json_encode(["success" => false, "message" => "Usuario no autenticado"]);
-    exit;
-}
+$usuario = $sesion->getUsuario();
 
-$id = $_SESSION['idusuario'];
-
-$objUsuario = new AbmUsuario();
-$usuario = $objUsuario->buscar(['idusuario' => $id]);
-
-if ($usuario) {
-    $u = $usuario[0];
-    echo json_encode([
-        "success" => true,
-        "data" => [
-            "usnombre" => $u->getUsNombre(),
-            "usmail" => $u->getUsMail()
-        ]
-    ]);
-} else {
-    echo json_encode(["success" => false, "message" => "No se encontró el usuario"]);
-}
+echo json_encode([
+    'success' => true,
+    'data' => [
+        'usnombre' => $usuario->getUsNombre(),
+        'usmail'   => $usuario->getUsMail()
+    ]
+]);
