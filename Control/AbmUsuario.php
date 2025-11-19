@@ -95,6 +95,41 @@ class AbmUsuario {
 
     return $resp;
 }
+    /**
+     * Se encarga de habilitar un usuario y retorna un arreglo con el mensaje de confirmación
+     * @param array $param ['idusuario]
+     */
+    public function habilitarUsuario($param = null){
+
+        $respuesta = [];
+        if (isset($param['idusuario'])) {
+            // buscar el usuario
+            $usuarios = (new AbmUsuario())->buscar(['idusuario' => $param['idusuario']]);
+        
+            if (!empty($usuarios)) {
+                $usuario = $usuarios[0];
+                $param['idusuario'] = $usuario->getIdusuario();
+                $param['usnombre'] = $usuario->getUsnombre();
+                $param['uspass'] = $usuario->getUspass();
+                $param['usmail'] = $usuario->getUsmail();
+                $param['usdeshabilitado'] = null;
+        
+                $modificacion = (new AbmUsuario())->modificacion($param);
+        
+                if ($modificacion) {
+                    $respuesta = ['success' => true, 'message' => 'Usuario habilitado exitosamente.'];
+                } else {
+                    $respuesta = ['success' => false, 'message' => 'Error al deshabilitar el usuario.'];
+                }
+            } else {
+                $respuesta = ['success' => false, 'message' => 'Usuario no encontrado.'];
+            }
+        } else {
+            $respuesta = ['success' => false, 'message' => 'Datos incompletos.'];
+        }
+        return $respuesta;
+    }
+
 
     /**
      * Modificar un usuario de la BD

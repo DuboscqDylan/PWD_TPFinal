@@ -36,31 +36,6 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
             </div>
         </div>
 
-                <!-- Tabla de Usuarios Dados de Baja -->
-        <div class="col-12 col-lg-8 mt-5">
-            <div class="card shadow-lg border-0 rounded-4">
-                <div class="card-body">
-                    <h4 class="card-title text-secondary mb-3">Usuarios Dados de Baja</h4>
-                    <div class="table-responsive">
-                        <table class="table table-hover align-middle mb-0" id="usuariosBajaTable">
-                            <thead class="table-primary">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Email</th>
-                                    <th>Estado</th>
-                                    <th>Rol</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Usuarios de baja cargados dinámicamente -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
         <!-- Formulario de Alta de Usuario -->
@@ -158,8 +133,8 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                     $.each(response, function(index, usuario) {
                         const estado = usuario.usdeshabilitado ? 'Deshabilitado' : 'Disponible';
                         const botonEstado = usuario.usdeshabilitado ?
-                            `<button class="my-1 btn btn-success btn-sm" onclick="habilitarUsuario(${usuario.idproducto})">Habilitar</button>` :
-                            `<button class="my-1 btn btn-warning btn-sm" onclick="bajaUsuario(${usuario.idproducto})">Deshabilitar</button>`;
+                            `<button class="my-1 btn btn-success btn-sm" onclick="habilitarUsuario(${usuario.idusuario})">Habilitar</button>` :
+                            `<button class="my-1 btn btn-warning btn-sm" onclick="bajaUsuario(${usuario.idusuario}, '${usuario.rol}')">Deshabilitar</button>`;
 
                         tableContent += `
                         <tr id="usuario-${usuario.idusuario}">
@@ -240,7 +215,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
         window.habilitarUsuario = function(idusuario) {
             if (confirm('¿Está seguro que desea habilitar el usuario?')) {
                 $.ajax({
-                    url: 'Accion/AltaUsuario.php',
+                    url: '/PWD_TPFINAL/Vista/Paginas/Usuarios/Accion/HabilitarUsuario.php',
                     type: 'POST',
                     dataType: 'json',
                     data: {
@@ -276,7 +251,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
             };
 
             $.ajax({
-                url: '/PWD_TPFINAL/Vista/Paginas/Usuarios/Accion/AltaUsuario.php',
+                url: '/PWD_TPFINAL/Vista/Paginas/Usuarios/Accion/HabilitarUsuario.php',
                 type: 'POST',
                 data: formData,
                 success: function(response) {
