@@ -156,6 +156,8 @@ class AbmCompra {
                             // Configuración del correo
                             $mailer->setFrom($emailOrigen, 'PWD_TPFinal'); // Remitente
                             $mailer->addAddress($usuario->getUsmail()); // Destinatario
+                            
+
                             $mailer->Subject = 'Cambio de estado de tu compra ID#'.$compra->getIdcompra().'.'; // Asunto
 
                             // Genera mensaje (y factura) que corresponda
