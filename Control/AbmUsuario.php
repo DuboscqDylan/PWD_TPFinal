@@ -293,4 +293,60 @@ public function actualizarPerfil($idusuario, $data)
         return ['success' => false, 'message' => 'Error al actualizar el perfil.'];
     }
 }
+
+public function crearUsuarioConRol($param) {
+    $resp = ["success" => false, "message" => "Error desconocido"];
+
+    // Validación básica
+    if (!isset($param['user'], $param['email'], $param['password'], $param['rol'])) {
+        return ["success" => false, "message" => "Faltan datos obligatorios"];
+    }
+
+    $abmUsuarioRol = new AbmUsuarioRol();
+    $abmRol = new AbmRol();
+
+    // Email duplicado
+    if ($this->buscar(['usmail' => $param['email']])) {
+        return ["success" => false, "message" => "El email ya está registrado"];
+    }
+
+    // Validar rol
+    $rolObj = $abmRol->buscar(['idrol' => $param['rol']]);
+    if (!$rolObj) {
+        return ["success" => false, "message" => "Rol inválido"];
+    }
+
+    // Crear usuario
+    $usuarioData = [
+        "usnombre" => $param['user'],
+        "usmail" => $param['email'],
+        "uspass" => $param['password'],
+        "usdeshabilitado" => null
+    ];
+
+    $altaUsuario = $this->alta($usuarioData);
+
+    if (!$altaUsuario) {
+        return ["success" => false, "message" => "Error al crear el usuario"];
+    }
+
+    $nuevo = $this->buscar(['usmail' => $param['email']]);
+    if (!$nuevo) {
+        return ["success" => false, "message" => "No se pudo obtener el ID del usuario"];
+    }
+
+    $idUsuario = $nuevo[0]->getIdUsuario();
+    $idRol = $rolObj[0]->getIdRol();
+
+    $okRol = $abmUsuarioRol->alta([
+        "idusuario" => $idUsuario,
+        "idrol" => $idRol
+    ]);
+
+    if (!$okRol) {
+        return ["success" => false, "message" => "Usuario creado, pero no se pudo asignar el rol"];
+    }
+
+    return ["success" => true, "message" => "Usuario creado exitosamente"];
+}
 }
