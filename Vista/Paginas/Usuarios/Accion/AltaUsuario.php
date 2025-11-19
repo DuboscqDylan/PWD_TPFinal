@@ -2,43 +2,56 @@
 include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
 
 $data = data_submitted();
+
 $abmUsuario = new AbmUsuario();
 $abmUsuarioRol = new AbmUsuarioRol();
 $abmRol = new AbmRol();
 
-$abmUsuario->alta($data);
+if (!isset($data['user'], $data['email'], $data['password'], $data['rol'])) {
+    echo json_encode(["success" => false, "message" => "Faltan datos obligatorios"]);
+    exit;
+}
 
-/*if (isset($data['user']) && isset($data['password']) && isset($data['email']) && isset($data['rol'])) {
-    $param['usnombre'] = $data['user'];
-    $param['usmail'] = $data['email'];
-    $param['uspass'] = $data['password'];
+$nombre = $data['user'];
+$email = $data['email'];
+$pass = $data['password'];
+$rol = $data['rol'];
 
-    $resultadoUsuario = $abmUsuario->buscar(['usnombre' => $data['user']]);
-    if (count($resultadoUsuario) > 0) {
-        echo 'Este usuario ya se encuentra en uso';
-        exit; 
-    }
-    $resultadoEmail = $abmUsuario->buscar(['usmail' => $data['email']]);
-    if (count($resultadoEmail) > 0) {
-        echo 'Este email ya se encuentra en uso';
-        exit; 
-    }
+$existe = $abmUsuario->buscar(['usmail' => $email]);
 
-    $alta = $abmUsuario->alta($param);
-    if ($alta) {
-        $usuario = $abmUsuario->buscar(['usnombre' => $data['user']])[0]; // recuperamos el array con el obj recien creado
-        $rol = $abmRol->buscar(['rodescripcion' => $data['rol']]); // recuperamos el array con el obj del rol seleccionado
-        $altaUsuarioRol = $abmUsuarioRol->alta(['usuario' => $usuario, 'rol' => $rol[0]]); // pasamos el obj
-        if ($altaUsuarioRol) {
-            echo 'success';
-        } else {
-            echo 'Error en la asignación del rol al usuario';
-        }
-        
-    } else {
-        echo 'Error al registrar el usuario';
-    }
-} else {
-    echo 'Datos incompletos';
-}*/
-?>
+if ($existe) {
+    echo json_encode(["success" => false, "message" => "El email ya está registrado"]);
+    exit;
+}
+
+$rol = $abmRol->buscar(['idrol' => $rol]);
+if (!$rol) {
+    echo json_encode(["success" => false, "message" => "Rol inválido"]);
+    exit;
+}
+
+$idRol = $rol[0]->getIdRol();
+
+$usuarioData = [
+    "usnombre" => $nombre,
+    "usmail" => $email,
+    "uspass" => $pass,
+    "usdeshabilitado" => null
+];
+
+$creado = $abmUsuario->alta($usuarioData);
+
+if (!$creado) {
+    echo json_encode(["success" => false, "message" => "Error al crear el usuario"]);
+    exit;
+}
+
+$nuevoUsuario = $abmUsuario->buscar(['usmail' => $email]);
+$idUsuario = $nuevoUsuario[0]->getIdUsuario();
+
+$abmUsuarioRol->alta([
+    "idusuario" => $idUsuario,
+    "idrol" => $idRol
+]);
+
+echo json_encode(["success" => true, "message" => "Usuario creado exitosamente"]);

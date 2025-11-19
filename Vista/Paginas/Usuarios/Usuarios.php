@@ -60,9 +60,9 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                             <label for="rol" class="form-label fw-semibold">Rol</label>
                             <select class="form-select" id="rol" name="rol" required>
                                 <option value="">Seleccionar...</option>
-                                <option value="Administrador">Administrador</option>
-                                <option value="Deposito">Depósito</option>
-                                <option value="Cliente">Cliente</option>
+                                <option value="1">Administrador</option>
+                                <option value="2">Depósito</option>
+                                <option value="3">Cliente</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-success w-100 mt-3">Crear Usuario</button>
@@ -251,17 +251,17 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
             };
 
             $.ajax({
-                url: '/PWD_TPFINAL/Vista/Paginas/Usuarios/Accion/HabilitarUsuario.php',
+                url: '/PWD_TPFINAL/Vista/Paginas/Usuarios/Accion/AltaUsuario.php',
                 type: 'POST',
                 data: formData,
                 success: function(response) {
-                    if (response.trim() === 'success') {
+                    if (response.success) {
                         $('#errorMessage')
-                            .text('Usuario creado exitosamente.')
+                            .text(response.message)
                             .removeClass('d-block')
                             .addClass('d-none');
                         $('#successMessage')
-                            .text('Usuario creado exitosamente.')
+                            .text(response.message)
                             .removeClass('d-none')
                             .addClass('d-block');
                         cargarUsuarios(); // Recargar la lista de usuarios
@@ -271,7 +271,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                             .removeClass('d-block')
                             .addClass('d-none');
                         $('#errorMessage')
-                            .text(response)
+                            .text(response.message)
                             .removeClass('d-none')
                             .addClass('d-block');
                     }

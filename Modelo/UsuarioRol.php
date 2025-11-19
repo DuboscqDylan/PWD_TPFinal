@@ -181,5 +181,42 @@ class UsuarioRol {
     public function __toString() {
         return ("Usuario: ".$this->getObjUsuario()." \n Rol: ".$this->getObjRol());
     }
+
+    public function cargar() {
+    $resultado = false;
+    $bd = new BaseDatos();
+
+    if ($bd->Iniciar()) {
+        $sql = "SELECT * FROM usuariorol 
+                WHERE idusuario = ".$this->objUsuario->getIdusuario()."
+                AND idrol = ".$this->objRol->getIdrol();
+
+        if ($bd->Ejecutar($sql)) {
+            if ($row = $bd->Registro()) {
+
+                // Cargar Usuario
+                $objUsuario = new Usuario();
+                $objUsuario->setIdusuario($row['idusuario']);
+                $objUsuario->buscarDatos($row['idusuario']);
+
+                // Cargar Rol
+                $objRol = new Rol();
+                $objRol->setIdrol($row['idrol']);
+                $objRol->buscarDatos($row['idrol']);
+
+                // Setear en este objeto
+                $this->cargarDatos($objUsuario, $objRol);
+
+                $resultado = true;
+            }
+        } else {
+            $this->setMensajeOperacion($bd->getError());
+        }
+    } else {
+        $this->setMensajeOperacion($bd->getError());
+    }
+
+    return $resultado;
+}
 }
 ?>

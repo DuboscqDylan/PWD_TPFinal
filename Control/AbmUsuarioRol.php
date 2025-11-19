@@ -7,15 +7,22 @@ class AbmUsuarioRol {
      * con los nombres de las variables instancias del objeto
      * @param array $param
      * @return UsuarioRol
-     */
-    private function cargarObjeto($param) {
-        $obj = null;
-        if (array_key_exists('usuario', $param) AND array_key_exists('rol', $param)) {
-            $obj = new UsuarioRol();
-            $obj->cargarDatos($param['usuario'], $param['rol']);
-        }
-        return $obj;
+     */private function cargarObjeto($param){
+    $objUsuarioRol = null;
+
+    if (isset($param['idusuario']) && isset($param['idrol'])) {
+
+        $AbmUsuario = new AbmUsuario();
+        $objUsuario = $AbmUsuario->buscar(["idusuario" => $param['idusuario']])[0];
+
+        $AbmRol = new AbmRol();
+        $objRol = $AbmRol->buscar(["idrol" => $param['idrol']])[0];
+
+        $objUsuarioRol = new UsuarioRol();
+        $objUsuarioRol->cargarDatos($objUsuario, $objRol);
     }
+    return $objUsuarioRol;
+}
 
     /**
      * Corrobora que dentro del arreglo asociativo estan seteados los campos claves
