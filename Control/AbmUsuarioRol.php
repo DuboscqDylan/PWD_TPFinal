@@ -1,38 +1,41 @@
-<?php 
+<?php
 
-class AbmUsuarioRol {
-    
+class AbmUsuarioRol
+{
+
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden
      * con los nombres de las variables instancias del objeto
      * @param array $param
      * @return UsuarioRol
-     */private function cargarObjeto($param){
-    $objUsuarioRol = null;
+     */ private function cargarObjeto($param)
+    {
+        $objUsuarioRol = null;
 
-    if (isset($param['idusuario']) && isset($param['idrol'])) {
+        if (isset($param['idusuario']) && isset($param['idrol'])) {
 
-        $AbmUsuario = new AbmUsuario();
-        $objUsuario = $AbmUsuario->buscar(["idusuario" => $param['idusuario']])[0];
+            $AbmUsuario = new AbmUsuario();
+            $objUsuario = $AbmUsuario->buscar(["idusuario" => $param['idusuario']])[0];
 
-        $AbmRol = new AbmRol();
-        $objRol = $AbmRol->buscar(["idrol" => $param['idrol']])[0];
+            $AbmRol = new AbmRol();
+            $objRol = $AbmRol->buscar(["idrol" => $param['idrol']])[0];
 
-        $objUsuarioRol = new UsuarioRol();
-        $objUsuarioRol->cargarDatos($objUsuario, $objRol);
+            $objUsuarioRol = new UsuarioRol();
+            $objUsuarioRol->cargarDatos($objUsuario, $objRol);
+        }
+        return $objUsuarioRol;
     }
-    return $objUsuarioRol;
-}
 
     /**
      * Corrobora que dentro del arreglo asociativo estan seteados los campos claves
      * @param array $param
      * @return boolean
      */
-    private function seteadosCamposClaves($param) {
+    private function seteadosCamposClaves($param)
+    {
         $resp = false;
         if (isset($param['usuario'], $param['rol'])) {
-           $resp = true;
+            $resp = true;
         }
         return $resp;
     }
@@ -43,7 +46,8 @@ class AbmUsuarioRol {
      * @param array $param
      * @return UsuarioRol
      */
-    public function cargarObjetoConClave($param) {
+    public function cargarObjetoConClave($param)
+    {
         $obj = null;
         if ($this->seteadosCamposClaves($param)) {
             $obj = new UsuarioRol();
@@ -57,7 +61,8 @@ class AbmUsuarioRol {
      * @param array $param
      * @return boolean
      */
-    public function alta($param) {
+    public function alta($param)
+    {
         $resp = false;
         $obj = $this->cargarObjeto($param);
         if ($obj != null && $obj->insertar()) {
@@ -71,7 +76,8 @@ class AbmUsuarioRol {
      * @param array $param
      * @return boolean
      */
-    public function baja($param) {
+    public function baja($param)
+    {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
             $obj = $this->cargarObjetoConClave($param);
@@ -87,7 +93,8 @@ class AbmUsuarioRol {
      * @param array $param
      * @return boolean
      */
-    public function modificacion($param) {
+    public function modificacion($param)
+    {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
             $obj = $this->cargarObjeto($param);
@@ -104,18 +111,39 @@ class AbmUsuarioRol {
      * @param array $param
      * @return array
      */
-    public function buscar ($param = null) {
+    public function buscar($param = null)
+    {
         $where = " true ";
         if ($param != null) {
             if (isset($param['usuario'])) {
-                $where .= " and idusuario = ".$param['usuario']->getIdusuario();
+                $where .= " and idusuario = " . $param['usuario']->getIdusuario();
             }
             if (isset($param['rol'])) {
-                $where .= " and idrol = ".$param['rol']->getIdrol();
+                $where .= " and idrol = " . $param['rol']->getIdrol();
             }
         }
         $arreglo = (new UsuarioRol())->listar($where);
         return $arreglo;
     }
 
-}   
+    public function listarUsuariosFormateados($param = [])
+    {
+        $lista = $this->buscar($param);
+        $salida = [];
+
+        foreach ($lista as $cadaUsuarioRol) {
+            $usuario = $cadaUsuarioRol->getObjUsuario();
+            $rol = $cadaUsuarioRol->getObjRol();
+
+            $salida[] = [
+                'idusuario' => $usuario->getIdusuario(),
+                'usnombre' => $usuario->getUsnombre(),
+                'usmail' => $usuario->getUsmail(),
+                'usdeshabilitado' => $usuario->getUsdeshabilitado(),
+                'rol' => $rol->getRodescripcion()
+            ];
+        }
+
+        return $salida;
+    }
+}
