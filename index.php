@@ -1,7 +1,12 @@
 <?php
 include_once 'configuracion.php';
 include STRUCTURE_PATH . '/Header.php';
-//prueba para pshear img
+
+// Asegurar que $sesionValida esté definida
+// (Header normalmente la define, pero por las dudas)
+if (!isset($sesionValida)) {
+    $sesionValida = $sesion->validar();
+}
 ?>
 
 <!-- Contenido principal -->
@@ -19,12 +24,17 @@ include STRUCTURE_PATH . '/Header.php';
             </p>
 
             <div class="d-flex justify-content-center gap-3 flex-wrap">
-                <a href="Vista/Paginas/Login/Login.php" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm">
-                    Iniciar sesión
-                </a>
-                <a href="Vista/Paginas/Registrar/Registrar.php" class="btn btn-outline-primary px-4 py-2 rounded-pill shadow-sm">
-                    Registrarse
-                </a>
+
+                <?php if (!$sesionValida): ?>
+                    <a href="Vista/Paginas/Login/Login.php" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm">
+                        Iniciar sesión
+                    </a>
+                    <a href="Vista/Paginas/Registrar/Registrar.php" class="btn btn-outline-primary px-4 py-2 rounded-pill shadow-sm">
+                        Registrarse
+                    </a>
+                <?php endif; ?>
+
+                <!-- Botones visibles siempre -->
                 <a href="Vista/Paginas/MisCompras/MisCompras.php" class="btn btn-success px-4 py-2 rounded-pill shadow-sm">
                     Ver compras
                 </a>
@@ -35,6 +45,5 @@ include STRUCTURE_PATH . '/Header.php';
         </div>
     </div>
 </div>
-
 
 <?php include STRUCTURE_PATH . '/Footer.php'; ?>
