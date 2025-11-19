@@ -7,7 +7,6 @@ if (!isset($sesionValida)) {
 }
 ?>
 
-<!-- Contenido principal -->
 <div class="container text-center mt-5">
     <div class="card shadow-lg border-0 rounded-4 p-4">
         <div class="card-body">

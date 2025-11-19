@@ -47,7 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="card-contacto">
                 <h2 class="text-center mb-4">Contacto</h2>
 
-                <!-- Formulario -->
                 <form action="" method="POST">
 
                     <div class="mb-3">
