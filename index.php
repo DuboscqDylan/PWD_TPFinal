@@ -2,8 +2,6 @@
 include_once 'configuracion.php';
 include STRUCTURE_PATH . '/Header.php';
 
-// Asegurar que $sesionValida esté definida
-// (Header normalmente la define, pero por las dudas)
 if (!isset($sesionValida)) {
     $sesionValida = $sesion->validar();
 }
