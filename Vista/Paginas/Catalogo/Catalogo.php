@@ -76,7 +76,7 @@ function agregarItemCarrito(idprod) {
 
 function actualizarProducto(idprod) {
     $.ajax({
-        url: 'Accion/ObtenerProductos.php',
+        url: 'Accion/ListarProductos.php',
         method: 'POST',
         data: { idproducto: idprod },
         dataType: 'json',

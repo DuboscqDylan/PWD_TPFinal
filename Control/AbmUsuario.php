@@ -231,4 +231,66 @@ class AbmUsuario {
         return $arreglo;
     }
 }
+public function actualizarPerfil($idusuario, $data)
+{
+    $resp = ['success' => false, 'message' => ''];
+
+    $usuarios = $this->buscar(['idusuario' => $idusuario]);
+
+    if (!is_array($usuarios) || count($usuarios) == 0) {
+        $resp['message'] = 'Usuario no encontrado.';
+        return $resp;
+    }
+
+    $usuario = $usuarios[0];
+
+    $nombre        = $data['nombre'] ?? $usuario->getUsnombre();
+    $email         = $data['email'] ?? $usuario->getUsmail();
+    $passActual    = $data['passActual'] ?? '';
+    $passNueva     = $data['passNueva'] ?? '';
+    $passConfirm   = $data['passConfirm'] ?? '';
+    $passBD        = $usuario->getUspass();
+    $deshabilitado = $usuario->getUsdeshabilitado();
+
+    if ($passBD === null || $passBD != $passActual) {
+        return ['success' => false, 'message' => 'Error, contraseña actual inválida.'];
+    }
+
+    $nuevoPass = $passBD;
+
+    if ($passActual !== '' || $passNueva !== '' || $passConfirm !== '') {
+
+        if ($passActual === '' || $passNueva === '' || $passConfirm === '') {
+            return ['success' => false, 'message' => 'Complete todos los campos de contraseña.'];
+        }
+
+        if (md5($passActual) !== $passBD) {
+            return ['success' => false, 'message' => 'La contraseña actual es incorrecta.'];
+        }
+
+        if ($passNueva !== $passConfirm) {
+            return ['success' => false, 'message' => 'Las nuevas contraseñas no coinciden.'];
+        }
+
+        $nuevoPass = md5($passNueva);
+    }
+
+    /* ---- Armar parámetros ---- */
+    $param = [
+        'idusuario'       => $idusuario,
+        'usnombre'        => $nombre,
+        'uspass'          => $nuevoPass,
+        'usmail'          => $email,
+        'usdeshabilitado' => $deshabilitado
+    ];
+
+    /* ---- Ejecutar modificación ---- */
+    $ok = $this->modificacion($param);
+
+    if ($ok) {
+        return ['success' => true, 'message' => 'Perfil actualizado correctamente.'];
+    } else {
+        return ['success' => false, 'message' => 'Error al actualizar el perfil.'];
+    }
+}
 }
