@@ -197,6 +197,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                     success: function(response) {
                         if (response) {
                             alert(response.message);
+                            cargarUsuarios();
                             // Eliminar la fila de la tabla
                             //$('#usuario-' + id).remove();
                         } else {
@@ -269,6 +270,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                             .text('Usuario creado exitosamente.')
                             .removeClass('d-block')
                             .addClass('d-none');
+                            cargarUsuarios();
                         $('#errorMessage')
                             .text(response.message)
                             .removeClass('d-none')
