@@ -218,13 +218,14 @@ class AbmUsuario {
             if (isset($param['usmail'])) {
                 $where .= " AND usmail = '".$param['usmail']."'"; 
             }
-            if (isset($param['usdeshabilitado'])) {
-                if (is_null($param['usdeshabilitado'])) {
-                    $where .= " AND usdeshabilitado IS NULL";
-                } else {
-                    $where .= " AND usdeshabilitado = '".$param['usdeshabilitado']."'";
-                } 
+            if (array_key_exists('usdeshabilitado', $param)) {
+            if (is_null($param['usdeshabilitado'])) {
+                $where .= " AND usdeshabilitado IS NULL";
+            } else {
+                $where .= " AND usdeshabilitado = '".$param['usdeshabilitado']."'";
             }
+        }
+    
            // echo "WHERE generado: " . $where . "<br>";
         $arreglo = (new Usuario())->listar($where);
         return $arreglo;
