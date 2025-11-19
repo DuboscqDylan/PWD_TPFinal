@@ -1,6 +1,7 @@
-<?php 
+<?php
 
-class AbmCompraEstado {
+class AbmCompraEstado
+{
     //['objCompra' => $objCompra, 'objCompraEstadoTipo' => $objCompraEstadoTipo, 'cefechaini' => $cefechaini, 'cefechafin' => $cefechafin]
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden
@@ -9,11 +10,12 @@ class AbmCompraEstado {
      * @return CompraEstado
      */
 
-    private function cargarObjeto($param) {
+    private function cargarObjeto($param)
+    {
         $obj = null;
-        if (array_key_exists('objCompra' , $param) && array_key_exists('objCompraEstadoTipo' , $param) && array_key_exists('cefechaini' , $param)) {
+        if (array_key_exists('objCompra', $param) && array_key_exists('objCompraEstadoTipo', $param) && array_key_exists('cefechaini', $param)) {
             $idcompraestado = array_key_exists('idcompraestado', $param) ? $param['idcompraestado'] : null;
-            $cefechafin = array_key_exists('cefechafin' , $param) ? $param['cefechafin'] : null;
+            $cefechafin = array_key_exists('cefechafin', $param) ? $param['cefechafin'] : null;
             $obj = new CompraEstado();
             $obj->cargarDatos($idcompraestado, $param['objCompra'], $param['objCompraEstadoTipo'], $param['cefechaini'], $cefechafin);
         }
@@ -25,7 +27,8 @@ class AbmCompraEstado {
      * @param array $param
      * @return boolean
      */
-    private function seteadosCamposClaves($param) {
+    private function seteadosCamposClaves($param)
+    {
         $resp = false;
         if (isset($param['idcompraestado'])) {
             $resp = true;
@@ -39,7 +42,8 @@ class AbmCompraEstado {
      * @param array $param
      * @return CompraEstado
      */
-    private function cargarObjetoConClave($param) {
+    private function cargarObjetoConClave($param)
+    {
         $obj = null;
         if ($this->seteadosCamposClaves($param)) {
             $obj = new CompraEstado();
@@ -53,7 +57,8 @@ class AbmCompraEstado {
      * @param array $param
      * @return boolean
      */
-    public function alta($param) {
+    public function alta($param)
+    {
         $resp = false;
         $obj = $this->cargarObjeto($param);
         if ($obj != null && $obj->insertar()) {
@@ -67,7 +72,8 @@ class AbmCompraEstado {
      * @param array $param
      * @return boolean
      */
-    public function baja($param) {
+    public function baja($param)
+    {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
             $obj = $this->cargarObjetoConClave($param);
@@ -83,7 +89,8 @@ class AbmCompraEstado {
      * @param array $param
      * @return boolean
      */
-    public function modificacion($param) {
+    public function modificacion($param)
+    {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
             $obj = $this->cargarObjeto($param);
@@ -98,17 +105,18 @@ class AbmCompraEstado {
      * Retorna un array con los compraItems (en forma de array) de un estadocompra especificado en $param
      * @param array $param ['idcompraestado']
      */
-    public function listarCarrito($param) {
+    public function listarCarrito($param)
+    {
         $items = [];
         $compraEstado = (new AbmCompraEstado())->buscar($param)[0];
-        $compraItems = (new AbmCompraItem())->buscar(['compra'=> $compraEstado->getObjCompra()]);
-    
-        foreach($compraItems as $compraItem) {
+        $compraItems = (new AbmCompraItem())->buscar(['compra' => $compraEstado->getObjCompra()]);
+
+        foreach ($compraItems as $compraItem) {
             $producto = $compraItem->getObjProducto();
             //$objCompra = $compraItem->getObjCompra(); // No se usa, pero puede ser obtenido
             $nuevoElem['idcompraitem'] = $compraItem->getIdcompraitem();
             $nuevoElem['cicantidad'] = $compraItem->getCicantidad();
-            $nuevoElem['icon'] = BASE_URL."/Vista/Media/Producto/".$producto->getIdproducto()."/icon.png";
+            $nuevoElem['icon'] = BASE_URL . "/Vista/Media/Producto/" . $producto->getIdproducto() . "/icon.png";
             $nuevoElem['idproducto'] = $producto->getIdproducto();
             $nuevoElem['pronombre'] = $producto->getPronombre();
             $nuevoElem['prodetalle'] = $producto->getProdetalle();
@@ -125,11 +133,12 @@ class AbmCompraEstado {
      * Retorna un array de compras (en forma de array) que cumplan $param
      * @param array $param ['idcompraestadotipo'] (1: Iniciadas, 2: Aceptadas, 3: Enviadas, 4: Canceladas)
      */
-    public function listarCompraEstados($param) {
-        $respuesta = [];        
+    public function listarCompraEstados($param)
+    {
+        $respuesta = [];
         $objCompraEstadoTipo = (new AbmCompraEstadoTipo())->buscar(['idcompraestadotipo' => $param['idcompraestadotipo']])[0];
-        $compras = (new AbmCompraEstado())->buscar([ 'objCompraEstadoTipo' => $objCompraEstadoTipo , 'cefechafin' => 'null']);
-        foreach($compras as $compra) {
+        $compras = (new AbmCompraEstado())->buscar(['objCompraEstadoTipo' => $objCompraEstadoTipo, 'cefechafin' => 'null']);
+        foreach ($compras as $compra) {
             $nuevoElem['idcompra'] = $compra->getObjCompra()->getIdcompra();
             $nuevoElem['estado'] = $compra->getObjCompraEstadoTipo()->getCetdescripcion();
             $nuevoElem['cefechaini'] = $compra->getCefechaini();
@@ -147,23 +156,24 @@ class AbmCompraEstado {
      * @param array $param
      * @return array
      */
-    public function buscar($param = null) {
+    public function buscar($param = null)
+    {
         $where = " true ";
         if ($param != null) {
             if (isset($param['idcompraestado'])) {
-                $where .= " AND idcompraestado = ".$param['idcompraestado'];
+                $where .= " AND idcompraestado = " . $param['idcompraestado'];
             }
             if (isset($param['objCompra'])) {
-                $where .= " AND idcompra = ".$param['objCompra']->getIdcompra();
+                $where .= " AND idcompra = " . $param['objCompra']->getIdcompra();
             }
             if (isset($param['objCompraEstadoTipo'])) {
-                $where .= " AND idcompraestadotipo = ".$param['objCompraEstadoTipo']->getIdcompraestadotipo();
+                $where .= " AND idcompraestadotipo = " . $param['objCompraEstadoTipo']->getIdcompraestadotipo();
             }
             if (isset($param['cefechaini'])) {
                 if ($param['cefechaini'] == "null") {
                     $where .= " AND cefechaini IS NULL";
                 } else {
-                    $where .= " AND cefechaini = '".$param['cefechaini']."'";
+                    $where .= " AND cefechaini = '" . $param['cefechaini'] . "'";
                 }
             }
             if (isset($param['cefechafin'])) {
@@ -173,15 +183,12 @@ class AbmCompraEstado {
                     if ($param['cefechafin'] == "null") {
                         $where .= " AND cefechafin IS NULL";
                     } else {
-                        $where .= " AND cefechafin = '".$param['cefechaini']."'";
+                        $where .= " AND cefechafin = '" . $param['cefechaini'] . "'";
                     }
-                    
-                }              
+                }
             }
         }
         $arreglo = (new CompraEstado())->listar($where);
         return $arreglo;
     }
-
-
 }

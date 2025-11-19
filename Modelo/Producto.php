@@ -1,9 +1,10 @@
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
-include_once ROOT_PATH.'/Modelo/conector/BaseDatos.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD_TPFINAL/configuracion.php";
+include_once ROOT_PATH . '/Modelo/conector/BaseDatos.php';
 
-class Producto {
+class Producto
+{
     private $idproducto;
     private $pronombre;
     private $prodetalle;
@@ -12,7 +13,8 @@ class Producto {
     private $prodeshabilitado;
     private $mensajeOperacion;
 
-    public function __construct($idproducto = null, $pronombre = null, $prodetalle = null, $procantstock = null, $proprecio = null, $prodeshabilitado = null) {
+    public function __construct($idproducto = null, $pronombre = null, $prodetalle = null, $procantstock = null, $proprecio = null, $prodeshabilitado = null)
+    {
         $this->idproducto = $idproducto;
         $this->pronombre = $pronombre;
         $this->prodetalle = $prodetalle;
@@ -22,64 +24,79 @@ class Producto {
     }
 
     // Getters
-    public function getIdproducto() {
+    public function getIdproducto()
+    {
         return $this->idproducto;
     }
 
-    public function getPronombre() {
+    public function getPronombre()
+    {
         return $this->pronombre;
     }
 
-    public function getProdetalle() {
+    public function getProdetalle()
+    {
         return $this->prodetalle;
     }
 
-    public function getProcantstock() {
+    public function getProcantstock()
+    {
         return $this->procantstock;
     }
 
-    public function getProprecio() {
+    public function getProprecio()
+    {
         return $this->proprecio;
     }
 
-    public function getProdeshabilitado() {
+    public function getProdeshabilitado()
+    {
         return $this->prodeshabilitado;
-    } 
+    }
 
-    public function getMensajeOperacion() {
+    public function getMensajeOperacion()
+    {
         return $this->mensajeOperacion;
     }
 
     // Setters
-    public function setIdproducto($idproducto) {
+    public function setIdproducto($idproducto)
+    {
         $this->idproducto = $idproducto;
     }
 
-    public function setPronombre($pronombre) {
+    public function setPronombre($pronombre)
+    {
         $this->pronombre = $pronombre;
     }
 
-    public function setProdetalle($prodetalle) {
+    public function setProdetalle($prodetalle)
+    {
         $this->prodetalle = $prodetalle;
     }
-    public function setProcantstock($procantstock) {
+    public function setProcantstock($procantstock)
+    {
         $this->procantstock = $procantstock;
     }
 
-    public function setProprecio($proprecio) {
+    public function setProprecio($proprecio)
+    {
         $this->proprecio = $proprecio;
     }
 
-    public function setProdeshabilitado($prodeshabilitado) {
+    public function setProdeshabilitado($prodeshabilitado)
+    {
         $this->prodeshabilitado = $prodeshabilitado;
     }
 
-    public function setMensajeOperacion($mensajeOperacion) {
+    public function setMensajeOperacion($mensajeOperacion)
+    {
         $this->mensajeOperacion = $mensajeOperacion;
     }
 
     // metodos CRUD
-    public function cargarDatos($idproducto, $pronombre = null, $prodetalle = null, $procantstock = null, $proprecio = null, $prodeshabilitado = null) {
+    public function cargarDatos($idproducto, $pronombre = null, $prodetalle = null, $procantstock = null, $proprecio = null, $prodeshabilitado = null)
+    {
         $this->setIdproducto($idproducto);
         $this->setPronombre($pronombre);
         $this->setProdetalle($prodetalle);
@@ -93,7 +110,8 @@ class Producto {
      * @param int $idproducto
      * @return boolean
      */
-    public function buscarDatos($idproducto) {
+    public function buscarDatos($idproducto)
+    {
         $bd = new BaseDatos();
         $resultado = false;
         if ($bd->Iniciar()) {
@@ -113,13 +131,14 @@ class Producto {
      * @param $condicion // WHERE de sql
      * @return array // productos que cumplieron la condicion
      */
-    public function listar($condicion = "") {
+    public function listar($condicion = "")
+    {
         $coleccion = [];
         $base = new BaseDatos();
         if ($base->Iniciar()) {
             $consulta = "SELECT * FROM producto";
             if ($condicion != "") {
-                $consulta = $consulta.' WHERE '.$condicion;
+                $consulta = $consulta . ' WHERE ' . $condicion;
             }
             $consulta .= " ORDER BY idproducto ";
             if ($base->Ejecutar($consulta)) {
@@ -137,13 +156,14 @@ class Producto {
         return $coleccion;
     }
 
-    public function insertar() {
+    public function insertar()
+    {
         $resultado = false;
         $bd = new BaseDatos();
-    
+
         if ($bd->Iniciar()) {
             $consulta = "INSERT INTO producto (pronombre, prodetalle, procantstock, proprecio) VALUES 
-            ('".$this->getPronombre()."','".$this->getProdetalle()."','".$this->getProcantstock()."','".$this->getProprecio()."')";
+            ('" . $this->getPronombre() . "','" . $this->getProdetalle() . "','" . $this->getProcantstock() . "','" . $this->getProprecio() . "')";
             if ($bd->Ejecutar($consulta)) {
                 $resultado = true;
             } else {
@@ -152,15 +172,16 @@ class Producto {
         } else {
             $this->setMensajeOperacion($bd->getError());
         }
-    
+
         return $resultado;
     }
-    
+
     /**
      * Modificar los datos de un producto con los que tiene el objeto actual 
      * @return boolean
      */
-    public function modificar() {
+    public function modificar()
+    {
         $resultado = false;
         $bd = new BaseDatos();
         if ($bd->Iniciar()) {
@@ -168,16 +189,16 @@ class Producto {
             if ($this->getProdeshabilitado() == null) {
                 $desha = 'null';
             } else {
-                $desha = "'".$this->getProdeshabilitado()."'";
+                $desha = "'" . $this->getProdeshabilitado() . "'";
             }
-            
+
             $consulta = "UPDATE producto 
-            SET pronombre = '".addslashes($this->getPronombre())."', 
-                prodetalle = '".addslashes($this->getProdetalle())."', 
-                procantstock = ".$this->getProcantstock().", 
-                proprecio = ".$this->getProprecio().", 
-                prodeshabilitado = ".$desha." 
-            WHERE idproducto = ".$this->getIdproducto();
+            SET pronombre = '" . addslashes($this->getPronombre()) . "', 
+                prodetalle = '" . addslashes($this->getProdetalle()) . "', 
+                procantstock = " . $this->getProcantstock() . ", 
+                proprecio = " . $this->getProprecio() . ", 
+                prodeshabilitado = " . $desha . " 
+            WHERE idproducto = " . $this->getIdproducto();
             if ($bd->Ejecutar($consulta)) {
                 $resultado = true;
             } else {
@@ -193,11 +214,12 @@ class Producto {
      * Eliminar un producto de la bd
      * @return boolean
      */
-    public function eliminar() {
+    public function eliminar()
+    {
         $resultado = false;
         $bd = new BaseDatos();
         if ($bd->Iniciar()) {
-            $consulta = "DELETE FROM producto WHERE idproducto = ".$this->getIdproducto();
+            $consulta = "DELETE FROM producto WHERE idproducto = " . $this->getIdproducto();
             if ($bd->Ejecutar($consulta)) {
                 $resultado = true;
             } else {
@@ -213,13 +235,13 @@ class Producto {
      * Retorna un string con los datos del producto
      * @return string
      */
-    public function __toString() {
-        return ("idproducto: ".$this->getIdproducto()."\n" .
-            "pronombre: ".$this->getPronombre()."\n".
-            "prodetalle: ".$this->getProdetalle()."\n".
-            "procantstock: ".$this->getProcantstock()."\n".
-            "proprecio: ".$this->getProprecio()."\n".
-            "prodeshabilitado: ".$this->getProdeshabilitado())."\n";
+    public function __toString()
+    {
+        return ("idproducto: " . $this->getIdproducto() . "\n" .
+            "pronombre: " . $this->getPronombre() . "\n" .
+            "prodetalle: " . $this->getProdetalle() . "\n" .
+            "procantstock: " . $this->getProcantstock() . "\n" .
+            "proprecio: " . $this->getProprecio() . "\n" .
+            "prodeshabilitado: " . $this->getProdeshabilitado()) . "\n";
     }
 }
-?>

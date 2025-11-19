@@ -19,34 +19,36 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
 </main>
 
 <script>
-$(document).ready(function() {
-    actualizarCarrito();
-});
+    $(document).ready(function() {
+        actualizarCarrito();
+    });
 
-function actualizarCarrito() {
-    $.ajax({
-        url: '<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Accion/ListarCarrito.php',
-        method: 'POST',
-        data: { idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0 ?> },
-        dataType: 'json',
-        success: function(respuesta) {
-            let html = '';
-            let total = 0;
+    function actualizarCarrito() {
+        $.ajax({
+            url: '<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Accion/ListarCarrito.php',
+            method: 'POST',
+            data: {
+                idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0 ?>
+            },
+            dataType: 'json',
+            success: function(respuesta) {
+                let html = '';
+                let total = 0;
 
-            if (respuesta.length === 0) {
-                $('#carrito').html(`
+                if (respuesta.length === 0) {
+                    $('#carrito').html(`
                     <div class="col-12 d-flex align-items-center justify-content-center text-center text-muted fs-5" style="height: 50vh;">
                         🕳️ Tu carrito está vacío.
                     </div>
                 `);
-                return;
-            }
+                    return;
+                }
 
-            respuesta.forEach(item => {
-                const subtotal = item.proprecio * item.cicantidad;
-                total += subtotal;
+                respuesta.forEach(item => {
+                    const subtotal = item.proprecio * item.cicantidad;
+                    total += subtotal;
 
-                html += `
+                    html += `
                 <div class="col-12 col-md-8 col-lg-6">
                     <div class="card shadow-sm border-0 rounded-4 p-3">
                         <div class="d-flex align-items-center">
@@ -67,61 +69,61 @@ function actualizarCarrito() {
                         </div>
                     </div>
                 </div>`;
-            });
+                });
 
-            html += `
+                html += `
             <div class="col-12 text-center mt-4">
                 <h4 class="fw-bold text-dark">Total: $${total.toFixed(2)}</h4>
             </div>`;
 
-            $('#carrito').html(html);
-        },
-        error: function() {
-            alert('Error al cargar el carrito.');
-        }
-    });
-}
+                $('#carrito').html(html);
+            },
+            error: function() {
+                alert('Error al cargar el carrito.');
+            }
+        });
+    }
 
-function sumar(idproducto, cantidad) {
-    $.post('<?php echo BASE_URL ?>/Vista/Paginas/Carrito/Accion/Sumar.php', {
-        idproducto: idproducto,
-        idcompra: <?php echo $compraEstado ? $compraEstado->getObjCompra()->getIdcompra() : 0; ?>,
-        cicantidad: cantidad
-    }, function() {
-        actualizarCarrito();
-    }, 'json');
-}
+    function sumar(idproducto, cantidad) {
+        $.post('<?php echo BASE_URL ?>/Vista/Paginas/Carrito/Accion/Sumar.php', {
+            idproducto: idproducto,
+            idcompra: <?php echo $compraEstado ? $compraEstado->getObjCompra()->getIdcompra() : 0; ?>,
+            cicantidad: cantidad
+        }, function() {
+            actualizarCarrito();
+        }, 'json');
+    }
 
-function restar(idproducto, cantidad) {
-    $.post('<?php echo BASE_URL ?>/Vista/Paginas/Carrito/Accion/Restar.php', {
-        idproducto: idproducto,
-        idcompra: <?php echo $compraEstado ? $compraEstado->getObjCompra()->getIdcompra() : 0; ?>,
-        cicantidad: cantidad
-    }, function() {
-        actualizarCarrito();
-    }, 'json');
-}
+    function restar(idproducto, cantidad) {
+        $.post('<?php echo BASE_URL ?>/Vista/Paginas/Carrito/Accion/Restar.php', {
+            idproducto: idproducto,
+            idcompra: <?php echo $compraEstado ? $compraEstado->getObjCompra()->getIdcompra() : 0; ?>,
+            cicantidad: cantidad
+        }, function() {
+            actualizarCarrito();
+        }, 'json');
+    }
 
-function vaciarCarrito() {
-    $.post('<?php echo BASE_URL ?>/Vista/Paginas/Carrito/Accion/Vaciar.php', {
-        idcompra: <?php echo $compraEstado ? $compraEstado->getObjCompra()->getIdcompra() : 0; ?>
-    }, function(respuesta) {
-        alert(respuesta.message);
-        actualizarCarrito();
-    }, 'json');
-}
+    function vaciarCarrito() {
+        $.post('<?php echo BASE_URL ?>/Vista/Paginas/Carrito/Accion/Vaciar.php', {
+            idcompra: <?php echo $compraEstado ? $compraEstado->getObjCompra()->getIdcompra() : 0; ?>
+        }, function(respuesta) {
+            alert(respuesta.message);
+            actualizarCarrito();
+        }, 'json');
+    }
 
-function comprarCarrito() {
-    if (!confirm("¿Deseas realizar la compra?")) return;
-    $.post('<?php echo BASE_URL ?>/Vista/Paginas/Carrito/Accion/ComprarCarrito.php', {
-        idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0; ?>,
-        idnuevoestadotipo: 2
-    }, function(respuesta) {
-        alert(respuesta.message);
-        if (respuesta.success)
-            window.location.href = "<?php echo BASE_URL ?>/Vista/Paginas/MisCompras/MisCompras.php";
-    }, 'json');
-}
+    function comprarCarrito() {
+        if (!confirm("¿Deseas realizar la compra?")) return;
+        $.post('<?php echo BASE_URL ?>/Vista/Paginas/Carrito/Accion/ComprarCarrito.php', {
+            idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0; ?>,
+            idnuevoestadotipo: 2
+        }, function(respuesta) {
+            alert(respuesta.message);
+            if (respuesta.success)
+                window.location.href = "<?php echo BASE_URL ?>/Vista/Paginas/MisCompras/MisCompras.php";
+        }, 'json');
+    }
 </script>
 
 <?php include STRUCTURE_PATH . '/Footer.php'; ?>

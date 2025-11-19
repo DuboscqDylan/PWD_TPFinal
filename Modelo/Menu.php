@@ -139,7 +139,8 @@ class Menu
         $this->mensajeoperacion = $mensajeoperacion;
     }
 
-    public function setObjPadre($ObjPadre){
+    public function setObjPadre($ObjPadre)
+    {
         $this->ObjPadre = $ObjPadre;
     }
 
@@ -290,20 +291,20 @@ class Menu
             $sql .= 'WHERE ' . $parametro;
         }
         $res = $base->Ejecutar($sql);
-            if ($res > 0) {
+        if ($res > 0) {
 
-                while ($row = $base->Registro()) {
-                    $obj = new Menu();
-                    $objMenuPadre = null;
-                    if ($row['idpadre'] != null) {
-                        $objMenuPadre = new Menu();
-                        $objMenuPadre->setIdmenu($row['idpadre']);
-                    }
-                    $obj->cargarDatos($row['idmenu'], $row['menombre'], $row['medescripcion'], $row['meurl'], $objMenuPadre, $row['medeshabilitado']);
-                    array_push($arreglo, $obj);
+            while ($row = $base->Registro()) {
+                $obj = new Menu();
+                $objMenuPadre = null;
+                if ($row['idpadre'] != null) {
+                    $objMenuPadre = new Menu();
+                    $objMenuPadre->setIdmenu($row['idpadre']);
                 }
+                $obj->cargarDatos($row['idmenu'], $row['menombre'], $row['medescripcion'], $row['meurl'], $objMenuPadre, $row['medeshabilitado']);
+                array_push($arreglo, $obj);
             }
-        
+        }
+
 
         return $arreglo;
     }

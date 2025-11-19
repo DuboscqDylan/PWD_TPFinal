@@ -4,4 +4,3 @@ $data = data_submitted();
 
 $respuesta = (new AbmCompraEstado())->listarCarrito($data);
 echo json_encode($respuesta);
-?>

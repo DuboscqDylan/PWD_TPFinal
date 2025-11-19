@@ -1,6 +1,6 @@
-<?php 
-include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
-include STRUCTURE_PATH . "/HeaderSeguro.php"; 
+<?php
+include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD_TPFINAL/configuracion.php";
+include STRUCTURE_PATH . "/HeaderSeguro.php";
 ?>
 
 <!-- Contenido principal -->
@@ -211,7 +211,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
             }
         }
 
-         // habilitado de usuario
+        // habilitado de usuario
         window.habilitarUsuario = function(idusuario) {
             if (confirm('¿Está seguro que desea habilitar el usuario?')) {
                 $.ajax({
@@ -219,7 +219,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                     type: 'POST',
                     dataType: 'json',
                     data: {
-                        idusuario: idusuario 
+                        idusuario: idusuario
                     },
                     success: function(response) {
                         if (response) {
@@ -270,7 +270,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                             .text('Usuario creado exitosamente.')
                             .removeClass('d-block')
                             .addClass('d-none');
-                            cargarUsuarios();
+                        cargarUsuarios();
                         $('#errorMessage')
                             .text(response.message)
                             .removeClass('d-none')
@@ -279,25 +279,25 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                 },
                 error: function() {
                     $('#successMessage')
-                            .text('Usuario creado exitosamente.')
-                            .removeClass('d-block')
-                            .addClass('d-none');
+                        .text('Usuario creado exitosamente.')
+                        .removeClass('d-block')
+                        .addClass('d-none');
                     $('#errorMessage')
                         .text('Ocurrió un error al procesar la solicitud.')
                         .removeClass('d-none')
                         .addClass('d-block');
                 }
             });
-                
+
         });
 
 
         // Modificación de usuario
-       $('#modificarUsuarioForm').submit(function(e) {
+        $('#modificarUsuarioForm').submit(function(e) {
             e.preventDefault();
             $('#errorMessage').text('').removeClass('d-block').addClass('d-none');
             $('#successMessage').text('').removeClass('d-block').addClass('d-none');
-            
+
             var formData = {
                 usuarioID: parseInt($('#usuarioID').val(), 10),
             }
@@ -343,9 +343,9 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                 },
                 error: function() {
                     $('#successMessageMod')
-                            .text(res.message)
-                            .removeClass('d-block')
-                            .addClass('d-none');
+                        .text(res.message)
+                        .removeClass('d-block')
+                        .addClass('d-none');
                     $('#errorMessageMod')
                         .text('Ocurrió un error al procesar la solicitud.')
                         .removeClass('d-none')

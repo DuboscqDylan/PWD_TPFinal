@@ -4,4 +4,3 @@ $data = data_submitted();
 
 $respuesta = (new AbmCompraItem())->quitarCompraItem($data);
 echo json_encode($respuesta);
-?>

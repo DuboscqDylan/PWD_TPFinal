@@ -1,18 +1,20 @@
 <?php
 
-class AbmMenuRol {
-    
+class AbmMenuRol
+{
+
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden 
      * con los nombres de las variables instancias del objeto
      * @param array $param
      * @return MenuRol
      */
-    private function cargarObjeto($param) {
+    private function cargarObjeto($param)
+    {
         $obj = null;
-        if (array_key_exists('rol', $param) AND array_key_exists('menu', $param)) {
+        if (array_key_exists('rol', $param) and array_key_exists('menu', $param)) {
             $obj = new MenuRol();
-            $obj->cargarDatos( $param['rol'], $param['menu']);
+            $obj->cargarDatos($param['rol'], $param['menu']);
         }
         return $obj;
     }
@@ -24,8 +26,9 @@ class AbmMenuRol {
      * @return MenuRol
      */
 
-     // ¿no es redundante con cargarObjeto siendo que las dos son primarias y no hay otras claves?
-    private function cargarObjetoConClave($param) {
+    // ¿no es redundante con cargarObjeto siendo que las dos son primarias y no hay otras claves?
+    private function cargarObjetoConClave($param)
+    {
         $obj = null;
         if ($this->seteadosCamposClaves($param)) {
             $obj = new MenuRol();
@@ -39,7 +42,8 @@ class AbmMenuRol {
      * @param array $param
      * @return boolean
      */
-    private function seteadosCamposClaves($param) {
+    private function seteadosCamposClaves($param)
+    {
         $resp = false;
         if (isset($param['rol'], $param['menu'])) {
             $resp = true;
@@ -52,7 +56,8 @@ class AbmMenuRol {
      * @param array $param
      * @return boolean
      */
-    public function alta($param) {
+    public function alta($param)
+    {
         $resp = false;
         $obj = $this->cargarObjeto($param);
         if ($obj != null && $obj->insertar()) {
@@ -66,7 +71,8 @@ class AbmMenuRol {
      * @param array $param
      * @return boolean
      */
-    public function baja($param) {
+    public function baja($param)
+    {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
             $obj = $this->cargarObjetoConClave($param);
@@ -82,7 +88,8 @@ class AbmMenuRol {
      * @param array $param
      * @return boolean
      */
-    public function modificacion($param) {
+    public function modificacion($param)
+    {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
             $obj = $this->cargarObjeto($param);
@@ -99,18 +106,18 @@ class AbmMenuRol {
      * @param array $param
      * @return array
      */
-    public function buscar ($param = null) {
+    public function buscar($param = null)
+    {
         $where = " true ";
         if ($param != null) {
             if (isset($param['rol'])) {
-                $where .= " AND idrol = ".$param['rol']->getIdrol();
+                $where .= " AND idrol = " . $param['rol']->getIdrol();
             }
             if (isset($param['menu'])) {
-                $where .= " AND idmenu = ".$param['menu']->getIdmenu();
+                $where .= " AND idmenu = " . $param['menu']->getIdmenu();
             }
         }
         $arreglo = (new MenuRol())->listar($where);
         return $arreglo;
     }
 }
-?>

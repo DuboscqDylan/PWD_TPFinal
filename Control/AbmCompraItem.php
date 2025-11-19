@@ -1,16 +1,18 @@
 <?php
 
-class AbmCompraItem {
-    
+class AbmCompraItem
+{
+
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden 
      * con los nombres de las variables instancias del objeto
      * @param array $param
      * @return CompraItem
      */
-    private function cargarObjeto($param) {
+    private function cargarObjeto($param)
+    {
         $obj = null;
-        if (array_key_exists('producto', $param) AND array_key_exists('compra', $param) AND array_key_exists('cicantidad', $param)) {
+        if (array_key_exists('producto', $param) and array_key_exists('compra', $param) and array_key_exists('cicantidad', $param)) {
             // Solo asignamos 'idcompraitem' si está definido y es distinto de null
             $idcompraitem = array_key_exists('idcompraitem', $param) ? $param['idcompraitem'] : null;
             $obj = new CompraItem();
@@ -25,7 +27,8 @@ class AbmCompraItem {
      * @param array $param
      * @return CompraItem
      */
-    private function cargarObjetoConClave($param) {
+    private function cargarObjetoConClave($param)
+    {
         $obj = null;
         if ($this->seteadosCamposClaves($param)) {
             $obj = new CompraItem();
@@ -39,7 +42,8 @@ class AbmCompraItem {
      * @param array $param
      * @return boolean
      */
-    private function seteadosCamposClaves($param) {
+    private function seteadosCamposClaves($param)
+    {
         $resp = false;
         if (isset($param['idcompraitem'])) {
             $resp = true;
@@ -52,7 +56,8 @@ class AbmCompraItem {
      * @param array $param
      * @return boolean
      */
-    public function alta($param) {
+    public function alta($param)
+    {
         $resp = false;
         $obj = $this->cargarObjeto($param);
         if ($obj != null && $obj->insertar()) {
@@ -66,7 +71,8 @@ class AbmCompraItem {
      * @param array $param
      * @return boolean
      */
-    public function baja($param) {
+    public function baja($param)
+    {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
             $obj = $this->cargarObjetoConClave($param);
@@ -82,7 +88,8 @@ class AbmCompraItem {
      * @param array $param
      * @return boolean
      */
-    public function modificacion($param) {
+    public function modificacion($param)
+    {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
             $obj = $this->cargarObjeto($param);
@@ -99,20 +106,21 @@ class AbmCompraItem {
      * @param array $param
      * @return array
      */
-    public function buscar ($param = null) {
+    public function buscar($param = null)
+    {
         $where = " true ";
         if ($param != null) {
             if (isset($param['idcompraitem'])) {
-                $where .= " AND idcompraitem = ".$param['idcompraitem'];
+                $where .= " AND idcompraitem = " . $param['idcompraitem'];
             }
             if (isset($param['producto'])) {
-                $where .= " AND idproducto = ".$param['producto']->getIdproducto();
+                $where .= " AND idproducto = " . $param['producto']->getIdproducto();
             }
             if (isset($param['compra'])) {
-                $where .= " AND idcompra = ".$param['compra']->getIdcompra();
+                $where .= " AND idcompra = " . $param['compra']->getIdcompra();
             }
             if (isset($param['cicantidad'])) {
-                $where .= " AND cicantidad = ".$param['cicantidad'];
+                $where .= " AND cicantidad = " . $param['cicantidad'];
             }
         }
         $arreglo = (new CompraItem())->listar($where);
@@ -122,13 +130,14 @@ class AbmCompraItem {
     /**
      * Agrega CompraItem a la bd segun parametros
      */
-    public function agregarCompraItem($param) {
+    public function agregarCompraItem($param)
+    {
         $idproducto = intval($param['idproducto']);
-        $idcompra = intval($param['idcompra']); 
+        $idcompra = intval($param['idcompra']);
         $cicantidad = intval($param['cicantidad']);
 
         $producto = (new AbmProducto)->buscar(['idproducto' => $idproducto])[0]; // Busca producto (por id producto ingresado)
-        
+
         $exito = $producto->getProcantstock() >= $cicantidad; // Verifica que haya suficiente stock
         if ($exito) {
             $nuevoStock = ($producto->getProcantstock() - $cicantidad);
@@ -136,35 +145,36 @@ class AbmCompraItem {
             $producto->modificar(); // Disminuye stock del producto agregado
 
             $compra = (new AbmCompra)->buscar(['idcompra' => $idcompra])[0]; // Busca compra (por id compra ingresado)
-            $compraItems = $this->buscar(['producto'=> $producto, 'compra' => $compra]); // Verificar que el carrito posee previamente el producto 
+            $compraItems = $this->buscar(['producto' => $producto, 'compra' => $compra]); // Verificar que el carrito posee previamente el producto 
 
-            if(empty($compraItems)) {  //Si dicho producto no esta en el carro, agrega CompraItem
-                $exito = $this->alta(['producto'=> $producto, 'compra' => $compra, 'cicantidad' => $cicantidad]);
+            if (empty($compraItems)) {  //Si dicho producto no esta en el carro, agrega CompraItem
+                $exito = $this->alta(['producto' => $producto, 'compra' => $compra, 'cicantidad' => $cicantidad]);
                 $msj = "Producto agregado al carro.";
             } else { //Si dicho producto ya esta en el carro, modifica CompraItem
                 $compraItem = $compraItems[0];
                 $nuevaCicantidad = ($compraItem->getCicantidad() + $cicantidad);
-                $exito = $this->modificacion(['idcompraitem' => $compraItem->getIdcompraitem(), 'producto'=> $producto, 'compra' => $compra, 'cicantidad' => $nuevaCicantidad]);
+                $exito = $this->modificacion(['idcompraitem' => $compraItem->getIdcompraitem(), 'producto' => $producto, 'compra' => $compra, 'cicantidad' => $nuevaCicantidad]);
                 $msj = "Se aumento cantidad del producto al carro.";
             }
         } else {
             $msj = "No hay stock suficiente.";
         }
-        return ['success'=> $exito, 'message'=> $msj];
+        return ['success' => $exito, 'message' => $msj];
     }
 
     /**
      * Quita CompraItem a la bd segun parametros
      */
-    public function quitarCompraItem($param) {
+    public function quitarCompraItem($param)
+    {
         $idproducto = intval($param['idproducto']);
-        $idcompra = intval($param['idcompra']); 
+        $idcompra = intval($param['idcompra']);
         $cicantidad = intval($param['cicantidad']);
 
         $producto = (new AbmProducto)->buscar(['idproducto' => $idproducto])[0]; // Busca producto (por id producto ingresado)
 
         $compra = (new AbmCompra)->buscar(['idcompra' => $idcompra])[0]; // Busca compra (por id compra ingresado)
-        $compraItems = $this->buscar(['producto'=> $producto, 'compra' => $compra]); // Busca CompraItem a modificar
+        $compraItems = $this->buscar(['producto' => $producto, 'compra' => $compra]); // Busca CompraItem a modificar
 
         $exito = !empty($compraItems);
         if ($exito) { //Solo aumenta stock si antes estaba en el carro
@@ -175,7 +185,7 @@ class AbmCompraItem {
             $compraItem = $compraItems[0];
             $nuevaCicantidad = ($compraItem->getCicantidad() - $cicantidad);
             if ($nuevaCicantidad > 0) { // Si al disminuir cicantidad es mayor a 0 (sigue estando item en carro)
-                $exito = $this->modificacion(['idcompraitem' => $compraItem->getIdcompraitem(), 'producto'=> $producto, 'compra' => $compra, 'cicantidad' => $nuevaCicantidad]);
+                $exito = $this->modificacion(['idcompraitem' => $compraItem->getIdcompraitem(), 'producto' => $producto, 'compra' => $compra, 'cicantidad' => $nuevaCicantidad]);
                 $msj = "Se disminuyo cantidad del producto.";
             } else {
                 $exito = $compraItem->eliminar();
@@ -184,27 +194,28 @@ class AbmCompraItem {
         } else {
             $msj = "Item no se encuentra en el carrito";
         }
-        
-        return ['success'=> $exito, 'message'=> $msj];
+
+        return ['success' => $exito, 'message' => $msj];
     }
 
-    
+
     /**
      * Quita todo compraItem para un idcompra dado (reestockea)
      */
-    public function vaciarCarrito($param) {
+    public function vaciarCarrito($param)
+    {
         $compra = (new AbmCompra())->buscar($param)[0]; //Busco compra con idcompra en $param
         $compraItems = $this->buscar(['compra' => $compra]); //Obtiene todo compraItem de dicha compra
 
         $msj = 'Carrito vaciado con exito.';
         $exito = true;
-        if(!empty($compraItems)) {
+        if (!empty($compraItems)) {
             $respuestas = [];
-            foreach($compraItems as $compraItem) {
+            foreach ($compraItems as $compraItem) {
                 $idprod = $compraItem->getObjProducto()->getIdproducto();
                 $idcomp = $compraItem->getObjCompra()->getIdcompra();
                 $cicant = $compraItem->getCicantidad();
-                $rta = $this->quitarCompraItem(['idproducto' => $idprod, 'idcompra' => $idcomp, 'cicantidad'=> $cicant]); //Quita toda cicant
+                $rta = $this->quitarCompraItem(['idproducto' => $idprod, 'idcompra' => $idcomp, 'cicantidad' => $cicant]); //Quita toda cicant
                 array_push($respuestas, $rta);
             }
 
@@ -219,8 +230,6 @@ class AbmCompraItem {
         } else {
             $msj = 'No hay items en el carrito.';
         }
-        return ['success' => $exito, 'message'=> $msj];
+        return ['success' => $exito, 'message' => $msj];
     }
-
 }
-?>

@@ -5,10 +5,4 @@ $sesion = new Session();
 
 $usuario = $sesion->getUsuario();
 
-echo json_encode([
-    'success' => true,
-    'data' => [
-        'usnombre' => $usuario->getUsNombre(),
-        'usmail'   => $usuario->getUsMail()
-    ]
-]);
+echo json_encode(['success' => true, 'data' => ['usnombre' => $usuario->getUsNombre(), 'usmail'   => $usuario->getUsMail()]]);

@@ -1,55 +1,65 @@
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
-include_once ROOT_PATH.'/Modelo/conector/BaseDatos.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD_TPFINAL/configuracion.php";
+include_once ROOT_PATH . '/Modelo/conector/BaseDatos.php';
 
-class Rol {
+class Rol
+{
     private $idrol;
     private $rodescripcion;
     private $mensajeOperacion;
 
-    public function __construct($idrol = null, $rodescripcion = null) {
+    public function __construct($idrol = null, $rodescripcion = null)
+    {
         $this->idrol = $idrol;
         $this->rodescripcion = $rodescripcion;
     }
 
     // getters 
-    public function getIdrol() {
+    public function getIdrol()
+    {
         return $this->idrol;
     }
-    
-    public function getRodescripcion() {
+
+    public function getRodescripcion()
+    {
         return $this->rodescripcion;
     }
 
-    public function getMensajeOperacion() {
+    public function getMensajeOperacion()
+    {
         return $this->mensajeOperacion;
     }
 
     // setters
-    public function setIdrol($idrol) {
+    public function setIdrol($idrol)
+    {
         $this->idrol = $idrol;
     }
-    public function setRodescripcion($rodescripcion) {
+    public function setRodescripcion($rodescripcion)
+    {
         $this->rodescripcion = $rodescripcion;
     }
 
-    public function setMensajeOperacion($mensajeOperacion) {
+    public function setMensajeOperacion($mensajeOperacion)
+    {
         $this->mensajeOperacion = $mensajeOperacion;
     }
-    
+
     // metodos CRUD
-    public function cargarDatos($idrol = null, $rodescripcion = null) {
+    public function cargarDatos($idrol = null, $rodescripcion = null)
+    {
         $this->setRoDescripcion($rodescripcion);
         $this->setIdrol($idrol);
     }
-    
+
     /**
      * Buscar datos de un rol por su id
      * @param int $idrol
      * @return boolean
      */
-    public function buscarDatos($idrol) {
+    public function buscarDatos($idrol)
+    {
         $bd = new BaseDatos();
         $resultado = false;
         if ($bd->Iniciar()) {
@@ -69,13 +79,14 @@ class Rol {
      * @param $condicion // WHERE de sql
      * @return array // roles que cumplieron la condicion
      */
-    public function listar($condicion = "") {
+    public function listar($condicion = "")
+    {
         $coleccion = [];
         $base = new BaseDatos();
         if ($base->Iniciar()) {
             $consulta = "SELECT * FROM rol";
             if ($condicion != "") {
-                $consulta = $consulta.' WHERE '.$condicion;
+                $consulta = $consulta . ' WHERE ' . $condicion;
             }
             $consulta .= " ORDER BY idrol ";
             if ($base->Ejecutar($consulta)) {
@@ -97,12 +108,13 @@ class Rol {
      * Insertar los datos de un rol a la bd
      * @return boolean
      */
-    public function insertar() {
+    public function insertar()
+    {
         $resultado = false;
         $bd = new BaseDatos();
         if ($bd->Iniciar()) {
             $consulta = "INSERT INTO rol(rodescripcion) VALUES 
-            ('".$this->getRodescripcion()."')";
+            ('" . $this->getRodescripcion() . "')";
             if ($bd->Ejecutar($consulta)) {
                 $resultado = true;
             } else {
@@ -113,18 +125,19 @@ class Rol {
         }
         return $resultado;
     }
-    
+
     /**
      * Modificar los datos de un rol con los que tiene el objeto actual 
      * @return boolean
      */
-    public function modificar() {
+    public function modificar()
+    {
         $resultado = false;
         $bd = new BaseDatos();
         if ($bd->Iniciar()) {
             $consulta = "UPDATE rol 
-            SET rodescripcion = ".$this->getRodescripcion()."
-            WHERE idrol = ".$this->getIdrol();
+            SET rodescripcion = " . $this->getRodescripcion() . "
+            WHERE idrol = " . $this->getIdrol();
             if ($bd->Ejecutar($consulta)) {
                 $resultado = true;
             } else {
@@ -140,11 +153,12 @@ class Rol {
      * Eliminar un rol de la bd
      * @return boolean
      */
-    public function eliminar() {
+    public function eliminar()
+    {
         $resultado = false;
         $bd = new BaseDatos();
         if ($bd->Iniciar()) {
-            $consulta = "DELETE FROM rol WHERE idrol = ".$this->getIdrol();
+            $consulta = "DELETE FROM rol WHERE idrol = " . $this->getIdrol();
             if ($bd->Ejecutar($consulta)) {
                 $resultado = true;
             } else {
@@ -160,9 +174,9 @@ class Rol {
      * Retorna un string con los datos del rol
      * @return string
      */
-    public function __toString() {
-        return ("idrol: ".$this->getIdrol()."\n".
-            "rodescripcion: ".$this->getRodescripcion());
+    public function __toString()
+    {
+        return ("idrol: " . $this->getIdrol() . "\n" .
+            "rodescripcion: " . $this->getRodescripcion());
     }
 }
-?>

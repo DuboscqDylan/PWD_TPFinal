@@ -8,7 +8,7 @@ class Session
     */
     public function __construct()
     {
-         if (session_status() === PHP_SESSION_NONE) {
+        if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
     }
@@ -174,7 +174,7 @@ class Session
         $menues = [];
         if ($this->validar()) {
             $objRol = $this->getRoles()[0];
-            $menuRoles = (new AbmMenuRol())->buscar(['rol' => $objRol]); 
+            $menuRoles = (new AbmMenuRol())->buscar(['rol' => $objRol]);
 
             // Obtiene menues para dicho rol
             foreach ($menuRoles as $menuRol) {
