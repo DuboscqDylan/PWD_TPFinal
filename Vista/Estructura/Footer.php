@@ -1,3 +1,15 @@
+<?php
+// Iniciar sesión solo si no existe una activa
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Asegurar que $sesion y $sesionValida existen
+// Ejemplo general (tú ya debes tener esto arriba en tu código):
+// $sesion = new Sesion();
+// $sesionValida = $sesion->validar();
+?>
+
 <footer class="bg-dark text-light py-3 mt-auto w-100" style="font-size: 0.9rem;">
     <div class="container">
         <div class="row align-items-center text-center text-md-start">
@@ -13,8 +25,12 @@
                 <div class="d-flex justify-content-center flex-wrap">
                     <a href="<?php echo BASE_URL; ?>/index.php" class="text-light text-decoration-none mx-2">Inicio</a>
                     <a href="<?php echo BASE_URL; ?>/Vista/Paginas/Catalogo/Catalogo.php" class="text-light text-decoration-none mx-2">Catálogo</a>
-                    <a href="<?php echo BASE_URL; ?>/Vista/Paginas/Login/Login.php" class="text-light text-decoration-none mx-2">Login</a>
-                    <a href="<?php echo BASE_URL; ?>/Vista/Paginas/Registrar/Registrar.php" class="text-light text-decoration-none mx-2">Registro</a>
+
+                    <!-- Mostrar SOLO si la sesión NO es válida -->
+                    <?php if (!$sesionValida): ?>
+                        <a href="<?php echo BASE_URL; ?>/Vista/Paginas/Login/Login.php" class="text-light text-decoration-none mx-2">Login</a>
+                        <a href="<?php echo BASE_URL; ?>/Vista/Paginas/Registrar/Registrar.php" class="text-light text-decoration-none mx-2">Registro</a>
+                    <?php endif; ?>
                 </div>
             </div>
 
@@ -28,10 +44,8 @@
             </div>
         </div>
 
-        <!-- Línea divisoria -->
         <hr class="border-secondary my-3">
 
-        <!-- Derechos -->
         <div class="text-center text-secondary" style="font-size: 0.8rem;">
             © <?php echo date("Y"); ?> BIKE SHOP — Todos los derechos reservados.
         </div>
