@@ -27,6 +27,7 @@ function actualizarCarrito() {
     $.ajax({
         url: '<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Accion/ListarCarrito.php',
         method: 'POST',
+         // Envía el id del estado actual de la compra (carrito abierto)
         data: { idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0 ?> },
         dataType: 'json',
         success: function(respuesta) {
@@ -45,7 +46,7 @@ function actualizarCarrito() {
             respuesta.forEach(item => {
                 const subtotal = item.proprecio * item.cicantidad;
                 total += subtotal;
-
+ // Se arma toda la tarjeta del producto
                 html += `
                 <div class="col-12 col-md-8 col-lg-6">
                     <div class="card shadow-sm border-0 rounded-4 p-3">
@@ -68,7 +69,7 @@ function actualizarCarrito() {
                     </div>
                 </div>`;
             });
-
+// Total general del carrito
             html += `
             <div class="col-12 text-center mt-4">
                 <h4 class="fw-bold text-dark">Total: $${total.toFixed(2)}</h4>
