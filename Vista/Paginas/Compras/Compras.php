@@ -24,13 +24,13 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Las compras serán cargadas dinámicamente aquí -->
+                        <!-- Las compras son cargadas dinámicamente acá-->
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- Compras concretadas -->
+        <!-- Compras completadas -->
         <div class="mb-5">
             <h1 class="fw-bold text-success mb-4">Compras Concretadas</h1>
             <div class="table-responsive">
@@ -45,7 +45,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Las compras serán cargadas dinámicamente aquí -->
+                        <!-- Las compras son cargadas dinámicamente acá -->
                     </tbody>
                 </table>
             </div>
@@ -66,7 +66,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Las compras serán cargadas dinámicamente aquí -->
+                        <!-- Las compras son cargadas dinámicamente acá -->
                     </tbody>
                 </table>
             </div>

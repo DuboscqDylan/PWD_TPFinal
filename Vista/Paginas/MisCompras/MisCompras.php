@@ -23,7 +23,7 @@ include STRUCTURE_PATH . '/Header.php';
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Las compras serán cargadas dinámicamente aquí -->
+                        <!-- Las compras son cargadas dinámicamente acá -->
                     </tbody>
                 </table>
             </div>

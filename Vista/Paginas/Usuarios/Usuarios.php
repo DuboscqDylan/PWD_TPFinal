@@ -28,7 +28,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Los usuarios serán cargados dinámicamente aquí -->
+                                <!-- Los usuarios son cargados dinámicamente acá -->
                             </tbody>
                         </table>
                     </div>
@@ -160,7 +160,6 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
         }
 
         function modificarUsuario(id) {
-            // Cargar la información del usuario a modificar
             $.ajax({
                 url: '/PWD_TPFINAL/Vista/Paginas/Usuarios/Accion/ListarUsuarios.php',
                 method: 'POST',
@@ -184,7 +183,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
             });
         }
 
-        // Manejo de la baja de un usuario
+        // Manejo de la baja de un usuario (lo deshabilita)
         window.bajaUsuario = function(id, rol) {
             if (confirm('¿Estás seguro de dar de baja este usuario?')) {
                 $.ajax({

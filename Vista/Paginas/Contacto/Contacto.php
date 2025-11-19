@@ -1,7 +1,6 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD_TPFINAL/configuracion.php";
 include STRUCTURE_PATH . '/Header.php';
-// Procesamiento del formulario
 $alerta = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

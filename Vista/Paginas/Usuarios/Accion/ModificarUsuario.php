@@ -2,9 +2,7 @@
 include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
 $data = data_submitted();  // Obtener los datos enviados
 
-// Verificar que todos los campos necesarios están presentes
 if (isset($data['usuarioID'])) {
-    // buscar el usuario
     $usuarios = (new AbmUsuario())->buscar(['idusuario' => $data['usuarioID']]);
     
     if (!empty($usuarios)) {

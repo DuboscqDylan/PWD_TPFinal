@@ -8,7 +8,7 @@ $esCliente = $sesion->esCliente();
 <div class="container my-5">
     <h1 class="text-center mb-5 text-primary fw-bold">Productos</h1>
     
-    <!-- Product Grid -->
+    <!-- Grilla de productos -->
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="catalogo">
     </div>
 </div>

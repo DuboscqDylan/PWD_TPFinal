@@ -56,7 +56,7 @@ include STRUCTURE_PATH . '/HeaderSeguro.php';
 
             success: function(response) {
                 if (response.success) {
-                    // Colocar datos en los textos (no inputs)
+                    // Colocamos datos en los textboxes
                     $('#perfilNombre').val(response.data.usnombre);
                     $('#perfilEmail').val(response.data.usmail);
                 } else {
@@ -93,7 +93,7 @@ include STRUCTURE_PATH . '/HeaderSeguro.php';
                 if (response.success) {
                     $('#perfilExito').text(response.message).removeClass('d-none');
 
-                    // Limpiar campos de contraseña
+                    // Limpiamos campos de contraseña
                     $('#perfilPassActual').val('');
                     $('#perfilPassNueva').val('');
                     $('#perfilPassConfirm').val('');

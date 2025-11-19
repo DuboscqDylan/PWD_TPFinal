@@ -18,7 +18,7 @@ if(!empty($data)){
         // Ruta web para mostrarlos
         $rutaImagenesWEB = BASE_URL."/Vista/Media/Producto/".$producto->getIdproducto();
 
-        // Buscar portada
+        // Buscamos portadas
         $scanHeader = glob($rutaImagenesFS.'/*.png');
 
         if(!empty($scanHeader)){
@@ -28,7 +28,7 @@ if(!empty($data)){
             $header = '<p class="text-muted text-center">No hay portada</p>';
         }
 
-        // Buscar imágenes en Preview
+        // Buscamos imágenes de Preview
         $scanDiv = glob($rutaImagenesFS."/Preview/*");
 
         if(!empty($scanDiv)){

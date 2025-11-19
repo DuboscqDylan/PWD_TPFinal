@@ -23,13 +23,13 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Los productos serán cargados dinámicamente aquí -->
+                    <!-- Los productos serán cargados dinámicamente acá -->
                 </tbody>
             </table>
         </div>
     </div>
 
-    <!-- Formulario Estático para Alta de Producto -->
+    <!-- Formulario  para Alta de Producto -->
     <div class="card shadow border-0 rounded-4 p-4 bg-dark text-white mb-5" style="max-width: 45%; padding: 20px;">
         <h2 class="fw-semibold mb-4 text-success">Alta de Producto</h2>
         <form id="altaProductoForm">
@@ -137,12 +137,9 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
             });
         }
 
-        // (El resto del JS no se toca)
-
         
-        // Manejo de alta de producto
         $('#altaProductoForm').submit(function(e) {
-            e.preventDefault(); // Evita el envío por defecto del formulario
+            e.preventDefault(); 
             $('#errorMessage').text('').removeClass('d-block').addClass('d-none');
             $('#successMessage').text('').removeClass('d-block').addClass('d-none');
 
@@ -261,14 +258,13 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
 
 
         $('#modificarProductoForm').submit(function(e) {
-            e.preventDefault(); // Evita el envío por defecto del formulario
+            e.preventDefault(); 
             $('#errorMessageMod').text('').removeClass('d-block').addClass('d-none');
             $('#successMessageMod').text('').removeClass('d-block').addClass('d-none');
 
             var formData = {
                 idproducto: parseInt($('#idproducto').val(), 10)
-            }; // Convertir a entero
-
+            }; 
             if ($('#pronombre').val().trim() != "") {
                 formData.pronombre = $('#pronombre').val().trim();
             }
@@ -295,7 +291,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                             .text(res.message)
                             .removeClass('d-none')
                             .addClass('d-block');
-                        cargarProductos(); // Recargar la lista de productos
+                        cargarProductos(); 
                     } else {
                         $('#errorMessageMod')
                             .text(res.message)

@@ -8,7 +8,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
     <div class="container my-5">
         <h2 class="text-center mb-4 fw-bold text-success">🛒 Carrito de Compras</h2>
         <div id="carrito" class="row g-3 justify-content-center min-vh-50">
-            <!-- Aquí se cargarán los productos -->
+            <!-- Acá se cargarán los productos -->
         </div>
 
         <div class="text-center mt-4">
