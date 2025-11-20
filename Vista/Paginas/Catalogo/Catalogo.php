@@ -65,6 +65,7 @@ function agregarItemCarrito(idprod) {
         success: function(response) {
             if (response.success) {
                 actualizarProducto(idprod);
+                 actualizarIconoCarrito();
             }
             alert(response.message);
         },
