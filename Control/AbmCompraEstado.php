@@ -141,6 +141,36 @@ class AbmCompraEstado {
         return $respuesta;
     }
 
+    public function listarHistorialCompras($param) {
+    $respuesta = [];        
+
+    $objCompraEstadoTipo = null;
+    if (isset($param['idcompraestadotipo'])) {
+        $objCompraEstadoTipo = (new AbmCompraEstadoTipo())->buscar([
+            'idcompraestadotipo' => $param['idcompraestadotipo']
+        ])[0];
+    }
+
+    $filtro = [];
+    if ($objCompraEstadoTipo) {
+        $filtro['objCompraEstadoTipo'] = $objCompraEstadoTipo;
+    }
+
+    $compras = $this->buscar($filtro);
+
+    foreach($compras as $compra) {
+        $nuevoElem['idcompra'] = $compra->getObjCompra()->getIdcompra();
+        $nuevoElem['estado'] = $compra->getObjCompraEstadoTipo()->getCetdescripcion();
+        $nuevoElem['cefechaini'] = $compra->getCefechaini();
+        $nuevoElem['cefechafin'] = $compra->getCefechafin();
+        $nuevoElem['usuario'] = $compra->getObjCompra()->getObjUsuario()->getUsnombre();
+        $nuevoElem['idcompraestado'] = $compra->getIdcompraestado();
+        array_push($respuesta, $nuevoElem);
+    }
+
+    return $respuesta;
+}
+
     /**
      * Busca un compraestado en la BD 
      * Si $param es vacio, trae todos los compraestados 
@@ -182,6 +212,4 @@ class AbmCompraEstado {
         $arreglo = (new CompraEstado())->listar($where);
         return $arreglo;
     }
-
-
 }

@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD_TPFINAL/configuracion.php";
 include STRUCTURE_PATH . "/HeaderSeguro.php";
 ?>
 
@@ -72,6 +72,29 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
             </div>
         </div>
 
+        
+        <!-- Historial de estados -->
+        <div class="mb-5">
+            <h1 class="fw-bold text-secondary mb-4">Historial de Estados de Compras</h1>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle" id="historialComprasTable" style="width: 100%;">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th>ID Compra</th>
+                            <th>Estado</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
+                            <th>Usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Cargado dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
     </div>
 </div>
 
@@ -80,13 +103,16 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
         cargarComprasEntrantes();
         cargarComprasConcretadas();
         cargarComprasCanceladas();
+        cargarHistorialCompras();
     });
 
     function cargarComprasEntrantes() {
         $.ajax({
             url: 'Accion/ListarCompraEstados.php',
             method: 'GET',
-            data: { idcompraestadotipo: 2 },
+            data: {
+                idcompraestadotipo: 2
+            },
             dataType: 'json',
             success: function(response) {
                 var tableContent = '';
@@ -114,7 +140,9 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
         $.ajax({
             url: 'Accion/ListarCompraEstados.php',
             method: 'GET',
-            data: { idcompraestadotipo: 3 },
+            data: {
+                idcompraestadotipo: 3
+            },
             dataType: 'json',
             success: function(response) {
                 var tableContent = '';
@@ -138,7 +166,9 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
         $.ajax({
             url: 'Accion/ListarCompraEstados.php',
             method: 'GET',
-            data: { idcompraestadotipo: 4 },
+            data: {
+                idcompraestadotipo: 4
+            },
             dataType: 'json',
             success: function(response) {
                 var tableContent = '';
@@ -154,6 +184,32 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                     `;
                 });
                 $('#comprasCanceladasTable tbody').html(tableContent);
+            }
+        });
+    }
+
+    function cargarHistorialCompras() {
+        $.ajax({
+            url: 'Accion/ListarHistorialCompras.php',
+            method: 'GET',
+            data: {
+                historial: true
+            },
+            dataType: 'json',
+            success: function(response) {
+                var tableContent = '';
+                $.each(response, function(index, compra) {
+                    tableContent += `
+                    <tr>
+                        <td>${compra.idcompra}</td>
+                        <td>${compra.estado}</td>
+                        <td>${compra.cefechaini}</td>
+                        <td>${compra.cefechafin ?? 'N/A'}</td>
+                        <td>${compra.usuario}</td>
+                    </tr>
+                `;
+                });
+                $('#historialComprasTable tbody').html(tableContent);
             }
         });
     }

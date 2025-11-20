@@ -2,6 +2,6 @@
 include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
 $data = data_submitted();
 
-$salida = (new AbmCompraEstado())->listarCompraEstados($data); 
+$salida = (new AbmCompraEstado())->listarHistorialCompras($data); 
 echo json_encode($salida);
 ?>
