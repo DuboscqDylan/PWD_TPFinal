@@ -117,13 +117,11 @@ class Session
         if (!$this->validar()) {
             return null;
         }
-
         if (!$this->esCliente()) {
             return null;
         }
 
         $usuario = $this->getUsuario();
-
         $compras = (new AbmCompra())->buscar(['usuario' => $usuario]);
 
         $compraEstadoTipos = (new AbmCompraEstadoTipo())->buscar(['idcompraestadotipo' => 1]);
@@ -134,12 +132,10 @@ class Session
         $tipoCarrito = $compraEstadoTipos[0];
 
         foreach ($compras as $compra) {
-
             $compraEstados = (new AbmCompraEstado())->buscar(['objCompra' => $compra]);
             if (empty($compraEstados)) {
                 continue;
             }
-
             $ultimoEstado = null;
             foreach ($compraEstados as $estado) {
                 if (
@@ -149,11 +145,9 @@ class Session
                     $ultimoEstado = $estado;
                 }
             }
-
             if ($ultimoEstado === null) {
                 continue;
             }
-
             if (
                 $ultimoEstado->getObjCompraEstadoTipo()->getIdcompraestadotipo() == 1 &&
                 $ultimoEstado->getCefechafin() === null
@@ -170,11 +164,9 @@ class Session
             'cofecha' => $fecha,
             'usuario' => $usuario
         ];
-
         if (!(new AbmCompra())->alta($param)) {
             return null;
         }
-
         $nuevaCompra = (new AbmCompra())->buscar([
             'usuario' => $usuario,
             'cofecha' => $fecha
