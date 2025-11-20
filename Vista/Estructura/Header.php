@@ -48,14 +48,14 @@ if ($sesionValida) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Programación Web Dinámica</title>
 
+    <!-- JS -->
+    <script src="<?php echo BASE_URL; ?>/Vista/Recursos/js/jquery-3.7.1.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>/Vista/Recursos/js/md5.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>/Vista/Recursos/js/bootstrap/bootstrap.bundle.js"></script>
     <!-- CSS de Bootstrap -->
     <link href="<?php echo BASE_URL; ?>/Vista/Recursos/css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo BASE_URL; ?>/Vista/Recursos/css/styles.css" rel="stylesheet">
 
-    <!-- JS -->
-    <script src="<?php echo BASE_URL; ?>/Vista/Recursos/js/bootstrap/bootstrap.bundle.js"></script>
-    <script src="<?php echo BASE_URL; ?>/Vista/Recursos/js/jquery-3.7.1.min.js"></script>
-    <script src="<?php echo BASE_URL; ?>/Vista/Recursos/js/md5.min.js"></script>
 </head>
 
 <body>

@@ -11,10 +11,10 @@ if ($sesionValida) {
     $menues = $sesion->getMenues();
     $compraEstado = $sesion->crearCarrito();
 
-    //if (!$sesion->validarPagina($menues)) {
-    //   header("Location: ".BASE_URL."/Vista/Paginas/SesionInvalida/SesionInvalida.php");
-    //   exit();
-    //}
+    if (!$sesion->validarPagina($menues)) {
+       header("Location: ".BASE_URL."/Vista/Paginas/SesionInvalida/SesionInvalida.php");
+       exit();
+    }
 } else {
     header("Location: " . BASE_URL . "/Vista/Paginas/SesionInvalida/SesionInvalida.php");
     exit();

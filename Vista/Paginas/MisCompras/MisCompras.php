@@ -39,7 +39,7 @@ include STRUCTURE_PATH . '/Header.php';
 
     function listarComprasPersonales() {
         $.ajax({
-            url: 'Accion/ListarCompras.php',
+            url: '/PWD_TPFINAL/Vista/Paginas/MisCompras/Accion/ListarCompras.php',
             method: 'POST',
             data: {
                 idusuario: <?php echo $usuario->getIdusuario(); ?>
@@ -107,7 +107,7 @@ include STRUCTURE_PATH . '/Header.php';
     function cancelarCompra(idcompraestado) {
         if (confirm('¿Estás seguro de que deseas cancelar esta compra?')) {
             $.ajax({
-                url: 'Accion/CancelarCompra.php',
+                url: '/PWD_TPFINAL/Vista/Paginas/Miscompras/Accion/CancelarCompra.php',
                 method: 'POST',
                 data: {
                     idcompraestado: idcompraestado,

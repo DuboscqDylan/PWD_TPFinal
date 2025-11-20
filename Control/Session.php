@@ -8,7 +8,7 @@ class Session
     */
     public function __construct()
     {
-         if (session_status() === PHP_SESSION_NONE) {
+        if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
     }
@@ -113,56 +113,90 @@ class Session
     public function crearCarrito()
     {
         $compraEstado = null;
-        if ($this->validar()) {
-            // Crea compra en estadotipo 1 (carrito) si no lo tiene, (SOLO PARA CLIENTES)
-            if ($this->esCliente()) { //Si es cliente (idrol = 3)
-                $usuario = $this->getUsuario();
-                $compras = (new AbmCompra())->buscar(['usuario' => $usuario]);
-                $compraEstadoTipos = (new AbmCompraEstadoTipo())->buscar(['idcompraestadotipo' => 1]); //Busca estadotipo 1 (carrito)
 
-                $encontrado = false;
-                $i = 0;
-                while (!$encontrado && $i < count($compras)) {
-                    $compraEstados = (new AbmCompraEstado())->buscar([
-                        'objCompra' => $compras[$i]
-                    ]); //Obtiene todo estado de la compra
+        if (!$this->validar()) {
+            return null;
+        }
 
-                    //Busca CompraEstado mas actual (sin considerar fechafin ni tipo)
-                    $ceMasActual = new CompraEstado(null, null, null, '1970-01-01 00:00:01'); //Establezco un nulo
-                    foreach ($compraEstados as $cadaCe) {
-                        if ((new DateTime($cadaCe->getCefechaini())) > (new DateTime($ceMasActual->getCefechaini()))) {
-                            $ceMasActual = $cadaCe; //Lo guarda si es más actual
-                        }
-                    }
+        if (!$this->esCliente()) {
+            return null;
+        }
 
-                    //Busca compraEstados ahora con fechaini maxima encontrada y tipo 1
-                    $compraEstados = (new AbmCompraEstado())->buscar([
-                        'objCompra' => $compras[$i],
-                        'objCompraEstadoTipo' => $compraEstadoTipos[0],
-                        'cefechaini' => $ceMasActual->getCefechaini(),
-                        'cefechafin' => "null"
-                    ]);
+        $usuario = $this->getUsuario();
 
-                    $encontrado = !empty($compraEstados);
-                    $i++;
-                }
+        $compras = (new AbmCompra())->buscar(['usuario' => $usuario]);
 
-                if ($encontrado) {
-                    $compraEstado = $compraEstados[0];
-                }
+        $compraEstadoTipos = (new AbmCompraEstadoTipo())->buscar(['idcompraestadotipo' => 1]);
+        if (empty($compraEstadoTipos)) {
+            return null;
+        }
 
-                if ($compraEstado == null) {
-                    $param['cofecha'] = (new DateTime('now', (new DateTimeZone('-03:00'))))->format('Y-m-d H:i:s');
-                    $param['usuario'] = $usuario;
+        $tipoCarrito = $compraEstadoTipos[0];
 
-                    if ((new AbmCompra())->alta($param)) {
-                        $compras = (new AbmCompra())->buscar(['usuario' => $usuario, 'cofecha' => $param['cofecha']]);
-                        $compraEstado = (new AbmCompraEstado())->buscar(['objCompra' => $compras[0], 'cefechafin' => "null"]); //Toda compraEstado de la bd
-                    }
+        foreach ($compras as $compra) {
+
+            $compraEstados = (new AbmCompraEstado())->buscar(['objCompra' => $compra]);
+            if (empty($compraEstados)) {
+                continue;
+            }
+
+            $ultimoEstado = null;
+            foreach ($compraEstados as $estado) {
+                if (
+                    $ultimoEstado === null ||
+                    new DateTime($estado->getCefechaini()) > new DateTime($ultimoEstado->getCefechaini())
+                ) {
+                    $ultimoEstado = $estado;
                 }
             }
+
+            if ($ultimoEstado === null) {
+                continue;
+            }
+
+            if (
+                $ultimoEstado->getObjCompraEstadoTipo()->getIdcompraestadotipo() == 1 &&
+                $ultimoEstado->getCefechafin() === null
+            ) {
+                return $ultimoEstado;
+            }
         }
-        return $compraEstado;
+
+
+        $fecha = (new DateTime('now', new DateTimeZone('-03:00')))
+            ->format('Y-m-d H:i:s');
+
+        $param = [
+            'cofecha' => $fecha,
+            'usuario' => $usuario
+        ];
+
+        if (!(new AbmCompra())->alta($param)) {
+            return null;
+        }
+
+        $nuevaCompra = (new AbmCompra())->buscar([
+            'usuario' => $usuario,
+            'cofecha' => $fecha
+        ]);
+
+        if (empty($nuevaCompra)) {
+            return null;
+        }
+
+        $nuevaCompra = $nuevaCompra[0];
+
+        $estados = (new AbmCompraEstado())->buscar([
+            'objCompra' => $nuevaCompra,
+            'objCompraEstadoTipo' => $tipoCarrito,
+            'cefechafin' => null
+        ]);
+
+        if (empty($estados)) {
+            return null;
+        }
+
+        return $estados[0];
     }
 
     /**
@@ -174,7 +208,7 @@ class Session
         $menues = [];
         if ($this->validar()) {
             $objRol = $this->getRoles()[0];
-            $menuRoles = (new AbmMenuRol())->buscar(['rol' => $objRol]); 
+            $menuRoles = (new AbmMenuRol())->buscar(['rol' => $objRol]);
 
             // Obtiene menues para dicho rol
             foreach ($menuRoles as $menuRol) {
