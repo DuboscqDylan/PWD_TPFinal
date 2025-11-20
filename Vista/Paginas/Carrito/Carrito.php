@@ -89,6 +89,7 @@ function sumar(idproducto, cantidad) {
         cicantidad: cantidad
     }, function() {
         actualizarCarrito();
+        actualizarIconoCarrito(); // Actualiza el ícono del carrito también
     }, 'json');
 }
 
@@ -99,6 +100,7 @@ function restar(idproducto, cantidad) {
         cicantidad: cantidad
     }, function() {
         actualizarCarrito();
+        actualizarIconoCarrito(); 
     }, 'json');
 }
 
@@ -108,6 +110,7 @@ function vaciarCarrito() {
     }, function(respuesta) {
         alert(respuesta.message);
         actualizarCarrito();
+        actualizarIconoCarrito(); 
     }, 'json');
 }
 
