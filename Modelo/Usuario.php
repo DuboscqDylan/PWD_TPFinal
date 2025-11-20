@@ -1,18 +1,16 @@
-<?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD_TPFINAL/configuracion.php";
-include_once ROOT_PATH . '/Modelo/conector/BaseDatos.php';
+<?php 
+include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
+include_once ROOT_PATH.'/Modelo/conector/BaseDatos.php';
 
-class Usuario
-{
+class Usuario {
     private $idusuario;
     private $usnombre;
     private $uspass;
     private $usmail;
     private $usdeshabilitado;
     private $mensajeOperacion;
-
-    public function __construct($idusuario = null, $usnombre = null, $uspass = null, $usmail = null, $usdeshabilitado = null)
-    {
+    
+    public function __construct($idusuario = null, $usnombre = null, $uspass = null, $usmail = null, $usdeshabilitado = null) {
         $this->idusuario = $idusuario;
         $this->usnombre = $usnombre;
         $this->uspass = $uspass;
@@ -21,70 +19,57 @@ class Usuario
     }
 
     // getters
-    public function getIdusuario()
-    {
+    public function getIdusuario() {
         return $this->idusuario;
     }
 
-    public function getUsnombre()
-    {
+    public function getUsnombre() {
         return $this->usnombre;
     }
 
-    public function getUsmail()
-    {
+    public function getUsmail() {
         return $this->usmail;
     }
 
-    public function getUspass()
-    {
+    public function getUspass() {
         return $this->uspass;
     }
 
-    public function getUsdeshabilitado()
-    {
+    public function getUsdeshabilitado() {
         return $this->usdeshabilitado;
     }
 
-    public function getMensajeOperacion()
-    {
+    public function getMensajeOperacion() {
         return $this->mensajeOperacion;
     }
 
     // setters
-    public function setIdusuario($idusuario)
-    {
+    public function setIdusuario($idusuario) {
         $this->idusuario = $idusuario;
     }
 
-    public function setUsnombre($usNombre)
-    {
+    public function setUsnombre($usNombre) {
         $this->usnombre = $usNombre;
     }
 
-    public function setUspass($usPass)
-    {
+    public function setUspass($usPass) {
         $this->uspass = $usPass;
     }
 
-    public function setUsmail($usMail)
-    {
+    public function setUsmail($usMail) {
         $this->usmail = $usMail;
     }
 
-    public function setUsdeshabilitado($usdeshabilitado)
-    {
+    public function setUsdeshabilitado($usdeshabilitado) {
         $this->usdeshabilitado = $usdeshabilitado;
     }
 
-    public function setMensajeOperacion($mensajeOperacion)
-    {
+    public function setMensajeOperacion($mensajeOperacion){
         $this->mensajeOperacion = $mensajeOperacion;
     }
 
     // metodos CRUD
-    public function cargarDatos($idusuario, $usnombre = null, $uspass = null, $usmail = null, $usdeshabilitado = null)
-    {
+    public function cargarDatos($idusuario, $usnombre = null , $uspass = null , $usmail = null , $usdeshabilitado = null) {
         $this->setIdusuario($idusuario);
         $this->setUsnombre($usnombre);
         $this->setUspass($uspass);
@@ -97,8 +82,7 @@ class Usuario
      * @param int $id
      * @return boolean
      */
-    public function buscarDatos($idusuario)
-    {
+    public function buscarDatos($idusuario) {
         $bd = new BaseDatos();
         $resultado = false;
         if ($bd->Iniciar()) {
@@ -112,20 +96,19 @@ class Usuario
         }
         return $resultado;
     }
-
+    
     /**
      * Retorna una coleccion de usuarios donde se cumpla $condicion
      * @param $condicion // WHERE de sql
      * @return array // usuarios que cumplieron la condicion
      */
-    public function listar($condicion = "")
-    {
+    public function listar($condicion = "") {
         $coleccion = [];
         $bd = new BaseDatos();
         if ($bd->Iniciar()) {
             $consulta = "SELECT * FROM usuario";
             if ($condicion != "") {
-                $consulta = $consulta . ' WHERE ' . $condicion;
+                $consulta = $consulta.' WHERE '.$condicion;
             }
             $consulta .= " ORDER BY idusuario ";
             if ($bd->Ejecutar($consulta)) {
@@ -147,13 +130,12 @@ class Usuario
      * Insertar los datos de un usuario a la bd
      * @return boolean
      */
-    public function insertar()
-    {
+    public function insertar() {
         $resultado = false;
         $bd = new BaseDatos();
         if ($bd->Iniciar()) {
             $consulta = "INSERT INTO usuario(usnombre, uspass, usmail) VALUES 
-            ('" . $this->getUsnombre() . "', '" . $this->getUspass() . "', '" . $this->getUsmail() . "')";
+            ('".$this->getUsnombre()."', '".$this->getUspass()."', '".$this->getUsmail()."')";
             if ($bd->Ejecutar($consulta)) {
                 $resultado = true;
             } else {
@@ -169,23 +151,22 @@ class Usuario
      * Modificar los datos de un usuario con los que tiene el objeto actual 
      * @return boolean
      */
-    public function modificar()
-    {
+    public function modificar() {
         $bd = new BaseDatos();
         $resultado = false;
         if ($bd->Iniciar()) {
             if ($this->getUsdeshabilitado() == null) {
                 $desha = 'null';
             } else {
-                $desha = "'" . $this->getUsdeshabilitado() . "'";
+                $desha = "'".$this->getUsdeshabilitado()."'";
             }
-
+            
             $consulta = "UPDATE usuario 
-                         SET usnombre = '" . $this->getUsnombre() . "', 
-                             uspass = '" . $this->getUspass() . "', 
-                             usmail = '" . $this->getUsmail() . "', 
-                             usdeshabilitado = " . $desha . "
-                         WHERE idusuario = " . $this->getIdusuario();
+                         SET usnombre = '".$this->getUsnombre()."', 
+                             uspass = '".$this->getUspass()."', 
+                             usmail = '".$this->getUsmail()."', 
+                             usdeshabilitado = ".$desha."
+                         WHERE idusuario = ".$this->getIdusuario();
             if ($bd->Ejecutar($consulta)) {
                 $resultado = true;
             } else {
@@ -196,17 +177,16 @@ class Usuario
         }
         return $resultado;
     }
-
+    
     /**
      * Eliminar un usuario de la bd
      * @return boolean
      */
-    public function eliminar()
-    {
+    public function eliminar() {
         $bd = new BaseDatos();
         $resultado = false;
         if ($bd->Iniciar()) {
-            $consulta = "DELETE FROM usuario WHERE idusuario = " . $this->getIdusuario();
+            $consulta = "DELETE FROM usuario WHERE idusuario = ".$this->getIdusuario();
             if ($bd->Ejecutar($consulta)) {
                 $resultado = true;
             } else {
@@ -222,12 +202,12 @@ class Usuario
      * Retorna un string con los datos del usuario
      * @return string
      */
-    public function __toString()
-    {
-        return ("idusuario: " . $this->getIdusuario() . " \n 
-        usnombre: " . $this->getUsnombre() . "\n 
-        uspass: " . $this->getUspass() . "\n 
-        usmail: " . $this->getUsmail() . " \n 
-        usdeshabilitado: " . $this->getUsdeshabilitado());
+    public function __toString() {
+        return ("idusuario: ".$this->getIdusuario()." \n 
+        usnombre: ".$this->getUsnombre()."\n 
+        uspass: ".$this->getUspass()."\n 
+        usmail: ".$this->getUsmail()." \n 
+        usdeshabilitado: ".$this->getUsdeshabilitado());
     }
 }
+?>

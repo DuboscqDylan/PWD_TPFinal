@@ -1,18 +1,16 @@
 <?php
 
-class AbmCompraEstadoTipo
-{
-
+class AbmCompraEstadoTipo {
+    
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden 
      * con los nombres de las variables instancias del objeto
      * @param array $param
      * @return CompraEstadoTipo
      */
-    private function cargarObjeto($param)
-    {
+    private function cargarObjeto($param) {
         $obj = null;
-        if (array_key_exists('cetdescripcion', $param) and array_key_exists('cetdetalle', $param)) {
+        if (array_key_exists('cetdescripcion', $param) AND array_key_exists('cetdetalle', $param)) {
             // Solo asignamos 'idcompraestadotipo' si está definido y es distinto de null
             $idcompraestadotipo = array_key_exists('idcompraestadotipo', $param) ? $param['idcompraestadotipo'] : null;
             $obj = new CompraEstadoTipo();
@@ -27,8 +25,7 @@ class AbmCompraEstadoTipo
      * @param array $param
      * @return CompraEstadoTipo
      */
-    private function cargarObjetoConClave($param)
-    {
+    private function cargarObjetoConClave($param) {
         $obj = null;
         if ($this->seteadosCamposClaves($param)) {
             $obj = new CompraEstadoTipo();
@@ -42,8 +39,7 @@ class AbmCompraEstadoTipo
      * @param array $param
      * @return boolean
      */
-    private function seteadosCamposClaves($param)
-    {
+    private function seteadosCamposClaves($param) {
         $resp = false;
         if (isset($param['idcompraestadotipo'])) {
             $resp = true;
@@ -56,8 +52,7 @@ class AbmCompraEstadoTipo
      * @param array $param
      * @return boolean
      */
-    public function alta($param)
-    {
+    public function alta($param) {
         $resp = false;
         $obj = $this->cargarObjeto($param);
         if ($obj != null && $obj->insertar()) {
@@ -71,8 +66,7 @@ class AbmCompraEstadoTipo
      * @param array $param
      * @return boolean
      */
-    public function baja($param)
-    {
+    public function baja($param) {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
             $obj = $this->cargarObjetoConClave($param);
@@ -88,8 +82,7 @@ class AbmCompraEstadoTipo
      * @param array $param
      * @return boolean
      */
-    public function modificacion($param)
-    {
+    public function modificacion($param) {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
             $obj = $this->cargarObjeto($param);
@@ -106,21 +99,21 @@ class AbmCompraEstadoTipo
      * @param array $param
      * @return array
      */
-    public function buscar($param = null)
-    {
+    public function buscar ($param = null) {
         $where = " true ";
         if ($param != null) {
             if (isset($param['idcompraestadotipo'])) {
-                $where .= " AND idcompraestadotipo = " . $param['idcompraestadotipo'];
+                $where .= " AND idcompraestadotipo = ".$param['idcompraestadotipo'];
             }
             if (isset($param['cetdescripcion'])) {
-                $where .= " AND cetdescripcion = '" . $param['cetdescripcion'] . "'";
+                $where .= " AND cetdescripcion = '".$param['cetdescripcion']."'";
             }
             if (isset($param['cetdetalle'])) {
-                $where .= " AND cetdetalle = '" . $param['cetdetalle'] . "'";
+                $where .= " AND cetdetalle = '".$param['cetdetalle']."'";
             }
         }
         $arreglo = (new CompraEstadoTipo())->listar($where);
         return $arreglo;
     }
 }
+?>

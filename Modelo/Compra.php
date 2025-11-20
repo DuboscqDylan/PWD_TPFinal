@@ -1,67 +1,56 @@
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD_TPFINAL/configuracion.php";
-include_once ROOT_PATH . '/Modelo/conector/BaseDatos.php';
-include_once ROOT_PATH . '/Modelo/Usuario.php';
+include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
+include_once ROOT_PATH.'/Modelo/conector/BaseDatos.php';
+include_once ROOT_PATH.'/Modelo/Usuario.php';
 
-class Compra
-{
+class Compra {
     private $idcompra;
     private $cofecha;
     private $objUsuario;
     private $mensajeoperacion;
 
-    public function __construct($idcompra = null, $cofecha = null, $objUsuario = null)
-    {
+    public function __construct($idcompra = null, $cofecha = null, $objUsuario = null) {
         $this->idcompra = $idcompra;
         $this->cofecha = $cofecha;
         $this->objUsuario = $objUsuario;
     }
 
     // getters 
-    public function getIdCompra()
-    {
+    public function getIdCompra() {
         return $this->idcompra;
     }
 
-    public function getCofecha()
-    {
+    public function getCofecha() {
         return $this->cofecha;
     }
 
-    public function getObjUsuario()
-    {
+    public function getObjUsuario() {
         return $this->objUsuario;
     }
 
-    public function getMensajeOperacion()
-    {
+    public function getMensajeOperacion() {
         return $this->mensajeoperacion;
     }
 
     // setters
-    public function setIdCompra($idcompra)
-    {
+    public function setIdCompra($idcompra) {
         $this->idcompra = $idcompra;
     }
 
-    public function setCofecha($cofecha)
-    {
+    public function setCofecha($cofecha) {
         $this->cofecha = $cofecha;
     }
 
-    public function setObjUsuario($objUsuario)
-    {
+    public function setObjUsuario($objUsuario) {
         $this->objUsuario = $objUsuario;
     }
 
-    public function setMensajeOperacion($mensajeoperacion)
-    {
+    public function setMensajeOperacion($mensajeoperacion) {
         $this->mensajeoperacion = $mensajeoperacion;
     }
 
-    public function cargarDatos($idcompra = null, $cofecha = null, $objUsuario = null)
-    {
+    public function cargarDatos($idcompra = null, $cofecha = null, $objUsuario = null) {
         $this->setIdcompra($idcompra);
         $this->setCofecha($cofecha);
         $this->setObjUsuario($objUsuario);
@@ -72,8 +61,7 @@ class Compra
      * @param int $idcompra
      * @return boolean
      */
-    public function buscarDatos($idcompra)
-    {
+    public function buscarDatos($idcompra) {
         $bd = new BaseDatos();
         $resultado = false;
         if ($bd->Iniciar()) {
@@ -95,14 +83,13 @@ class Compra
      * @param $condicion // WHERE de sql
      * @return array // compras que cumplieron la condicion
      */
-    public function listar($condicion = "")
-    {
+    public function listar($condicion = "") {
         $coleccion = [];
         $bd = new BaseDatos();
         if ($bd->Iniciar()) {
             $consulta = "SELECT * FROM compra";
             if ($condicion != "") {
-                $consulta = $consulta . ' WHERE ' . $condicion;
+                $consulta = $consulta.' WHERE '.$condicion;
             }
             $consulta .= " ORDER BY idcompra ";
             if ($bd->Ejecutar($consulta)) {
@@ -126,13 +113,12 @@ class Compra
      * Insertar los datos de una compra a la bd
      * @return boolean
      */
-    public function insertar()
-    {
+    public function insertar() {
         $resultado = false;
         $bd = new BaseDatos();
         if ($bd->Iniciar()) {
             $consulta = "INSERT INTO compra(idusuario, cofecha) VALUES
-            (" . ($this->getObjUsuario())->getIdusuario() . ", '" . $this->getCofecha() . "')";
+            (".($this->getObjUsuario())->getIdusuario().", '".$this->getCofecha()."')";
             if ($bd->Ejecutar($consulta)) {
                 $this->setIdcompra($bd->lastInsertId());
                 $resultado = true;
@@ -149,15 +135,14 @@ class Compra
      * Modificar los datos de una compra en la bd (No se deberia usar en principio)
      * @return boolean
      */
-    public function modificar()
-    {
+    public function modificar() {
         $bd = new BaseDatos();
         $resultado = false;
         if ($bd->Iniciar()) {
             $consulta = "UPDATE compra SET 
-                cofecha = '" . $this->getCofecha() . "', 
-                idusuario = " . ($this->getObjUsuario())->getIdusuario() . " 
-            WHERE idcompra = " . $this->getIdcompra();
+                cofecha = '".$this->getCofecha()."', 
+                idusuario = ".($this->getObjUsuario())->getIdusuario()." 
+            WHERE idcompra = ".$this->getIdcompra();
             if ($bd->Ejecutar($consulta)) {
                 $resultado = true;
             } else {
@@ -173,13 +158,12 @@ class Compra
      * Eliminar una compra de la bd
      * @return boolean
      */
-    public function eliminar()
-    {
+    public function eliminar() {
         $bd = new BaseDatos();
-        $resultado = false;
-        if ($bd->Iniciar()) {
+        $resultado = false; 
+        if ($bd->Iniciar())  {
             $consulta = "DELETE FROM compra 
-                WHERE idcompra = " . $this->getIdcompra();
+                WHERE idcompra = ".$this->getIdcompra();
             if ($bd->Ejecutar($consulta)) {
                 $resultado = true;
             } else {
@@ -195,10 +179,9 @@ class Compra
      * Retorna un string con los datos de la compra
      * @return string
      */
-    public function __tostring()
-    {
+     public function __tostring() {
         return ("idcompra: " . $this->getIdcompra() . "\n" .
-            "cofecha: " . $this->getCoFecha() . "\n" .
-            "usuario: " . $this->getObjUsuario() . "\n");
-    }
+                "cofecha: " . $this->getCoFecha() . "\n" .
+                "usuario: " . $this->getObjUsuario() . "\n");
+     }
 }

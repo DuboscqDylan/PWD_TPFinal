@@ -13,7 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <footer class="bg-dark text-light py-3 mt-auto w-100" style="font-size: 0.9rem;">
     <div class="container">
         <div class="row align-items-center text-center text-md-start">
-
+            
             <!-- Columna 1: Nombre y descripción -->
             <div class="col-md-4 mb-3 mb-md-0">
                 <strong class="text-white">BIKE SHOP</strong><br>

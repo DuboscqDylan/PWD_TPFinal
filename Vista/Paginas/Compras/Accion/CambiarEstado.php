@@ -1,7 +1,8 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD_TPFINAL/configuracion.php";
-$data = data_submitted();
+include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
+$data = data_submitted(); 
 
-$respuesta = (new AbmCompra())->cambiarEstado($data);
+$respuesta = (new AbmCompra())->cambiarEstado($data); 
 
 echo json_encode($respuesta);
+?>
