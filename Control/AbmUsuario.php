@@ -408,40 +408,37 @@ class AbmUsuario
     $subaRol = true;
     $bajaRol = true;
 
-    /** ---- MANEJO DE ROLES ---- **/
     if (isset($data['modRol']) && $data['modRol'] !== "") {
 
         $abmRol = new AbmRol();
         $abmUsuarioRol = new AbmUsuarioRol();
 
-        // buscar el nuevo rol
+  
         $roles = $abmRol->buscar(['rodescripcion' => $data['modRol']]);
         if (empty($roles)) {
             return ['success' => false, 'message' => 'Rol inválido.'];
         }
         $rolNuevo = $roles[0];
 
-        // buscar rol actual
+  
         $usuarioRoles = $abmUsuarioRol->buscar(['usuario' => $usuario]);
 
-        // si tiene un rol previo → eliminarlo con el formato correcto
+  
         if (!empty($usuarioRoles)) {
             $rolActual = $usuarioRoles[0]->getObjRol();
 
             $bajaRol = $abmUsuarioRol->baja([
                 'usuario' => $usuario,
-                'rol'     => $rolActual   // OBJETO!
+                'rol'     => $rolActual   
             ]);
         }
 
-        // alta del nuevo rol → formato idusuario / idrol
         $subaRol = $abmUsuarioRol->alta([
             'idusuario' => $usuario->getIdusuario(),
             'idrol'     => $rolNuevo->getIdrol()
         ]);
     }
 
-    /** ---- modificar usuario ---- **/
     $modificacion = $this->modificacion($param);
 
     if ($modificacion && $subaRol && $bajaRol) {
