@@ -381,63 +381,63 @@ class AbmUsuario
     }
 
     public function modificarUsuarioCompleto($data)
-    {
-        if (!isset($data['usuarioID'])) {
-            return ['success' => false, 'message' => 'Datos incompletos.'];
+{
+    if (!isset($data['usuarioID'])) {
+        return ['success' => false, 'message' => 'Datos incompletos.'];
+    }
+
+    $usuarios = $this->buscar(['idusuario' => $data['usuarioID']]);
+    if (empty($usuarios)) {
+        return ['success' => false, 'message' => 'Usuario no encontrado.'];
+    }
+
+    $usuario = $usuarios[0];
+
+    $param = [
+        'idusuario' => $usuario->getIdusuario(),
+        'usnombre'  => $data['modNombre'] ?? $usuario->getUsnombre(),
+        'usmail'    => $data['modEmail'] ?? $usuario->getUsmail(),
+        'uspass'    => $data['modPass'] ?? $usuario->getUspass(),
+        'usdeshabilitado' => $data['modUsdeshabilitado'] ?? $usuario->getUsdeshabilitado(),
+    ];
+
+    $subaRol = true;
+    $bajaRol = true;
+
+    if (isset($data['modRol'])) {
+
+        $abmRol = new AbmRol();
+        $abmUsuarioRol = new AbmUsuarioRol();
+
+        $roles = $abmRol->buscar(['rodescripcion' => $data['modRol']]);
+        if (empty($roles)) {
+            return ['success' => false, 'message' => 'Rol inválido.'];
         }
 
-        $usuarios = $this->buscar(['idusuario' => $data['usuarioID']]);
-        if (empty($usuarios)) {
-            return ['success' => false, 'message' => 'Usuario no encontrado.'];
-        }
+        $rolNuevo = $roles[0];
 
-        $usuario = $usuarios[0];
-
-        $param = [
-            'idusuario' => $usuario->getIdusuario(),
-            'usnombre'  => $data['modNombre'] ?? $usuario->getUsnombre(),
-            'usmail'    => $data['modEmail'] ?? $usuario->getUsmail(),
-            'uspass'    => $data['modPass'] ?? $usuario->getUspass(),
-            'usdeshabilitado' => $data['modUsdeshabilitado'] ?? $usuario->getUsdeshabilitado(),
-        ];
-
-        $subaRol = true;
-        $bajaRol = true;
-
-        if (isset($data['modRol'])) {
-
-            $abmRol = new AbmRol();
-            $abmUsuarioRol = new AbmUsuarioRol();
-
-            $roles = $abmRol->buscar(['rodescripcion' => $data['modRol']]);
-            if (empty($roles)) {
-                return ['success' => false, 'message' => 'Rol inválido.'];
-            }
-
-            $rolNuevo = $roles[0];
-
-            $usuarioRoles = $abmUsuarioRol->buscar(['usuario' => $usuario]);
-            if (!empty($usuarioRoles)) {
-                $bajaRol = $abmUsuarioRol->baja([
-                    'usuario' => $usuario,
-                    'rol' => $usuarioRoles[0]->getObjRol()
-                ]);
-            }
-            $subaRol = $abmUsuarioRol->alta([
+        $usuarioRoles = $abmUsuarioRol->buscar(['usuario' => $usuario]);
+        if (!empty($usuarioRoles)) {
+            $bajaRol = $abmUsuarioRol->baja([
                 'usuario' => $usuario,
-                'rol' => $rolNuevo
+                'rol' => $usuarioRoles[0]->getObjRol()
             ]);
         }
-        $modificacion = $this->modificacion($param);
-
-        if ($modificacion && $subaRol && $bajaRol) {
-            return ['success' => true, 'message' => 'Usuario modificado exitosamente.'];
-        }
-
-        return [
-            'success' => false,
-            'message' => 'Error al modificar el usuario.',
-            'data' => $param
-        ];
+        $subaRol = $abmUsuarioRol->alta([
+            'usuario' => $usuario,
+            'rol' => $rolNuevo
+        ]);
     }
+    $modificacion = $this->modificacion($param);
+
+    if ($modificacion && $subaRol && $bajaRol) {
+        return ['success' => true, 'message' => 'Usuario modificado exitosamente.'];
+    }
+
+    return [
+        'success' => false,
+        'message' => 'Error al modificar el usuario.',
+        'data' => $param
+    ];
+}
 }

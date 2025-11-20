@@ -1,9 +1,9 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD_TPFINAL/configuracion.php";
-include STRUCTURE_PATH . '/Header.php';
+include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
+include STRUCTURE_PATH.'/Header.php';
 
 if ($sesion->validar()) { //Si ya tiene una sesion, redirige a Catalogo
-    header('Location: ' . BASE_URL . '/Vista/Paginas/Catalogo/Catalogo.php');
+    header('Location: '.BASE_URL.'/Vista/Paginas/Catalogo/Catalogo.php');
 }
 ?>
 
@@ -73,7 +73,7 @@ if ($sesion->validar()) { //Si ya tiene una sesion, redirige a Catalogo
                             .removeClass('d-none')
                             .addClass('d-block');
                         setTimeout(function() {
-                            window.location.href = "<?php echo BASE_URL ?>/Vista/Paginas/Login/Login.php";
+                            window.location.href = "<?php echo BASE_URL?>/Vista/Paginas/Login/Login.php";
                         }, 2000);
                     } else {
                         $('#errorMessage')

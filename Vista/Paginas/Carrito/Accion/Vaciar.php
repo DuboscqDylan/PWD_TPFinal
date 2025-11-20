@@ -4,3 +4,4 @@ $data = data_submitted();
 
 $respuesta = (new AbmCompraItem())->vaciarCarrito($data);
 echo json_encode($respuesta);
+?>

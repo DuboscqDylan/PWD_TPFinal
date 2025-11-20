@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD_TPFINAL/configuracion.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
 include STRUCTURE_PATH . '/Header.php';
 ?>
 
@@ -87,7 +87,7 @@ include STRUCTURE_PATH . '/Header.php';
                             </button>
                         `;
                     } else {
-                        tableContent += `<span class="text-muted">-</span>`;
+                        tableContent += `<span class="text-muted">-</span>`; 
                     }
 
                     tableContent += `

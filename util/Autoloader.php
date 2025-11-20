@@ -1,9 +1,9 @@
-<?php
+<?php 
 
-/**
- * Función para cargar automáticamente las clases cuando se utilizan en lugar de requerirlas explícitamente con include o require.
- * @return
- */
+    /**
+     * Función para cargar automáticamente las clases cuando se utilizan en lugar de requerirlas explícitamente con include o require.
+     * @return
+     */
 spl_autoload_register(function ($class_name) {
     //echo "class ".$class_name ;
     $directories = array(
@@ -11,7 +11,7 @@ spl_autoload_register(function ($class_name) {
         $_SERVER['ROOT'] . '/Util/',
         $_SERVER['ROOT'] . '/Control/',
         $_SERVER['ROOT'] . '/Vista/Recursos/',
-        $_SERVER['ROOT'] . '/Util/',
+        $_SERVER['ROOT'].'/Util/',
     );
     //print_object($directories) ;
 

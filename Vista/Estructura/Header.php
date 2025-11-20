@@ -59,118 +59,116 @@ if ($sesionValida) {
 </head>
 
 <body>
-    <header>
+<header>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="<?php echo BASE_URL; ?>/index.php">
+                <img src="<?php echo BASE_URL; ?>/Vista/Media/Sitio/Logo/Logo2.png" alt="Logo" width="50" height="50" class="me-2 rounded-circle">
+                <h4 class="m-0 fw-bold">BIKE SHOP</h4>
+            </a>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
-            <div class="container-fluid">
-                <a class="navbar-brand d-flex align-items-center" href="<?php echo BASE_URL; ?>/index.php">
-                    <img src="<?php echo BASE_URL; ?>/Vista/Media/Sitio/Logo/Logo2.png" alt="Logo" width="50" height="50" class="me-2 rounded-circle">
-                    <h4 class="m-0 fw-bold">BIKE SHOP</h4>
-                </a>
+            <!-- Botón responsive -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <!-- Botón responsive -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <!-- Menú -->
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+                <?php echo $menuHtml; ?>
+            </div>
 
-                <!-- Menú -->
-                <div class="collapse navbar-collapse" id="menuPrincipal">
-                    <?php echo $menuHtml; ?>
-                </div>
-
-                <!-- 🔹 ICONO DE CARRITO (abre el panel derecho) -->
-                <?php if ($sesionValida) : ?>
-                    <button class="btn btn-light position-relative"
+            <!-- 🔹 ICONO DE CARRITO (abre el panel derecho) -->
+            <?php if ($sesionValida) : ?>
+                <button class="btn btn-light position-relative"
                         id="botonCarrito"
                         data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasCarrito"
                         style="display:none;">
-                        🛒
-                        <span id="contadorCarrito"
-                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                            style="display:none;">
-                            0
-                        </span>
-                    </button>
-                <?php endif; ?>
-            </div>
-        </nav>
-    </header>
-
-
-    <!-- 🟦 PANEL DERECHO (OFFCANVAS) -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title">Mi Carrito</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+                    🛒
+                    <span id="contadorCarrito"
+                          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                          style="display:none;">
+                        0
+                    </span>
+                </button>
+            <?php endif; ?>
         </div>
+    </nav>
+</header>
 
-        <div class="offcanvas-body" id="carritoContenido">
-            <!-- Aquí se cargan los items del carrito -->
-            <div class="text-center text-muted">Cargando...</div>
-        </div>
 
-        <div class="p-3">
-            <a href="<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Carrito.php" class="btn btn-primary w-100">
-                Ir al carrito
-            </a>
-        </div>
+<!-- 🟦 PANEL DERECHO (OFFCANVAS) -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Mi Carrito</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
     </div>
 
+    <div class="offcanvas-body" id="carritoContenido">
+        <!-- Aquí se cargan los items del carrito -->
+        <div class="text-center text-muted">Cargando...</div>
+    </div>
 
-    <?php if ($sesionValida) : ?>
-        <script>
-            $(document).ready(function() {
-                actualizarIconoCarrito();
-            });
+    <div class="p-3">
+        <a href="<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Carrito.php" class="btn btn-primary w-100">
+            Ir al carrito
+        </a>
+    </div>
+</div>
 
-            // 🔹 ACTUALIZA EL ICONO DEL CARRITO
-            function actualizarIconoCarrito() {
-                $.ajax({
-                    url: '<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Accion/ListarCarrito.php',
-                    method: 'POST',
-                    data: {
-                        idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0; ?>
-                    },
-                    dataType: 'json',
-                    success: function(respuesta) {
-                        if (respuesta.length > 0) {
-                            let total = 0;
-                            respuesta.forEach(item => total += item.cicantidad);
 
-                            $('#contadorCarrito').text(total).show();
-                            $('#botonCarrito').show();
+<?php if ($sesionValida) : ?>
+<script>
+$(document).ready(function() {
+    actualizarIconoCarrito();
+});
 
-                            cargarCarritoPanel();
-                        } else {
-                            $('#contadorCarrito').hide();
-                        }
-                    }
-                });
+// 🔹 ACTUALIZA EL ICONO DEL CARRITO
+function actualizarIconoCarrito() {
+    $.ajax({
+        url: '<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Accion/ListarCarrito.php',
+        method: 'POST',
+        data: {
+            idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0; ?>
+        },
+        dataType: 'json',
+        success: function(respuesta) {
+            if (respuesta.length > 0) {
+                let total = 0;
+                respuesta.forEach(item => total += item.cicantidad);
+
+                $('#contadorCarrito').text(total).show();
+                $('#botonCarrito').show();
+
+                cargarCarritoPanel();
+            } else {
+                $('#contadorCarrito').hide();
             }
+        }
+    });
+}
 
-            // 🔹 CARGA EL PANEL DERECHO
+// 🔹 CARGA EL PANEL DERECHO
 
-            function cargarCarritoPanel() {
-                $.ajax({
-                    url: '<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Accion/ListarCarrito.php',
-                    method: 'POST',
-                    data: {
-                        idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0; ?>
-                    },
-                    dataType: 'json',
-                    success: function(respuesta) {
+function cargarCarritoPanel() {
+    $.ajax({
+        url: '<?php echo BASE_URL; ?>/Vista/Paginas/Carrito/Accion/ListarCarrito.php',
+        method: 'POST',
+        data: { idcompraestado: <?php echo $compraEstado ? $compraEstado->getIdcompraestado() : 0; ?> },
+        dataType: 'json',
+        success: function(respuesta) {
 
-                        if (respuesta.length === 0) {
-                            $("#carritoContenido").html(`
+            if (respuesta.length === 0) {
+                $("#carritoContenido").html(`
                     <div class="text-center text-muted">Tu carrito está vacío</div>
                 `);
-                            return;
-                        }
+                return;
+            }
 
-                        let html = "";
-                        respuesta.forEach(item => {
-                            html += `
+            let html = "";
+            respuesta.forEach(item => {
+                html += `
                     <div class="border rounded p-2 mb-2 d-flex align-items-center">
                         <img src="${item.icon}" class="me-2" style="width:50px;height:50px;object-fit:cover;">
                         <div>
@@ -179,11 +177,12 @@ if ($sesionValida) {
                             Precio: $${item.proprecio}
                         </div>
                     </div>`;
-                        });
+            });
 
-                        $('#carritoContenido').html(html);
-                    }
-                });
-            }
-        </script>
-    <?php endif; ?>
+            $('#carritoContenido').html(html);
+        }
+    });
+}
+
+</script>
+<?php endif; ?>

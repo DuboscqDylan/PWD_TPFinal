@@ -1,15 +1,13 @@
-<?php
+<?php 
 
-class AbmRol
-{
+class AbmRol {
     /**
      * Espera como parametro un arreglo asociativo donde 
      * las claves coinciden con los nombres de las variables instancias del objeto
      * @param array $param
      * @return Rol
      */
-    private function cargarObjeto($param)
-    {
+    private function cargarObjeto($param) {
         $obj = null;
         if (array_key_exists('rodescripcion', $param)) {
             // Solo asignamos 'idrol' si está definido y es distinto de null
@@ -26,8 +24,7 @@ class AbmRol
      * @param array $param
      * @return Rol
      */
-    private function cargarObjetoConClave($param)
-    {
+    private function cargarObjetoConClave($param) {
         $obj = null;
         if ($this->seteadosCamposClaves($param)) {
             $obj = new Rol();
@@ -41,8 +38,7 @@ class AbmRol
      * @param array $param
      * @return boolean
      */
-    private function seteadosCamposClaves($param)
-    {
+    private function seteadosCamposClaves($param) {
         $resp = false;
         if (isset($param['idrol'])) {
             $resp = true;
@@ -55,8 +51,7 @@ class AbmRol
      * @param array $param
      * @return boolean
      */
-    public function alta($param)
-    {
+    public function alta($param) {
         $resp = false;
         $obj = $this->cargarObjeto($param);
         if ($obj != null && $obj->insertar()) {
@@ -70,8 +65,7 @@ class AbmRol
      * @param array $param
      * @return boolean
      */
-    public function baja($param)
-    {
+    public function baja($param) {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
             $obj = $this->cargarObjetoConClave($param);
@@ -87,8 +81,7 @@ class AbmRol
      * @param array $param
      * @return boolean
      */
-    public function modificacion($param)
-    {
+    public function modificacion($param) {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
             $obj = $this->cargarObjeto($param);
@@ -105,18 +98,18 @@ class AbmRol
      * @param array $param
      * @return array
      */
-    public function buscar($param = null)
-    {
+    public function buscar ($param = null) {
         $where = " true ";
         if ($param != null) {
             if (isset($param['idrol'])) {
-                $where .= " AND idrol = " . $param['idrol'];
+                $where .= " AND idrol = ".$param['idrol'];
             }
             if (isset($param['rodescripcion'])) {
-                $where .= " AND rodescripcion = '" . $param['rodescripcion'] . "'";
+                $where .= " AND rodescripcion = '".$param['rodescripcion']."'";
             }
         }
         $arreglo = (new Rol())->listar($where);
         return $arreglo;
     }
 }
+?>

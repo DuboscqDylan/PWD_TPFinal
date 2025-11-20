@@ -1,5 +1,6 @@
+
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD_TPFINAL/configuracion.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
 include STRUCTURE_PATH . "/HeaderSeguro.php";
 ?>
 
@@ -48,7 +49,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                 <label for="precioAlta" class="form-label text-white">Precio</label>
                 <input type="number" class="form-control" id="precioAlta" name="precioAlta" required>
             </div>
-
+           
             <button type="submit" class="btn btn-success mt-3 w-100">Crear producto</button>
         </form>
         <div class="mt-3">
@@ -81,7 +82,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                 <label for="proprecio" class="form-label text-white">Precio</label>
                 <input type="number" class="form-control" id="proprecio" name="proprecio">
             </div>
-            >
+           >
 
             <button type="submit" class="btn btn-primary mt-3 w-100">Actualizar producto</button>
         </form>
@@ -136,9 +137,9 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
             });
         }
 
-
+        
         $('#altaProductoForm').submit(function(e) {
-            e.preventDefault();
+            e.preventDefault(); 
             $('#errorMessage').text('').removeClass('d-block').addClass('d-none');
             $('#successMessage').text('').removeClass('d-block').addClass('d-none');
 
@@ -148,7 +149,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                 prodetalle: $('#detalleAlta').val(),
                 procantstock: $('#stockAlta').val(),
                 proprecio: $('#precioAlta').val(),
-
+                
             };
 
             // Envío de los datos a través de Ajax
@@ -213,7 +214,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                     type: 'POST',
                     dataType: 'json',
                     data: {
-                        idproducto: idproducto
+                        idproducto: idproducto 
                     },
                     success: function(response) {
                         if (response.success) {
@@ -257,13 +258,13 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
 
 
         $('#modificarProductoForm').submit(function(e) {
-            e.preventDefault();
+            e.preventDefault(); 
             $('#errorMessageMod').text('').removeClass('d-block').addClass('d-none');
             $('#successMessageMod').text('').removeClass('d-block').addClass('d-none');
 
             var formData = {
                 idproducto: parseInt($('#idproducto').val(), 10)
-            };
+            }; 
             if ($('#pronombre').val().trim() != "") {
                 formData.pronombre = $('#pronombre').val().trim();
             }
@@ -276,8 +277,8 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
             if (!isNaN(parseFloat($('#proprecio').val()))) {
                 formData.proprecio = parseFloat($('#proprecio').val()); // Validar si es NaN
             }
-
-
+           
+            
             $.ajax({
                 url: 'Accion/Modificar.php',
                 type: 'POST',
@@ -290,7 +291,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                             .text(res.message)
                             .removeClass('d-none')
                             .addClass('d-block');
-                        cargarProductos();
+                        cargarProductos(); 
                     } else {
                         $('#errorMessageMod')
                             .text(res.message)
@@ -307,6 +308,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
             });
         });
     });
+
 </script>
 
 <?php include STRUCTURE_PATH . "/Footer.php"; ?>
