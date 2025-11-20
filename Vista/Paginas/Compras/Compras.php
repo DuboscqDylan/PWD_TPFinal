@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD_TPFINAL/configuracion.php";
+include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
 include STRUCTURE_PATH . "/HeaderSeguro.php";
 ?>
 
@@ -86,9 +86,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
         $.ajax({
             url: 'Accion/ListarCompraEstados.php',
             method: 'GET',
-            data: {
-                idcompraestadotipo: 2
-            },
+            data: { idcompraestadotipo: 2 },
             dataType: 'json',
             success: function(response) {
                 var tableContent = '';
@@ -116,9 +114,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
         $.ajax({
             url: 'Accion/ListarCompraEstados.php',
             method: 'GET',
-            data: {
-                idcompraestadotipo: 3
-            },
+            data: { idcompraestadotipo: 3 },
             dataType: 'json',
             success: function(response) {
                 var tableContent = '';
@@ -142,9 +138,7 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
         $.ajax({
             url: 'Accion/ListarCompraEstados.php',
             method: 'GET',
-            data: {
-                idcompraestadotipo: 4
-            },
+            data: { idcompraestadotipo: 4 },
             dataType: 'json',
             success: function(response) {
                 var tableContent = '';

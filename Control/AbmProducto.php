@@ -1,6 +1,6 @@
 <?php
 
-class AbmProducto
+Class AbmProducto
 {
     private function cargarObjeto($param)
     {
@@ -11,12 +11,11 @@ class AbmProducto
             $obj = new Producto();
             $obj->cargarDatos($idproducto, $param['pronombre'], $param['prodetalle'], $param['procantstock'], $param['proprecio'], $prodeshabilitado);
         }
-
+    
         return $obj;
     }
-
-    private function cargarObjetoConClave($param)
-    {
+    
+    private function cargarObjetoConClave($param) {
         $obj = null;
 
         if ($this->seteadosCamposClaves($param)) {
@@ -26,8 +25,7 @@ class AbmProducto
         return $obj;
     }
 
-    private function seteadosCamposClaves($param)
-    {
+    private function seteadosCamposClaves($param) {
         $resp = false;
         if (isset($param['idproducto'])) {
             $resp = true;
@@ -35,8 +33,7 @@ class AbmProducto
         return $resp;
     }
 
-    public function alta($param)
-    {
+    public function alta($param) {
         $resp = false;
         if (!array_key_exists('idproducto', $param)) {
             $producto = $this->cargarObjeto($param);
@@ -47,8 +44,7 @@ class AbmProducto
         return $resp;
     }
 
-    public function baja($param)
-    {
+    public function baja($param) {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
             $elObjtProducto = $this->cargarObjetoConClave($param);
@@ -59,8 +55,7 @@ class AbmProducto
         return $resp;
     }
 
-    public function modificar($param)
-    {
+    public function modificar($param) {
         $resp = false;
         if ((isset($param['idproducto']))) {
             $elObjtProducto = $this->cargarObjeto($param);
@@ -76,38 +71,36 @@ class AbmProducto
      * Retorna un array de productos (en forma de array) que cumplan $param
      * @param array $param ['idproducto', 'proprecio', 'pronombre', 'prodetalle', 'procantstock', 'deshabilitado'
      */
-    public function listarProductos($param = null)
-    {
-        $respuesta = [];
-        $productos = (new AbmProducto())->buscar($param);
-
-        foreach ($productos as $producto) {
-            $prod['icon'] = BASE_URL . "/Vista/Media/Producto/" . $producto->getIdproducto() . "/icon.png";
-            $prod['idproducto'] = $producto->getIdproducto();
-            $prod['pronombre'] = $producto->getPronombre();
-            $prod['prodetalle'] = $producto->getProdetalle();
-            $prod['procantstock'] = $producto->getProcantstock();
-            $prod['proprecio'] = $producto->getProprecio();
-            $prod['prodeshabilitado'] = $producto->getProdeshabilitado();
-
-            $respuesta[] = $prod;
-        }
-        return $respuesta;
+public function listarProductos($param = null) {
+    $respuesta = [];
+    $productos = (new AbmProducto())->buscar($param);
+    
+    foreach($productos as $producto) {
+        $prod['icon'] = BASE_URL."/Vista/Media/Producto/".$producto->getIdproducto()."/icon.png";
+        $prod['idproducto'] = $producto->getIdproducto();
+        $prod['pronombre'] = $producto->getPronombre();
+        $prod['prodetalle'] = $producto->getProdetalle();
+        $prod['procantstock'] = $producto->getProcantstock();
+        $prod['proprecio'] = $producto->getProprecio();
+        $prod['prodeshabilitado'] = $producto->getProdeshabilitado();
+        
+        $respuesta[] = $prod;
     }
+    return $respuesta;
+}
 
     /**
      * Se encarga de realizar el alta de un producto y retorna un arreglo con el mensaje de confirmación
      * @param array $param ['nombre], $param ['stock], $param ['detalle], $param ['precio]
      */
-    public function altaProducto($param = null)
-    {
+    public function altaProducto($param = null){
         $respuesta = [];
         if (isset($param['nombre']) && isset($param['stock']) && isset($param['detalle']) && isset($param['precio'])) {
             $param['pronombre'] = $param['nombre'];
             $param['prodetalle'] = $param['detalle'];
             $param['procantstock'] = $param['stock'];
             $param['proprecio'] = $param['precio'];
-
+        
             if ((new ABMProducto())->alta($param)) {
                 $respuesta = ['success' => true, 'message' => 'Producto agregado exitosamente.'];
             } else {
@@ -124,8 +117,7 @@ class AbmProducto
      * Se encarga de realizar la baja de un producto y retorna un arreglo con el mensaje de confirmación
      * @param array $param ['idproducto]
      */
-    public function bajaProducto($param = null)
-    {
+    public function bajaProducto($param = null){
         $respuesta = [];
         if (isset($param['idproducto'])) {
             $idproducto = $param['idproducto'];
@@ -136,23 +128,23 @@ class AbmProducto
             } else {
                 $respuesta = ['success' => false, 'message' => 'Error al dar de baja el producto.'];
             }
+        
         }
         return $respuesta;
     }
 
-
+    
     /**
      * Se encarga de deshabilitar un producto y retorna un arreglo con el mensaje de confirmación
      * @param array $param ['idproducto]
      */
-    public function deshabilitarProducto($param = null)
-    {
+    public function deshabilitarProducto($param = null){
 
         $respuesta = [];
         if (isset($param['idproducto'])) {
             // buscar el producto
             $productos = (new AbmProducto())->buscar(['idproducto' => $param['idproducto']]);
-
+        
             if (!empty($productos)) {
                 $producto = $productos[0];
                 $param['idproducto'] = $producto->getIdproducto();
@@ -160,26 +152,26 @@ class AbmProducto
                 $param['prodetalle'] = $producto->getProdetalle();
                 $param['procantstock'] = $producto->getProcantstock();
                 $param['proprecio'] = $producto->getProprecio();
-
-
+                
+                
                 $datetime = new DateTime('now');
                 //$datetime->setTime(0, 0, 0); // Hora: 00:11:12
-                $param['prodeshabilitado'] = $datetime->format('Y-m-d H:i:s');
+                $param['prodeshabilitado'] = $datetime->format('Y-m-d H:i:s'); 
                 // se setea a  00:00:00 por la zona horaria del servidor
-
-
+        
+        
                 $modificacion = (new AbmProducto())->modificar($param);
-
+        
                 if ($modificacion) {
-                    $respuesta = ['success' => true, 'message' => 'Producto deshabilitado exitosamente.'];
+                    $respuesta =['success' => true, 'message' => 'Producto deshabilitado exitosamente.'];
                 } else {
-                    $respuesta = ['success' => false, 'message' => 'Error al deshabilitar el producto.'];
+                    $respuesta =['success' => false, 'message' => 'Error al deshabilitar el producto.'];
                 }
             } else {
-                $respuesta = ['success' => false, 'message' => 'Producto no encontrado.'];
+                $respuesta =['success' => false, 'message' => 'Producto no encontrado.'];
             }
         } else {
-            $respuesta = ['success' => false, 'message' => 'Datos incompletos.'];
+           $respuesta =['success' => false, 'message' => 'Datos incompletos.'];
         }
         return $respuesta;
     }
@@ -188,14 +180,13 @@ class AbmProducto
      * Se encarga de habilitar un producto y retorna un arreglo con el mensaje de confirmación
      * @param array $param ['idproducto]
      */
-    public function habilitarProducto($param = null)
-    {
+    public function habilitarProducto($param = null){
 
         $respuesta = [];
         if (isset($param['idproducto'])) {
             // buscar el producto
             $productos = (new AbmProducto())->buscar(['idproducto' => $param['idproducto']]);
-
+        
             if (!empty($productos)) {
                 $producto = $productos[0];
                 $param['idproducto'] = $producto->getIdproducto();
@@ -204,9 +195,9 @@ class AbmProducto
                 $param['procantstock'] = $producto->getProcantstock();
                 $param['proprecio'] = $producto->getProprecio();
                 $param['prodeshabilitado'] = null;
-
+        
                 $modificacion = (new AbmProducto())->modificar($param);
-
+        
                 if ($modificacion) {
                     $respuesta = ['success' => true, 'message' => 'Producto habilitado exitosamente.'];
                 } else {
@@ -226,19 +217,18 @@ class AbmProducto
      * Retorna un array de productos (en forma de array) que cumplan $param
      * @param array $param ['idproducto', 'proprecio', 'pronombre', 'prodetalle', 'procantstock', 'deshabilitado'
      */
-    public function listarProductosAdministrar($param = null)
-    {
+    public function listarProductosAdministrar($param = null) {
         $respuesta = [];
         $productos = (new AbmProducto())->buscar($param); //Recupera productos
-        foreach ($productos as $producto) {
-            $prod['icon'] = BASE_URL . "/Vista/Media/Producto/" . $producto->getIdproducto() . "/icon.png";
+        foreach($productos as $producto) {
+            $prod['icon'] = BASE_URL."/Vista/Media/Producto/".$producto->getIdproducto()."/icon.png";
             $prod['idproducto'] = $producto->getIdproducto();
             $prod['pronombre'] = $producto->getPronombre();
             $prod['prodetalle'] = $producto->getProdetalle();
             $prod['procantstock'] = $producto->getProcantstock();
             $prod['proprecio'] = $producto->getProprecio();
             $prod['prodeshabilitado'] = $producto->getProdeshabilitado();
-            array_push($respuesta, $prod);
+            array_push($respuesta, $prod);            
         }
         return $respuesta;
     }
@@ -247,13 +237,12 @@ class AbmProducto
      * Modifica los productos y retorna un arreglo con el mensaje del estado de la operación
      * @param array $param['idproducto'], $param['pronombre'], $param['prodetalle'], $param['procantstock'], $param['proprecio']
      */
-    public function modificarProductos($param = null)
-    {
+    public function modificarProductos($param = null){
         $respuesta = [];
         if (isset($param['idproducto'])) {
             // buscar el producto
             $productos = (new AbmProducto())->buscar(['idproducto' => $param['idproducto']]);
-
+            
             if (!empty($productos)) {
                 $producto = $productos[0];
                 $param['idproducto'] = $producto->getIdproducto();
@@ -279,7 +268,7 @@ class AbmProducto
                 }
 
                 $modificacion = (new AbmProducto())->modificar($param);
-
+                
                 if ($modificacion) {
                     $respuesta = ['success' => true, 'message' => 'Producto modificado exitosamente.'];
                 } else {
@@ -294,29 +283,28 @@ class AbmProducto
 
         return $respuesta;
     }
+    
 
-
-    public function buscar($param = null)
-    {
+    public function buscar($param = null) {
         $where = " true ";
         if ($param != null) {
             if (isset($param['idproducto'])) {
-                $where .= " AND idproducto = " . $param['idproducto'];
+                $where .= " AND idproducto = ".$param['idproducto'];
             }
             if (isset($param['proprecio'])) {
-                $where .= " AND proprecio = " . $param['proprecio'];
+                $where .= " AND proprecio = ".$param['proprecio'];
             }
             if (isset($param['pronombre'])) {
-                $where .= " AND pronombre = '" . $param['pronombre'] . "'";
+                $where .= " AND pronombre = '".$param['pronombre']."'";
             }
             if (isset($param['prodetalle'])) {
-                $where .= " AND prodetalle = '" . $param['prodetalle'] . "'";
+                $where .= " AND prodetalle = '".$param['prodetalle']."'";
             }
             if (isset($param['procantstock'])) {
-                $where .= " AND procantstock = " . $param['procantstock'];
+                $where .= " AND procantstock = ".$param['procantstock'];
             }
             if (isset($param['prodeshabilitado'])) {
-                $where .= " AND prodeshabilitado = '" . $param['prodeshabilitado'] . "'";
+                $where .= " AND prodeshabilitado = '".$param['prodeshabilitado']."'";
             }
         }
         $arreglo = (new Producto())->listar($where);

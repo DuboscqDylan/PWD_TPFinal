@@ -1,5 +1,5 @@
-<?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD_TPFINAL/configuracion.php";
+<?php 
+include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
 include STRUCTURE_PATH . '/Header.php';
 ?>
 
@@ -9,6 +9,6 @@ include STRUCTURE_PATH . '/Header.php';
 </div>
 
 
-<?php
+<?php 
 include STRUCTURE_PATH . '/Footer.php';
 ?>
