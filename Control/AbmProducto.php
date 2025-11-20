@@ -89,6 +89,27 @@ public function listarProductos($param = null) {
     return $respuesta;
 }
 
+public function listarProductosCatalogo($param = null) {
+    
+    $respuesta = [];
+    $productos = (new AbmProducto())->buscar($param);
+    
+    foreach($productos as $producto) {
+        $prod['icon'] = BASE_URL."/Vista/Media/Producto/".$producto->getIdproducto()."/icon.png";
+        $prod['idproducto'] = $producto->getIdproducto();
+        $prod['pronombre'] = $producto->getPronombre();
+        $prod['prodetalle'] = $producto->getProdetalle();
+        $prod['procantstock'] = $producto->getProcantstock();
+        $prod['proprecio'] = $producto->getProprecio();
+        $prod['prodeshabilitado'] = $producto->getProdeshabilitado();
+        if ($prod['prodeshabilitado']==null) {
+            $respuesta[] = $prod;
+        }
+        
+    }
+    return $respuesta;
+}
+
     /**
      * Se encarga de realizar el alta de un producto y retorna un arreglo con el mensaje de confirmación
      * @param array $param ['nombre], $param ['stock], $param ['detalle], $param ['precio]
