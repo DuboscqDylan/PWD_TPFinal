@@ -127,23 +127,26 @@ class AbmUsuarioRol
     }
 
     public function listarUsuariosFormateados($param = [])
-    {
-        $lista = $this->buscar($param);
-        $salida = [];
+{
+    $usuarios = (new Usuario())->listar("true"); 
+    $salida = [];
 
-        foreach ($lista as $cadaUsuarioRol) {
-            $usuario = $cadaUsuarioRol->getObjUsuario();
-            $rol = $cadaUsuarioRol->getObjRol();
+    foreach ($usuarios as $usuario) {
 
-            $salida[] = [
-                'idusuario' => $usuario->getIdusuario(),
-                'usnombre' => $usuario->getUsnombre(),
-                'usmail' => $usuario->getUsmail(),
-                'usdeshabilitado' => $usuario->getUsdeshabilitado(),
-                'rol' => $rol->getRodescripcion()
-            ];
-        }
+        $usuarioRol = (new AbmUsuarioRol())->buscar(['usuario' => $usuario]);
+        $rol = count($usuarioRol) > 0
+            ? $usuarioRol[0]->getObjRol()->getRodescripcion()
+            : "Sin rol";
 
-        return $salida;
+        $salida[] = [
+            'idusuario' => $usuario->getIdusuario(),
+            'usnombre' => $usuario->getUsnombre(),
+            'usmail' => $usuario->getUsmail(),
+            'usdeshabilitado' => $usuario->getUsdeshabilitado(),
+            'rol' => $rol
+        ];
     }
+
+    return $salida;
+}
 }

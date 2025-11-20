@@ -33,8 +33,12 @@ class AbmUsuario
     {
         $obj = null;
         if ($this->seteadosCamposClaves($param)) {
-            $obj = new Usuario();
-            $obj->cargarDatos($param['idusuario']);
+
+            $arr = $this->buscar(['idusuario' => $param['idusuario']]);
+
+            if (!empty($arr)) {
+                $obj = $arr[0]; // objeto COMPLETO
+            }
         }
         return $obj;
     }
@@ -262,7 +266,7 @@ class AbmUsuario
         $passBD        = $usuario->getUspass();
         $deshabilitado = $usuario->getUsdeshabilitado();
 
-        if ($passBD === null || $passBD != $passActual) {
+        if ($passBD === null || $passBD != md5($passActual)) {
             return ['success' => false, 'message' => 'Error, contraseña actual inválida.'];
         }
 
@@ -404,30 +408,40 @@ class AbmUsuario
     $subaRol = true;
     $bajaRol = true;
 
-    if (isset($data['modRol'])) {
+    /** ---- MANEJO DE ROLES ---- **/
+    if (isset($data['modRol']) && $data['modRol'] !== "") {
 
         $abmRol = new AbmRol();
         $abmUsuarioRol = new AbmUsuarioRol();
 
+        // buscar el nuevo rol
         $roles = $abmRol->buscar(['rodescripcion' => $data['modRol']]);
         if (empty($roles)) {
             return ['success' => false, 'message' => 'Rol inválido.'];
         }
-
         $rolNuevo = $roles[0];
 
+        // buscar rol actual
         $usuarioRoles = $abmUsuarioRol->buscar(['usuario' => $usuario]);
+
+        // si tiene un rol previo → eliminarlo con el formato correcto
         if (!empty($usuarioRoles)) {
+            $rolActual = $usuarioRoles[0]->getObjRol();
+
             $bajaRol = $abmUsuarioRol->baja([
                 'usuario' => $usuario,
-                'rol' => $usuarioRoles[0]->getObjRol()
+                'rol'     => $rolActual   // OBJETO!
             ]);
         }
+
+        // alta del nuevo rol → formato idusuario / idrol
         $subaRol = $abmUsuarioRol->alta([
-            'usuario' => $usuario,
-            'rol' => $rolNuevo
+            'idusuario' => $usuario->getIdusuario(),
+            'idrol'     => $rolNuevo->getIdrol()
         ]);
     }
+
+    /** ---- modificar usuario ---- **/
     $modificacion = $this->modificacion($param);
 
     if ($modificacion && $subaRol && $bajaRol) {
@@ -437,7 +451,11 @@ class AbmUsuario
     return [
         'success' => false,
         'message' => 'Error al modificar el usuario.',
-        'data' => $param
+        'data' => [
+            'modificacion' => $modificacion,
+            'altaRol' => $subaRol,
+            'bajaRol' => $bajaRol
+        ]
     ];
 }
 }

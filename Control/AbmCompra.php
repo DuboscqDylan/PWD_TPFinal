@@ -252,7 +252,7 @@ class AbmCompra {
 
         // Configurar el PDF
         $pdf->SetCreator('PWD_TPFinal');
-        $pdf->SetAuthor('FF-MN-JV');
+        $pdf->SetAuthor('DD-MA-JV');
         $pdf->SetTitle($tituloPDF);
         $pdf->SetSubject('Factura');
 
