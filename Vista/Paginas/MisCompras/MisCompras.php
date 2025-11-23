@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/PWD_TPFINAL/configuracion.php";
 include STRUCTURE_PATH . '/Header.php';
 ?>
 
@@ -28,6 +28,21 @@ include STRUCTURE_PATH . '/Header.php';
                 </table>
             </div>
 
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0" id="tablaHistorial" style="width: 100%;">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Estado</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Las compras son cargadas dinámicamente acá -->
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </div>
@@ -35,7 +50,51 @@ include STRUCTURE_PATH . '/Header.php';
 <script>
     $(document).ready(function() {
         listarComprasPersonales();
+        listarHistorial();
     });
+
+    function listarHistorial() {
+        $.ajax({
+            url: '/PWD_TPFINAL/Vista/Paginas/MisCompras/Accion/ListarHistorial.php',
+            method: 'POST',
+            data: {
+                idusuario: <?php echo $usuario->getIdusuario(); ?>
+            },
+            dataType: 'json',
+            success: function(res) {
+                renderTabla(res);
+            }
+        });
+    }
+
+    function renderTabla(historial) {
+        let html = '';
+
+        historial.forEach(entry => {
+
+            html += `
+            <tr class="table-secondary">
+                <td colspan="5" class="fw-bold">
+                    Compra #${entry.idcompra} — Fecha: ${entry.cofecha}
+                </td>
+            </tr>
+        `;
+
+            entry.estados.forEach(est => {
+                html += `
+                <tr>
+                    <td>${est.estado}</td>
+                    <!--<td>${est.idestadotipo}</td>-->
+                    <!--<td>${est.idcompraestado}</td>-->
+                    <td>${est.fechaini ?? '—'}</td>
+                    <td>${est.fechafin ?? '—'}</td>
+                </tr>
+            `;
+            });
+        });
+
+        $("#tablaHistorial tbody").html(html);
+    }
 
     function listarComprasPersonales() {
         $.ajax({
@@ -87,7 +146,7 @@ include STRUCTURE_PATH . '/Header.php';
                             </button>
                         `;
                     } else {
-                        tableContent += `<span class="text-muted">-</span>`; 
+                        tableContent += `<span class="text-muted">-</span>`;
                     }
 
                     tableContent += `

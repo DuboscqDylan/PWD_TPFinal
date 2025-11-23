@@ -403,4 +403,8 @@ if (file_exists($imagePath)) {
         $arreglo = (new Compra())->listar($where);
         return $arreglo;
     }
+
+    public function listarHistorialCompras(){
+        
+    }
 }
