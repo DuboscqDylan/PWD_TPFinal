@@ -126,9 +126,15 @@ class AbmUsuarioRol
         return $arreglo;
     }
 
-    public function listarUsuariosFormateados($param = [])
+public function listarUsuariosFormateados($param = [])
 {
-    $usuarios = (new Usuario())->listar("true"); 
+    // Si viene un ID → listar solo ese
+    if (isset($param['idusuario'])) {
+        return $this->listarUsuarioFormateadoPorID($param['idusuario']);
+    }
+
+    // Si NO viene ID → listar todos (NO se rompe nada)
+    $usuarios = (new Usuario())->listar("true");
     $salida = [];
 
     foreach ($usuarios as $usuario) {
@@ -149,4 +155,31 @@ class AbmUsuarioRol
 
     return $salida;
 }
+
+
+public function listarUsuarioFormateadoPorID($idusuario)
+{
+    if (!$idusuario) return [];
+
+    $usuarios = (new Usuario())->listar("idusuario = " . intval($idusuario));
+    if (empty($usuarios)) return [];
+
+    $usuario = $usuarios[0];
+
+    // Obtener el rol del usuario
+    $usuarioRol = $this->buscar(['usuario' => $usuario]);
+    $rol = count($usuarioRol) > 0
+        ? $usuarioRol[0]->getObjRol()->getRodescripcion()
+        : "Sin rol";
+
+    return [[
+        'idusuario' => $usuario->getIdusuario(),
+        'usnombre' => $usuario->getUsnombre(),
+        'usmail' => $usuario->getUsmail(),
+        'usdeshabilitado' => $usuario->getUsdeshabilitado(),
+        'rol' => $rol
+    ]];
+}
+
+
 }
