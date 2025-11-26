@@ -1,4 +1,3 @@
-
 <?php
 include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
 include STRUCTURE_PATH . "/HeaderSeguro.php";
@@ -23,35 +22,36 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Los productos serán cargados dinámicamente acá -->
+                    <!-- Los productos se cargan dinámicamente -->
                 </tbody>
             </table>
         </div>
     </div>
 
-    <!-- Formulario  para Alta de Producto -->
+    <!-- Formulario Alta Producto -->
     <div class="card shadow border-0 rounded-4 p-4 bg-dark text-white mb-5" style="max-width: 45%; padding: 20px;">
         <h2 class="fw-semibold mb-4 text-success">Alta de Producto</h2>
         <form id="altaProductoForm">
             <div class="mb-3">
-                <label for="nombreAlta" class="form-label text-white">Nombre</label>
+                <label class="form-label text-white">Nombre</label>
                 <input type="text" class="form-control" id="nombreAlta" name="nombreAlta" required>
             </div>
             <div class="mb-3">
-                <label for="detalleAlta" class="form-label text-white">Detalle</label>
+                <label class="form-label text-white">Detalle</label>
                 <input type="text" class="form-control" id="detalleAlta" name="detalleAlta" required>
             </div>
             <div class="mb-3">
-                <label for="stockAlta" class="form-label text-white">Stock</label>
+                <label class="form-label text-white">Stock</label>
                 <input type="number" class="form-control" id="stockAlta" name="stockAlta" required>
             </div>
             <div class="mb-3">
-                <label for="precioAlta" class="form-label text-white">Precio</label>
+                <label class="form-label text-white">Precio</label>
                 <input type="number" class="form-control" id="precioAlta" name="precioAlta" required>
             </div>
-           
+
             <button type="submit" class="btn btn-success mt-3 w-100">Crear producto</button>
         </form>
+
         <div class="mt-3">
             <div id="errorMessage" class="alert alert-danger d-none text-center"></div>
             <div id="successMessage" class="alert alert-success d-none text-center"></div>
@@ -59,256 +59,219 @@ include STRUCTURE_PATH . "/HeaderSeguro.php";
     </div>
 
     <!-- Formulario Modificar Producto -->
-    <div class="card shadow border-0 rounded-4 p-4 bg-dark text-white mb-5" style="max-width: 45%; padding: 20px;">
-        <h2 class="fw-semibold mb-4 text-primary">Modificar Producto</h2>
-        <form id="modificarProductoForm">
-            <div class="mb-3">
-                <label for="idproducto" class="form-label text-white">Id</label>
-                <input type="number" class="form-control" id="idproducto" name="idproducto" required>
-            </div>
-            <div class="mb-3">
-                <label for="pronombre" class="form-label text-white">Nombre</label>
-                <input type="text" class="form-control" id="pronombre" name="pronombre">
-            </div>
-            <div class="mb-3">
-                <label for="prodetalle" class="form-label text-white">Detalle</label>
-                <input type="text" class="form-control" id="prodetalle" name="prodetalle">
-            </div>
-            <div class="mb-3">
-                <label for="procantstock" class="form-label text-white">Stock</label>
-                <input type="number" class="form-control" id="procantstock" name="procantstock">
-            </div>
-            <div class="mb-3">
-                <label for="proprecio" class="form-label text-white">Precio</label>
-                <input type="number" class="form-control" id="proprecio" name="proprecio">
-            </div>
-           >
+   <div id="modificarCard" class="card shadow border-0 rounded-4 p-4 bg-dark text-white mb-5" 
+     style="max-width: 45%; padding: 20px; display:none;">
+    <h2 class="fw-semibold mb-4 text-primary">Modificar Producto</h2>
 
-            <button type="submit" class="btn btn-primary mt-3 w-100">Actualizar producto</button>
-        </form>
-        <div class="mt-3">
-            <div id="errorMessageMod" class="alert alert-danger d-none text-center"></div>
-            <div id="successMessageMod" class="alert alert-success d-none text-center"></div>
+    <form id="modificarProductoForm">
+
+        <input type="hidden" id="idproducto" name="idproducto">
+
+        <div class="mb-3">
+            <label class="form-label text-white">Detalle</label>
+            <input type="text" class="form-control" id="prodetalle" name="prodetalle">
         </div>
-    </div>
+
+        <div class="mb-3">
+            <label class="form-label text-white">Stock</label>
+            <input type="number" class="form-control" id="procantstock" name="procantstock">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-white">Precio</label>
+            <input type="number" class="form-control" id="proprecio" name="proprecio">
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3 w-100">Actualizar producto</button>
+    </form>
+
+    
+</div>
+
 
 </div>
 
 <script>
-    $(document).ready(function() {
-        cargarProductos();
+$(document).ready(function() {
 
-        function cargarProductos() {
-            $.ajax({
-                url: 'Accion/ListarProductos.php',
-                method: 'POST',
-                data: 'todo',
-                dataType: 'json',
-                success: function(response) {
-                    var tableContent = '';
-                    $.each(response, function(index, producto) {
-                        const estado = producto.prodeshabilitado ? 'Deshabilitado' : 'Disponible';
-                        const botonEstado = producto.prodeshabilitado ?
-                            `<button class="my-1 btn btn-success btn-sm" onclick="habilitarProducto(${producto.idproducto})">Habilitar</button>` :
-                            `<button class="my-1 btn btn-warning btn-sm" onclick="deshabilitarProducto(${producto.idproducto})">Deshabilitar</button>`;
+    cargarProductos();
+    $('#cardModificar').hide(); //  empieza oculto
 
-                        tableContent += `
-                            <tr id="producto-${producto.idproducto}">
-                                <td>${producto.idproducto}</td>
-                                <td>${producto.pronombre}</td>
-                                <td>${producto.prodetalle}</td>
-                                <td>${producto.procantstock}</td>
-                                <td>${estado}</td>
-                                <td>${producto.proprecio}</td>
-                                
-                                <td>
-                                    <div class="d-flex flex-column align-items-start">
-                                        ${botonEstado}
-                                    </div>
-                                </td>
-                            </tr>
-                        `;
-                    });
-                    $('#productosTable tbody').html(tableContent);
-                },
-                error: function() {
-                    alert('Error al cargar los productos.');
-                }
-            });
-        }
+    function cargarProductos() {
+        $.ajax({
+            url: 'Accion/ListarProductos.php',
+            method: 'POST',
+            data: 'todo',
+            dataType: 'json',
+            success: function(response) {
+                var tableContent = '';
 
-        
-        $('#altaProductoForm').submit(function(e) {
-            e.preventDefault(); 
-            $('#errorMessage').text('').removeClass('d-block').addClass('d-none');
-            $('#successMessage').text('').removeClass('d-block').addClass('d-none');
+                $.each(response, function(index, producto) {
 
-            // Recopilación de los datos del formulario
-            const formData = {
-                pronombre: $('#nombreAlta').val(),
-                prodetalle: $('#detalleAlta').val(),
-                procantstock: $('#stockAlta').val(),
-                proprecio: $('#precioAlta').val(),
-                
-            };
+                    const estado = producto.prodeshabilitado ? 'Deshabilitado' : 'Disponible';
 
-            // Envío de los datos a través de Ajax
-            $.ajax({
-                url: 'Accion/Alta.php',
-                type: 'POST',
-                data: formData,
-                success: function(response) {
-                    //console.log(response);
-                    const res = JSON.parse(response);
-                    if (res.success) {
-                        $('#successMessage')
-                            .text(res.message)
-                            .removeClass('d-none')
-                            .addClass('d-block');
-                        cargarProductos(); // Recargar la lista de productos
-                    } else {
-                        $('#errorMessage')
-                            .text(res.message)
-                            .removeClass('d-none')
-                            .addClass('d-block');
-                    }
-                },
-                error: function() {
-                    $('#errorMessage')
-                        .text('Ocurrió un error al procesar la solicitud.')
-                        .removeClass('d-none')
-                        .addClass('d-block');
-                }
-            });
+                    const botonEstado = producto.prodeshabilitado ?
+                        `<button class="my-1 btn btn-success btn-sm" onclick="habilitarProducto(${producto.idproducto})">Habilitar</button>` :
+                        `<button class="my-1 btn btn-warning btn-sm" onclick="deshabilitarProducto(${producto.idproducto})">Deshabilitar</button>`;
+
+                    tableContent += `
+                        <tr id="producto-${producto.idproducto}">
+                            <td>${producto.idproducto}</td>
+                            <td>${producto.pronombre}</td>
+                            <td>${producto.prodetalle}</td>
+                            <td>${producto.procantstock}</td>
+                            <td>${estado}</td>
+                            <td>${producto.proprecio}</td>
+
+                            <td>
+                                <div class="d-flex flex-column align-items-start">
+                                    ${botonEstado}
+
+                                    <button class="my-1 btn btn-info btn-sm"
+                                        onclick="cargarFormularioModificar(
+                                            ${producto.idproducto},
+                                            '${producto.prodetalle}',
+                                            ${producto.procantstock},
+                                            ${producto.proprecio}
+                                        )">
+                                        Modificar
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                $('#productosTable tbody').html(tableContent);
+            },
+            error: function() {
+                alert('Error al cargar los productos.');
+            }
         });
+    }
 
-        //baja de producto
-        window.bajaProducto = function(idproducto) {
-            if (confirm('¿Está seguro que desea eliminar el producto?')) {
-                $.ajax({
-                    url: 'Accion/Baja.php',
-                    type: 'POST',
-                    data: {
-                        idproducto: idproducto
-                    },
-                    success: function(response) {
-                        const res = JSON.parse(response);
-                        if (res.success) {
-                            alert(res.message);
-                            $('#producto-' + idproducto).remove();
-                        } else {
-                            alert(res.message);
-                        }
-                    },
-                    error: function() {
-                        alert('Ocurrió un error al procesar la solicitud.');
-                    }
-                });
-            }
-        }
-        // deshabilitado de producto
-        window.deshabilitarProducto = function(idproducto) {
-            if (confirm('¿Está seguro que desea deshabilitar el producto?')) {
-                $.ajax({
-                    url: 'Accion/Deshabilitar.php',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        idproducto: idproducto 
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            alert(response.message);
-                            cargarProductos(); // Recargar la lista de productos
-                        } else {
-                            alert(response.message);
-                        }
-                    },
-                    error: function() {
-                        alert('Ocurrió un error al procesar la solicitud.');
-                    }
+    // ALTA
+    $('#altaProductoForm').submit(function(e) {
+        e.preventDefault();
 
-                });
-            }
-        }
-        // habilitado de producto
-        window.habilitarProducto = function(idproducto) {
-            if (confirm('¿Está seguro que desea habilitar el producto?')) {
-                $.ajax({
-                    url: 'Accion/Habilitar.php',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        idproducto: idproducto // hay que usar si o si idproducto, claro
-                    },
-                    success: function(response) {
-                        if (response) {
-                            alert(response.message);
-                            cargarProductos(); // Recargar la lista de productos tampoco
-                        } else {
-                            alert(response.message);
-                        }
-                    },
-                    error: function() {
-                        alert('Ocurrió un error al procesar la solicitud.');
-                    }
-                });
-            }
+        const formData = {
+            pronombre: $('#nombreAlta').val(),
+            prodetalle: $('#detalleAlta').val(),
+            procantstock: $('#stockAlta').val(),
+            proprecio: $('#precioAlta').val()
         };
 
+        $.ajax({
+            url: 'Accion/Alta.php',
+            type: 'POST',
+            data: formData,
+            success: function(response) {
 
-        $('#modificarProductoForm').submit(function(e) {
-            e.preventDefault(); 
-            $('#errorMessageMod').text('').removeClass('d-block').addClass('d-none');
-            $('#successMessageMod').text('').removeClass('d-block').addClass('d-none');
+                const res = JSON.parse(response);
 
-            var formData = {
-                idproducto: parseInt($('#idproducto').val(), 10)
-            }; 
-            if ($('#pronombre').val().trim() != "") {
-                formData.pronombre = $('#pronombre').val().trim();
-            }
-            if ($('#prodetalle').val().trim() != "") {
-                formData.prodetalle = $('#prodetalle').val().trim();
-            }
-            if (!isNaN(parseInt($('#procantstock').val(), 10))) {
-                formData.procantstock = parseInt($('#procantstock').val(), 10); // Validar si es NaN    
-            }
-            if (!isNaN(parseFloat($('#proprecio').val()))) {
-                formData.proprecio = parseFloat($('#proprecio').val()); // Validar si es NaN
-            }
-           
-            
-            $.ajax({
-                url: 'Accion/Modificar.php',
-                type: 'POST',
-                data: formData,
-                success: function(response) {
-                    const res = JSON.parse(response);
-                    //console.log(res);
-                    if (res.success) {
-                        $('#successMessageMod')
-                            .text(res.message)
-                            .removeClass('d-none')
-                            .addClass('d-block');
-                        cargarProductos(); 
-                    } else {
-                        $('#errorMessageMod')
-                            .text(res.message)
-                            .removeClass('d-none')
-                            .addClass('d-block');
-                    }
-                },
-                error: function() {
-                    $('#errorMessageMod')
-                        .text('Ocurrió un error al procesar la solicitud.')
-                        .removeClass('d-none')
-                        .addClass('d-block');
+                if (res.success) {
+                    $('#successMessage').text(res.message).removeClass('d-none').addClass('d-block');
+                    cargarProductos();
+                } else {
+                    $('#errorMessage').text(res.message).removeClass('d-none').addClass('d-block');
                 }
-            });
+            },
+            error: function() {
+                $('#errorMessage').text('Error al procesar la solicitud.').removeClass('d-none').addClass('d-block');
+            }
         });
     });
 
+    // DESHABILITAR / HABILITAR
+    window.deshabilitarProducto = function(idproducto) {
+        if (confirm('¿Está seguro que desea deshabilitar el producto?')) {
+            $.ajax({
+                url: 'Accion/Deshabilitar.php',
+                type: 'POST',
+                dataType: 'json',
+                data: { idproducto: idproducto },
+                success: function(response) {
+                    alert(response.message);
+                    if (response.success) {
+                        cargarProductos();
+                    }
+                }
+            });
+        }
+    }
+
+    window.habilitarProducto = function(idproducto) {
+        if (confirm('¿Está seguro que desea habilitar el producto?')) {
+            $.ajax({
+                url: 'Accion/Habilitar.php',
+                type: 'POST',
+                dataType: 'json',
+                data: { idproducto: idproducto },
+                success: function(response) {
+                    alert(response.message);
+                    if (response.success) {
+                        cargarProductos();
+                    }
+                }
+            });
+        }
+    }
+
+    // Cargar formulario Modificar
+  window.cargarFormularioModificar = function(id, detalle, stock, precio) {
+
+    $('#idproducto').val(id);
+    $('#prodetalle').val(detalle);
+    $('#procantstock').val(stock);
+    $('#proprecio').val(precio);
+
+    // Mostrar formulario
+    $('#modificarCard').fadeIn(300);
+
+    $('html, body').animate({
+        scrollTop: $('#modificarCard').offset().top - 100
+    }, 500);
+};
+
+
+    // MODIFICAR
+    $('#modificarProductoForm').submit(function(e) {
+        e.preventDefault();
+
+       var formData = {
+    idproducto: $('#idproducto').val(),
+    detalle: $('#prodetalle').val(),
+    stock: $('#procantstock').val(),
+    precio: $('#proprecio').val()
+};
+
+        $.ajax({
+            url: 'Accion/Modificar.php',
+            type: 'POST',
+            data: formData,
+            success: function(response) {
+
+                const res = JSON.parse(response);
+
+                if (res.success) {
+                    $('#modificarCard').fadeOut(300);
+                   $('#modificarProductoForm')[0].reset();
+
+                    $('#successMessageMod').text(res.message).removeClass('d-none');
+                    cargarProductos();
+
+                    setTimeout(() => {
+                        $('#cardModificar').fadeOut(300); //  desaparece
+                    }, 1200);
+
+                } else {
+                    $('#errorMessageMod').text(res.message).removeClass('d-none');
+                }
+            }
+        });
+    });
+
+});
 </script>
 
 <?php include STRUCTURE_PATH . "/Footer.php"; ?>

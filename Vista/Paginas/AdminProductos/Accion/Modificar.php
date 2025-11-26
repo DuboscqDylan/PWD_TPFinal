@@ -1,8 +1,8 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT']."/PWD_TPFINAL/configuracion.php";
-$data = data_submitted();  // Obtener los datos enviados
 
-$respuesta = (new AbmProducto())->modificar($data);
+$data = data_submitted();
 
-echo json_encode($respuesta);
-?>
+$resp = (new AbmProducto())->modificarProductos($data);
+
+echo json_encode($resp);

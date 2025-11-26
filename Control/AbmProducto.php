@@ -254,56 +254,43 @@ public function listarProductosCatalogo($param = null) {
         return $respuesta;
     }
 
-    /**
-     * Modifica los productos y retorna un arreglo con el mensaje del estado de la operación
-     * @param array $param['idproducto'], $param['pronombre'], $param['prodetalle'], $param['procantstock'], $param['proprecio']
-     */
-    public function modificarProductos($param = null){
-        $respuesta = [];
-        if (isset($param['idproducto'])) {
-            // buscar el producto
-            $productos = (new AbmProducto())->buscar(['idproducto' => $param['idproducto']]);
-            
-            if (!empty($productos)) {
-                $producto = $productos[0];
-                $param['idproducto'] = $producto->getIdproducto();
-                if (isset($param['nombre'])) {
-                    $param['pronombre'] = $param['nombre'];
-                } else {
-                    $param['pronombre'] = $producto->getPronombre();
-                }
-                if (isset($param['detalle'])) {
-                    $param['prodetalle'] = $param['detalle'];
-                } else {
-                    $param['prodetalle'] = $producto->getProdetalle();
-                }
-                if (isset($param['stock'])) {
-                    $param['procantstock'] = $param['stock'];
-                } else {
-                    $param['procantstock'] = $producto->getProcantstock();
-                }
-                if (isset($param['precio'])) {
-                    $param['proprecio'] = $param['precio'];
-                } else {
-                    $param['proprecio'] = $producto->getProprecio();
-                }
+   public function modificarProductos($param = null){
+    $respuesta = [];
 
-                $modificacion = (new AbmProducto())->modificar($param);
-                
-                if ($modificacion) {
-                    $respuesta = ['success' => true, 'message' => 'Producto modificado exitosamente.'];
-                } else {
-                    $respuesta = ['success' => false, 'message' => 'Error al modificar el producto.'];
-                }
+    if (isset($param['idproducto'])) {
+
+        $productos = (new AbmProducto())->buscar(['idproducto' => $param['idproducto']]);
+
+        if (!empty($productos)) {
+
+            $producto = $productos[0];
+
+            // Cargo valores actuales si no vienen desde el formulario
+            $param['pronombre'] = $param['nombre'] ?? $producto->getPronombre();
+            $param['prodetalle'] = $param['detalle'] ?? $producto->getProdetalle();
+            $param['procantstock'] = $param['stock'] ?? $producto->getProcantstock();
+            $param['proprecio'] = $param['precio'] ?? $producto->getProprecio();
+            $param['idproducto'] = $producto->getIdproducto();
+
+            $modificacion = (new AbmProducto())->modificar($param);
+
+            if ($modificacion) {
+                $respuesta = ['success' => true, 'message' => 'Producto modificado exitosamente.'];
             } else {
-                $respuesta = ['success' => false, 'message' => 'Producto no encontrado.'];
+                $respuesta = ['success' => false, 'message' => 'Error al modificar el producto.'];
             }
+
         } else {
-            $respuesta = ['success' => false, 'message' => 'Datos incompletos.'];
+            $respuesta = ['success' => false, 'message' => 'Producto no encontrado.'];
         }
 
-        return $respuesta;
+    } else {
+        $respuesta = ['success' => false, 'message' => 'Datos incompletos.'];
     }
+
+    return $respuesta;
+}
+
     
 
     public function buscar($param = null) {
